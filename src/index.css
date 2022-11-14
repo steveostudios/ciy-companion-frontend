@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'PragmaticaExtended-ExtraBold';
+  src: local('PragmaticaExtended-ExtraBold'), url('./fonts/PragmaticaExtended-ExtraBold.ttf') format('truetype');
+}
+
+html {
+  font-size: 8px;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +14,22 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 10px;
+  color: var(--white);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+:root {
+  --primary-color: #e9a20a;
+  --blue: #2C7CCF;
+  --black: #000;
+  --white: #f6f7f8;
+  --trim: #cfd8d1;
+  --grey: #9f9f9f;
+  --dark-grey: #454545;
+  --move-primary: #BCD530;
 }
