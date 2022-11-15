@@ -54,26 +54,24 @@ export default function BasicExample() {
           <Header />
             <Routes>
               <Route exact path="/" element={<Root />} />
-              <Route exact path="/move" element={<Program program="move" />} />
-              <Route exact path="/mix" element={<Program program="mix" />} />
-              <Route exact path="/superstart" element={<Program program="superstart" />} />
-              <Route path="/move/:slug" element={<Event />} />
-              <Route path="/move/:slug/schedule" element={<Schedule />} />
-              <Route path="/move/:slug/seating-chart" element={<SeatingChart />} />
-              <Route path="/move/:slug/seating-chart/:chart" element={<SeatingChart />} />
-              <Route path="/move/:slug/campus-map" element={<CampusMap />} />
-              <Route path="/move/:slug/campus-map/:campusMap" element={<CampusMap />} />
-              <Route path="/move/:slug/event-contacts" element={<EventContacts />} />
-              <Route path="/move/:slug/damage-report" element={<DamageReport />} />
-              <Route path="/move/:slug/store" element={<Store />} />
-              <Route path="/move/:slug/campus-contacts" element={<CampusContacts />} />
-              <Route path="/move/:slug/convos" element={<Convos />} />
-              <Route path="/move/:slug/selah" element={<Selah />} />
-              <Route path="/move/:slug/tournament-rules" element={<TournamentRules />} />
-              <Route path="/move/:slug/tournament-rules/:rules" element={<TournamentRules />} />
-              <Route path="/move/:slug/youth-group-time-questions" element={<YouthGroupTimeQuestions />} />
-              <Route path="/move/:slug/beyond-the-event" element={<BeyondTheEvent />} />
-              <Route path="/move/:slug/connect" element={<Connect />} />
+              <Route exact path="/:program" element={<Program />} />
+              <Route path="/:program/:slug" element={<Event />} />
+              <Route path="/:program/:slug/schedule" element={<Schedule />} />
+              <Route path="/:program/:slug/seating-chart" element={<SeatingChart />} />
+              <Route path="/:program/:slug/seating-chart/:chart" element={<SeatingChart />} />
+              <Route path="/:program/:slug/campus-map" element={<CampusMap />} />
+              <Route path="/:program/:slug/campus-map/:campusMap" element={<CampusMap />} />
+              <Route path="/:program/:slug/event-contacts" element={<EventContacts />} />
+              <Route path="/:program/:slug/damage-report" element={<DamageReport />} />
+              <Route path="/:program/:slug/store" element={<Store />} />
+              <Route path="/:program/:slug/campus-contacts" element={<CampusContacts />} />
+              <Route path="/:program/:slug/convos" element={<Convos />} />
+              <Route path="/:program/:slug/selah" element={<Selah />} />
+              <Route path="/:program/:slug/tournament-rules" element={<TournamentRules />} />
+              <Route path="/:program/:slug/tournament-rules/:rules" element={<TournamentRules />} />
+              <Route path="/:program/:slug/youth-group-time-questions" element={<YouthGroupTimeQuestions />} />
+              <Route path="/:program/:slug/beyond-the-event" element={<BeyondTheEvent />} />
+              <Route path="/:program/:slug/connect" element={<Connect />} />
             </Routes>
         </Body>
       </EventContext.Provider>

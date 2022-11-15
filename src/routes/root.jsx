@@ -8,8 +8,10 @@ export default function Root() {
   const [event, setEvent] = useContext(EventContext);
 
   useEffect(() => {
-    setEvent(null)
-  }, [])
+    if (event !== null) {
+      setEvent(null)
+    }
+  }, [event, setEvent])
 
   return (
     <>

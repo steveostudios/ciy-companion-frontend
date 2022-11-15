@@ -18,33 +18,31 @@ import IconTools from "./../img/icons/tools.svg"
 import { EventContext } from "../App";
 import {api, environment } from "./../helpers/data"
 
-
-
 const Event = (props) => {
-  const { slug } = useParams()
+  const { slug, program } = useParams();
   const [event, setEvent] = useContext(EventContext);
 
   useEffect(() => {
       const url = `${api[environment]}/wp-json/wp/v2/events?slug=${slug}&acf_format=standard`;
       fetch(url).then(response => response.json()).then(data => setEvent(data[0]));
-  }, [])
+  }, [slug, setEvent])
 
   return (
       <Menu>
-        {event?.acf?.schedule_show && <Button link={`/move/${slug}/schedule`} icon={IconCalendar} name="Schedule" />}
-        {event?.acf?.seating_chart_show && <Button link={`/move/${slug}/seating-chart`} icon={IconCouch} name="Seating Chart" />}
-        {event?.acf?.campus_map_show && <Button link={`/move/${slug}/campus-map`} icon={IconMap} name="Campus Map" />}
-        {event?.acf?.event_contact_show && <Button link={`/move/${slug}/event-contacts`} icon={IconAddressBook} name="Event Contacts" />}
-        {event?.acf?.damage_report_show && <Button link={`/move/${slug}/damage-report`} icon={IconTools} name="Damage Report" />}
-        {event?.acf?.store_show && <Button link={`/move/${slug}/store`} icon={IconShirt} name="Store" />}
-        {event?.acf?.campus_contact_show && <Button link={`/move/${slug}/campus-contacts`} icon={IconPhone} name="Campus Contacts" />}
-        {event?.acf?.convos_show && <Button link={`/move/${slug}/convos`} icon={IconComments} name="Convos" />}
-        {event?.acf?.selah_show && <Button link={`/move/${slug}/selah`} icon={IconCloud} name="SELAH" />}
-        {event?.acf?.youth_group_time_questions_show && <Button link={`/move/${slug}/youth-group-time-questions`} icon={IconQuestionBox} name="Youth Group Time Questions" />}
-        {event?.acf?.tournament_rules_show && <Button link={`/move/${slug}/tournament-rules`} icon={IconWhistle} name="Tournament Rules" />}
-        {event?.acf?.beyond_the_event_show && <Button link={`/move/${slug}/beyond-the-event`} icon={IconCrown} name="Beyond the Event" />}
+        {event?.acf?.schedule_show && <Button link={`/${program}/${slug}/schedule`} icon={IconCalendar} name="Schedule" />}
+        {event?.acf?.seating_chart_show && <Button link={`/${program}/${slug}/seating-chart`} icon={IconCouch} name="Seating Chart" />}
+        {event?.acf?.campus_map_show && <Button link={`/${program}/${slug}/campus-map`} icon={IconMap} name="Campus Map" />}
+        {event?.acf?.event_contact_show && <Button link={`/${program}/${slug}/event-contacts`} icon={IconAddressBook} name="Event Contacts" />}
+        {event?.acf?.damage_report_show && <Button link={`/${program}/${slug}/damage-report`} icon={IconTools} name="Damage Report" />}
+        {event?.acf?.store_show && <Button link={`/${program}/${slug}/store`} icon={IconShirt} name="Store" />}
+        {event?.acf?.campus_contact_show && <Button link={`/${program}/${slug}/campus-contacts`} icon={IconPhone} name="Campus Contacts" />}
+        {event?.acf?.convos_show && <Button link={`/${program}/${slug}/convos`} icon={IconComments} name="Convos" />}
+        {event?.acf?.selah_show && <Button link={`/${program}/${slug}/selah`} icon={IconCloud} name="SELAH" />}
+        {event?.acf?.youth_group_time_questions_show && <Button link={`/${program}/${slug}/youth-group-time-questions`} icon={IconQuestionBox} name="Youth Group Time Questions" />}
+        {event?.acf?.tournament_rules_show && <Button link={`/${program}/${slug}/tournament-rules`} icon={IconWhistle} name="Tournament Rules" />}
+        {event?.acf?.beyond_the_event_show && <Button link={`/${program}/${slug}/beyond-the-event`} icon={IconCrown} name="Beyond the Event" />}
         <Button link={`/`} icon={IconSignOut} name="Sign Out" />
-        {event?.acf?.connect_show && <Button link={`/move/${slug}/connect`} icon={IconShare} name="Connect" />}
+        {event?.acf?.connect_show && <Button link={`/${program}/${slug}/connect`} icon={IconShare} name="Connect" />}
       </Menu>
   );
 }
