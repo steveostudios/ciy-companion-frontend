@@ -6,16 +6,12 @@ import {useNavigate} from "react-router-dom"
 const Page = (props) => {
   const navigate = useNavigate()
   return (
-    <PageWrapper pageType={props.pageType}>
+    <PageWrapper background={props.background}>
       <SubNav>
-        <BackButton onClick={() => navigate(-1)}>
-          <img src={IconChevron} alt="Back" />
-          </BackButton>
-          <H2>
-        {props.title}
-        </H2>
-        </SubNav>
-      <Content>
+        <BackButton onClick={() => navigate(-1)}><img src={IconChevron} alt="Back" /></BackButton>
+        <H2>{props.title}</H2>
+      </SubNav>
+      <Content padding={props.padding}>
         {props.children}
       </Content>
     </PageWrapper>
@@ -28,12 +24,14 @@ const PageWrapper = styled("div")({
   padding: 0,
   alignSelf: "center",
   flex: 1,
-  maxHeight: "calc(100% - 18rem)",
-  overflowY: "auto",
+  display: "flex",
+  flexDirection: "column",
+  overflow: "hidden",
   width: "100%",
+  height: "100%",
   color: "var(--black)",
 }, props => ({
-  backgroundColor: props.pageType === "dark" ? "var(--dark-grey)" : "var(--white)",
+  backgroundColor: props.background === "dark" ? "var(--dark-grey)" : "var(--white)",
 }))
 
 const SubNav = styled("div")({
@@ -60,7 +58,20 @@ const H2 = styled("h2")({
 })
 
 const Content = styled("main")({
-  maxWidth: "40rem",
-  backgroundColor: props => props.pageType === "dark" ? "var(--dark-grey)" : "var(--white)",
-  padding: "4rem",
-})
+  overflowY: "auto",
+  margin: "0 auto",
+  maxWidth: "48rem",
+  minWidth: "40rem",
+  flex: 1,
+  "iframe": {
+    width: "100%",
+    overflow:"hidden",
+    overflowX:"hidden",
+    overflowY:"hidden",
+    height:"100%",
+  }
+}, props => ({
+  width: props.padding  === 0 ? "100%" : "unset",
+  padding: props.padding !== undefined ? props.padding : "4rem",
+}))
+

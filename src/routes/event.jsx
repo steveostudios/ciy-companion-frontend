@@ -16,7 +16,7 @@ import IconShare from "./../img/icons/share.svg"
 import IconShirt from "./../img/icons/shirt.svg"
 import IconTools from "./../img/icons/tools.svg"
 import { EventContext } from "../App";
-import {api } from "./../helpers/data"
+import {api, environment } from "./../helpers/data"
 
 
 
@@ -25,27 +25,26 @@ const Event = (props) => {
   const [event, setEvent] = useContext(EventContext);
 
   useEffect(() => {
-      const url = `${api.production}/wp-json/wp/v2/events?slug=${slug}`;
+      const url = `${api[environment]}/wp-json/wp/v2/events?slug=${slug}&acf_format=standard`;
       fetch(url).then(response => response.json()).then(data => setEvent(data[0]));
   }, [])
 
   return (
-    
       <Menu>
-        {event?.acf?.schedule && <Button link="/" icon={IconCalendar} name="Schedule" />}
-        {event?.acf?.seating_chart && <Button link="/" icon={IconCouch} name="Seating Chart" />}
-        {event?.acf?.campus_map && <Button link="/" icon={IconMap} name="Campus Map" />}
-        {event?.acf?.event_contacts && <Button link="/" icon={IconAddressBook} name="Event Contacts" />}
-        {event?.acf?.damage_report && <Button link="/" icon={IconTools} name="Damage Report" />}
-        {event?.acf?.store && <Button link={`/move/${slug}/store`} icon={IconShirt} name="Store" />}
-        {event?.acf?.campus_contact && <Button link="/" icon={IconPhone} name="Campus Contact" />}
-        {event?.acf?.convos && <Button link={`/move/${slug}/convos`} icon={IconComments} name="Convos" />}
-        {event?.acf?.selah && <Button link={`/move/${slug}/selah`} icon={IconCloud} name="SELAH" />}
-        {event?.acf?.youth_group_time_questions && <Button link="/" icon={IconQuestionBox} name="Youth Group Time Questions" />}
-        {event?.acf?.tournament_rules && <Button link="/" icon={IconWhistle} name="Tournament Rules" />}
-        {event?.acf?.beyond_the_event && <Button link="/" icon={IconCrown} name="Beyond the Event" />}
-        <Button link="/" icon={IconSignOut} name="Sign Out" />
-        {event?.acf?.connect && <Button link="/" icon={IconShare} name="Connect" />}
+        {event?.acf?.schedule_show && <Button link={`/move/${slug}/schedule`} icon={IconCalendar} name="Schedule" />}
+        {event?.acf?.seating_chart_show && <Button link={`/move/${slug}/seating-chart`} icon={IconCouch} name="Seating Chart" />}
+        {event?.acf?.campus_map_show && <Button link={`/move/${slug}/campus-map`} icon={IconMap} name="Campus Map" />}
+        {event?.acf?.event_contact_show && <Button link={`/move/${slug}/event-contacts`} icon={IconAddressBook} name="Event Contacts" />}
+        {event?.acf?.damage_report_show && <Button link={`/move/${slug}/damage-report`} icon={IconTools} name="Damage Report" />}
+        {event?.acf?.store_show && <Button link={`/move/${slug}/store`} icon={IconShirt} name="Store" />}
+        {event?.acf?.campus_contact_show && <Button link={`/move/${slug}/campus-contacts`} icon={IconPhone} name="Campus Contacts" />}
+        {event?.acf?.convos_show && <Button link={`/move/${slug}/convos`} icon={IconComments} name="Convos" />}
+        {event?.acf?.selah_show && <Button link={`/move/${slug}/selah`} icon={IconCloud} name="SELAH" />}
+        {event?.acf?.youth_group_time_questions_show && <Button link={`/move/${slug}/youth-group-time-questions`} icon={IconQuestionBox} name="Youth Group Time Questions" />}
+        {event?.acf?.tournament_rules_show && <Button link={`/move/${slug}/tournament-rules`} icon={IconWhistle} name="Tournament Rules" />}
+        {event?.acf?.beyond_the_event_show && <Button link={`/move/${slug}/beyond-the-event`} icon={IconCrown} name="Beyond the Event" />}
+        <Button link={`/`} icon={IconSignOut} name="Sign Out" />
+        {event?.acf?.connect_show && <Button link={`/move/${slug}/connect`} icon={IconShare} name="Connect" />}
       </Menu>
   );
 }
@@ -59,7 +58,7 @@ const Menu = styled("ul")({
   display: "grid",
   gridTemplateColumns: "repeat(3, 13rem)",
   gridAutoRows: "13rem",
-  gap: "1rem",
+  gap: "2px",
   margin: "4rem",
   maxHeight: "calc(100% - 18rem)",
   width: "100%",
@@ -82,10 +81,10 @@ const Button = (props) => {
 }
 
 const ButtonWrapper = styled("li")({
-  padding: "1rem",
-  backgroundColor: "rgba(0,0,0,0.5)",
-  width: "10rem",
-  height: "10rem",
+  margin: "1rem",
+  backgroundColor: "rgba(0,0,0,0.2)",
+  width: "100%",
+  height: "100%",
   "> *": {
     width: "inherit",
     height: "inherit",

@@ -2,9 +2,11 @@ import MoveLogo from "./../img/logos/move.svg"
 import MixLogo from "./../img/logos/mix.svg"
 import SuperStartLogo from "./../img/logos/superstart.svg"
 
-export const api = {
-  production: `https://ciy-companion.flywheelsites.com/`
+export const environment = "production";
 
+export const api = {
+  dev: `http://ciy-companion.local/`,
+  production: `https://ciy-companion.flywheelsites.com/`
 }
 
 export const categoryMap = {

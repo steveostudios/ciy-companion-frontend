@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styled from "@emotion/styled"
 import BorderList from "../components/BorderList";
-import { categoryMap } from "../helpers/data";
+import { api, categoryMap, environment } from "../helpers/data";
 import LogoMove from "./../img/logos/move.svg"
 import LogoMix from "./../img/logos/mix.svg"
 import LogoSuperStart from "./../img/logos/superstart.svg"
@@ -11,7 +11,9 @@ const Program = (props) => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-      fetch(`http://ciy-companion.local/wp-json/wp/v2/events?per_page=100&categories=${categoryMap[props.program]}`).then(response => response.json()).then(data => setEvents(data))
+    const url = `${api[environment]}/wp-json/wp/v2/events?per_page=100&categories=${categoryMap[props.program]}`;
+    console.log(url)
+      fetch(url).then(response => response.json()).then(data => setEvents(data))
   }, [])
 
   const getImage = () => {
