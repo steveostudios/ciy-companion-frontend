@@ -65,8 +65,8 @@ export default function BasicExample() {
             <Route path="/:program/:slug/campus-contacts" element={<CampusContacts />} />
             <Route path="/:program/:slug/convos" element={<Convos />} />
             <Route path="/:program/:slug/selah" element={<Selah />} />
+            <Route exact path="/:program/:slug/tournament-rules" element={<TournamentRules />} />
             <Route path="/:program/:slug/tournament-rules/:rules" element={<TournamentRules />} />
-            <Route path="/:program/:slug/tournament-rules" element={<TournamentRules />} />
             <Route path="/:program/:slug/youth-group-time-questions" element={<YouthGroupTimeQuestions />} />
             <Route path="/:program/:slug/beyond-the-event" element={<BeyondTheEvent />} />
             <Route path="/:program/:slug/connect" element={<Connect />} />
