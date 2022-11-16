@@ -22,6 +22,7 @@ import TournamentRules from "./routes/tournament-rules";
 import CampusMap from "./routes/campus-map";
 import YouthGroupTimeQuestions from "./routes/youth-group-time-questions";
 import BeyondTheEvent from "./routes/beyond-the-event";
+import NoMatch from "./routes/no-match";
 
 
 export const EventContext = createContext()
@@ -53,23 +54,24 @@ export default function BasicExample() {
           <Routes>
             <Route exact path="/" element={<Root />} />
             <Route exact path="/:program" element={<Program />} />
-            <Route path="/:program/:slug" element={<Event />} />
-            <Route path="/:program/:slug/schedule" element={<Schedule />} />
-            <Route path="/:program/:slug/seating-chart" element={<SeatingChart />} />
-            <Route path="/:program/:slug/seating-chart/:chart" element={<SeatingChart />} />
-            <Route path="/:program/:slug/campus-map" element={<CampusMap />} />
-            <Route path="/:program/:slug/campus-map/:campusMap" element={<CampusMap />} />
-            <Route path="/:program/:slug/event-contacts" element={<EventContacts />} />
-            <Route path="/:program/:slug/damage-report" element={<DamageReport />} />
-            <Route path="/:program/:slug/store" element={<Store />} />
-            <Route path="/:program/:slug/campus-contacts" element={<CampusContacts />} />
-            <Route path="/:program/:slug/convos" element={<Convos />} />
-            <Route path="/:program/:slug/selah" element={<Selah />} />
+            <Route exact path="/:program/:slug" element={<Event />} />
+            <Route exact path="/:program/:slug/schedule" element={<Schedule />} />
+            <Route exact path="/:program/:slug/seating-chart" element={<SeatingChart />} />
+            <Route exact path="/:program/:slug/seating-chart/:chart" element={<SeatingChart />} />
+            <Route exact path="/:program/:slug/campus-map" element={<CampusMap />} />
+            <Route exact path="/:program/:slug/campus-map/:campusMap" element={<CampusMap />} />
+            <Route exact path="/:program/:slug/event-contacts" element={<EventContacts />} />
+            <Route exact path="/:program/:slug/damage-report" element={<DamageReport />} />
+            <Route exact path="/:program/:slug/store" element={<Store />} />
+            <Route exact path="/:program/:slug/campus-contacts" element={<CampusContacts />} />
+            <Route exact path="/:program/:slug/convos" element={<Convos />} />
+            <Route exact path="/:program/:slug/selah" element={<Selah />} />
             <Route exact path="/:program/:slug/tournament-rules" element={<TournamentRules />} />
-            <Route path="/:program/:slug/tournament-rules/:rules" element={<TournamentRules />} />
-            <Route path="/:program/:slug/youth-group-time-questions" element={<YouthGroupTimeQuestions />} />
-            <Route path="/:program/:slug/beyond-the-event" element={<BeyondTheEvent />} />
-            <Route path="/:program/:slug/connect" element={<Connect />} />
+            <Route exact path="/:program/:slug/tournament-rules/:rules" element={<TournamentRules />} />
+            <Route exact path="/:program/:slug/youth-group-time-questions" element={<YouthGroupTimeQuestions />} />
+            <Route exact path="/:program/:slug/beyond-the-event" element={<BeyondTheEvent />} />
+            <Route exact path="/:program/:slug/connect" element={<Connect />} />
+            <Route path="*" element={<NoMatch />} />
           </Routes>
         </Body>
       </EventContext.Provider>

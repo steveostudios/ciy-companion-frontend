@@ -21,7 +21,7 @@ const Connect = (props) => {
   const connections = Object.entries(event.acf.connect).map((contact, i) => {return {service: contact[0], url: contact[1]}})
 
   return (
-    <Page title="Connect">
+    <Page title="Connect" background="light">
       <Connections>
         {connections.length && connections.map((connection, i) => (
           <Connection key={i}>
