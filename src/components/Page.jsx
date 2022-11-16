@@ -1,16 +1,18 @@
 import styled from "@emotion/styled"
 import IconChevron from "./../img/icons/chevron-left.svg";
 import {useNavigate} from "react-router-dom"
+import Header from "./Header";
 
 
 const Page = (props) => {
   const navigate = useNavigate()
   return (
     <PageWrapper background={props.background}>
-      <SubNav>
+      {props.hideHeader === undefined && <Header />}
+      {props.title && <SubNav>
         <BackButton onClick={() => navigate(-1)}><img src={IconChevron} alt="Back" /></BackButton>
         <H2>{props.title}</H2>
-      </SubNav>
+      </SubNav>}
       <Content padding={props.padding}>
         {props.children}
       </Content>
@@ -31,7 +33,8 @@ const PageWrapper = styled("div")({
   height: "100%",
   color: "var(--black)",
 }, props => ({
-  backgroundColor: props.background === "dark" ? "var(--dark-grey)" : "var(--white)",
+  backgroundColor: props.background === "dark" ? "var(--dark-grey)" : props.background === "light" ? "var(--white)" : "transparent",
+  color: props.background === "dark" ? "var(--white)" : props.background === "light" ? "var(--black)" : "var(--white)",
 }))
 
 const SubNav = styled("div")({
@@ -39,6 +42,7 @@ const SubNav = styled("div")({
   height: "10rem",
   display: "flex",
   gap: "1rem",
+  color: "var(--black)",
   alignContent: "center"
 })
 

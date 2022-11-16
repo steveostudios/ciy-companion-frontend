@@ -11,7 +11,7 @@ const Selah = (props) => {
   const [event] = useContext(EventContext);
 
   return (
-    <Page title="SELAH">
+    <Page title="SELAH" background="light">
       <AppHeader>
         <img src={SelahAppIcon} alt="SELAH" />
         <AppButtons>

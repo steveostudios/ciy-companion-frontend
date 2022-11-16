@@ -8,7 +8,7 @@ const EventContacts = (props) => {
   const [event] = useContext(EventContext);
 
   return (
-    <Page title="Event Contacts">
+    <Page title="Event Contacts" background="light">
       <Contacts>
         {event?.acf?.event_contact.length && event.acf.event_contact.map((contact, i) => (
           <Contact key={i}>

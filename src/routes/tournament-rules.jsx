@@ -3,6 +3,7 @@ import ExposedList from "../components/ExposedList";
 import { useContext } from "react";
 import { EventContext } from "../App";
 import { useParams } from "react-router-dom";
+import styled from "@emotion/styled";
 
 const TournamentRules = (props) => {
   const {slug, rules } = useParams();
@@ -11,7 +12,7 @@ const TournamentRules = (props) => {
   if (rules ) { 
     return (
       <Page title="Tournament Rules" background="dark">
-        <div dangerouslySetInnerHTML={{__html: event?.acf?.[`${rules}_content`] || ""}} />
+        <StyledContent dangerouslySetInnerHTML={{__html: event?.acf?.[`${rules}_content`] || ""}} />
       </Page>
     )
   }
@@ -30,3 +31,19 @@ const TournamentRules = (props) => {
 }
 
 export default TournamentRules;
+
+const StyledContent = styled("div")({
+  "h2": {
+    fontSize: "16px",
+    textTransform: "uppercase",
+    fontFamily: "PragmaticaExtended-ExtraBold",
+  },
+  "h3": {
+    fontSize: "12px",
+    textTransform: "uppercase",
+    fontFamily: "PragmaticaExtended-ExtraBold",
+  },
+  "ul": {
+    padding: "1rem 3rem"
+  },
+})

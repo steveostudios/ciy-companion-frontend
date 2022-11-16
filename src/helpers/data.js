@@ -15,9 +15,28 @@ export const categoryMap = {
   "superstart": 6
 }
 
-export const getLogo = (programId) => {
-  if (programId === 4) return <img src={MoveLogo} alt="Move" />
-  if (programId === 5) return <img src={MixLogo} alt="Mix" />
-  if (programId === 6) return <img src={SuperStartLogo} alt="SuperStart" />
+export const getLogoById = (id) => {
+  if (id === 4) return <img src={MoveLogo} alt="Move" />
+  if (id === 5) return <img src={MixLogo} alt="Mix" />
+  if (id === 6) return <img src={SuperStartLogo} alt="SuperStart" />
+  return null;
+}
+
+export const getLogoBySlug = slug => {
+  if (slug === 'move') return <img src={MoveLogo} alt="Move" />
+  if (slug === 'mix') return <img src={MixLogo} alt="Mix" />
+  if (slug === 'superstart') return <img src={SuperStartLogo} alt="SuperStart" />
+  return null;
+}
+
+export const Logo = props => {
+  if (props.id === 4) return <img src={MoveLogo} alt="Move" />
+  if (props.id === 5) return <img src={MixLogo} alt="Mix" />
+  if (props.id === 6) return <img src={SuperStartLogo} alt="SuperStart" />
+
+  if (props.slug === 'move') return <img src={MoveLogo} alt="Move" />
+  if (props.slug === 'mix') return <img src={MixLogo} alt="Mix" />
+  if (props.slug === 'superstart') return <img src={SuperStartLogo} alt="SuperStart" />
+  
   return null;
 }

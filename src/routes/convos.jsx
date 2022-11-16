@@ -10,7 +10,7 @@ const Convos = (props) => {
   const [event] = useContext(EventContext);
 
   return (
-    <Page title="Convos">
+    <Page title="Convos" background="light">
       <AppHeader>
         <img src={ConvosAppIcon} alt="Convos" />
         <AppButtons>

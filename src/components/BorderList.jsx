@@ -12,12 +12,12 @@ const UL = styled("ul")({
   padding: 0,
   alignSelf: "center",
   flex: 1,
-  margin: "4rem",
   border: "1px solid var(--white)",
   maxHeight: "calc(100% - 18rem)",
   overflowY: "auto",
   width: "100%",
   maxWidth: "40rem",
+  boxSizing: "border-box",
   "li": {
     "a": {
       color: "var(--white)",

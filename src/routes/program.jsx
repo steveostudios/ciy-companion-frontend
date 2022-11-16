@@ -2,30 +2,22 @@ import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styled from "@emotion/styled"
 import BorderList from "../components/BorderList";
-import { api, categoryMap, environment } from "../helpers/data";
-import LogoMove from "./../img/logos/move.svg"
-import LogoMix from "./../img/logos/mix.svg"
-import LogoSuperStart from "./../img/logos/superstart.svg"
+import { api, categoryMap, environment, Logo } from "../helpers/data";
+import Page from "../components/Page";
 
 const Program = (props) => {
   const {program } = useParams();
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    const url = `${api[environment]}/wp-json/wp/v2/events?per_page=100&categories=${categoryMap[program]}`;
+    const url = `${api[environment]}/wp-json/wp/v2/events?program=${categoryMap[program]}&per_page=100`;
     console.log(url)
       fetch(url).then(response => response.json()).then(data => setEvents(data))
   }, [program, setEvents])
 
-  const getImage = () => {
-    if (program === "move") return LogoMove; 
-    if (program === "mix") return LogoMix; 
-    if (program === "superstart") return LogoSuperStart; 
-  }
-
   return (
-    <>
-      <Logo src={getImage()} alt={program} />
+    <Page hideHeader>
+      {program && <LogoStyled slug={program} />}
       <BorderList>
         {events.map(event => 
           <li key={event.id}>
@@ -33,14 +25,14 @@ const Program = (props) => {
           </li>
         )}
       </BorderList>
-    </>
+    </Page>
   );
 }
 
 export default Program;
 
-const Logo = styled("img")({
-  margin: "4rem 4rem 0 4rem",
+const LogoStyled = styled(Logo)({
+    margin: "4rem 4rem 0 4rem",
   maxHeight: "8rem",
   width: "100%",
   maxWidth: "40rem",

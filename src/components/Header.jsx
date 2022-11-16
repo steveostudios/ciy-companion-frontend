@@ -1,17 +1,16 @@
 import styled from "@emotion/styled"
 import { useContext } from "react";
 import { EventContext } from "../App";
-import { getLogo } from "../helpers/data";
+import { getLogoById } from "../helpers/data";
 
 const Header = () => {
   const eventContext = useContext(EventContext);
   const event = eventContext ? eventContext[0] : null;
-  // const event = eventContext?.[0];
 
   console.log(event)
   return (
     <Nav>
-      {event && getLogo(event.program[0])}
+      {event && getLogoById(event.program[0])}
       {event && `${event?.title?.rendered} | ${event?.acf?.location} | ${event?.acf?.start_date}` }
       </Nav>
   );

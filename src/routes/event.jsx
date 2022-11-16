@@ -17,6 +17,7 @@ import IconShirt from "./../img/icons/shirt.svg"
 import IconTools from "./../img/icons/tools.svg"
 import { EventContext } from "../App";
 import {api, environment } from "./../helpers/data"
+import Page from "../components/Page";
 
 const Event = (props) => {
   const { slug, program } = useParams();
@@ -28,6 +29,7 @@ const Event = (props) => {
   }, [slug, setEvent])
 
   return (
+    <Page>
       <Menu>
         {event?.acf?.schedule_show && <Button link={`/${program}/${slug}/schedule`} icon={IconCalendar} name="Schedule" />}
         {event?.acf?.seating_chart_show && <Button link={`/${program}/${slug}/seating-chart`} icon={IconCouch} name="Seating Chart" />}
@@ -44,6 +46,7 @@ const Event = (props) => {
         <Button link={`/`} icon={IconSignOut} name="Sign Out" />
         {event?.acf?.connect_show && <Button link={`/${program}/${slug}/connect`} icon={IconShare} name="Connect" />}
       </Menu>
+    </Page>
   );
 }
 
