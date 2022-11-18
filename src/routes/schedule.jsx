@@ -1,42 +1,55 @@
-import styled from "@emotion/styled"
+import styled from "@emotion/styled";
 import { useState, useContext } from "react";
 import { EventContext } from "../App";
-import CheckEventIcon from "./../img/event_icons/check.svg"
-// import ButtonAppleStore from "./../img/ButtonAppleStore.png"
-// import ButtonGooglePlay from "./../img/ButtonGooglePlay.png"
+import { Icon } from "../components/Icon";
+import { NormalList } from "../components/List";
 import Page from "../components/Page";
 
 const Schedule = (props) => {
   const [event] = useContext(EventContext);
-  const [currentDay, setCurrentDay] = useState(1);
+  const [currentDay, setCurrentDay] = useState(0);
 
   return (
-    <Page title="Schedule">
+    <Page title="Schedule" background="light">
       <DaySelector>
-        DAY {event?.acf?.schedule.map((day, i) => <DaySelectorButton key={i} className={currentDay === i ? "active" : ""} onClick={() => setCurrentDay(i)}>{i + 1}</DaySelectorButton>)}
+        <span>DAY</span>
+        {event?.acf?.schedule.map((day, i) => (
+          <DaySelectorButton
+            key={i}
+            className={currentDay === i ? "active" : ""}
+            onClick={() => setCurrentDay(i)}
+          >
+            {i + 1}
+          </DaySelectorButton>
+        ))}
       </DaySelector>
 
-      <Events>
+      <NormalList>
         {event?.acf?.schedule[currentDay]?.event.map((item, i) => (
           <Event key={i}>
-            <EventIcon><img src={CheckEventIcon} alt="check" /></EventIcon>
+            <EventIcon>
+              <Icon slug={item.type} />
+            </EventIcon>
             <EventMain>
-              <EventName>
-                {item.name}
-              </EventName>
-              <EventLocation>
-                {item.location}
-              </EventLocation>
-            {item.color ? item.color.map((color, i) => <div key={i}>{color}</div>) : null}
+              <EventName>{item.name}</EventName>
+              {!!item.color.length && (
+                <EventColors>
+                  {item.color.length
+                    ? item.color.map((color, i) => (
+                        <EventColor color={color}>{color}</EventColor>
+                      ))
+                    : null}
+                </EventColors>
+              )}
+              <EventLocation>{item.location}</EventLocation>
             </EventMain>
-            <EventTime>
-              {item.start_time}
-            </EventTime>
-          </Event>))}
-      </Events>
-      </Page>
+            <EventTime>{item.start_time}</EventTime>
+          </Event>
+        ))}
+      </NormalList>
+    </Page>
   );
-}
+};
 
 export default Schedule;
 
@@ -45,56 +58,80 @@ const DaySelector = styled("ul")({
   padding: 0,
   listStyle: "none",
   display: "flex",
-  gap: "1rem",
   textTransform: "uppercase",
-  fontSize: "24px",
+  fontSize: "32px",
   fontFamily: "PragmaticaExtended-ExtraBold",
-
-})
+  marginBottom: "2rem",
+  span: {
+    marginRight: "1rem",
+  },
+});
 
 const DaySelectorButton = styled("li")({
-  padding: "1rem",
-  "&.active": {
-    backgroundColor: "red"
-  }
-})
-
-const Events = styled("ul")({
-  margin: 0,
-  padding: 0,
-  listStyle: "none",
+  width: "6rem",
+  height: "6rem",
   display: "flex",
-  flexDirection: "column",
-  gap: "1rem",
-})
+  alignContent: "center",
+  justifyContent: "center",
+  "&.active": {
+    backgroundColor: "var(--move-secondary)",
+  },
+});
 
 const Event = styled("li")({
   listStyle: "none",
   display: "flex",
-  minHeight: "6rem"
-})
+  minHeight: "6rem",
+});
 
 const EventIcon = styled("div")({
-  width: "4rem",
+  marginTop: "0.5rem",
+  marginRight: "2rem",
+  width: "2rem",
   display: "flex",
   height: "inherit",
-  alignItems: "center",
+  alignItems: "flex-start",
   justifyContent: "center",
-})
+});
 
 const EventMain = styled("div")({
-  flex: 1
-})
+  display: "flex",
+  flexDirection: "column",
+  flex: 1,
+  gap: "0.5rem",
+});
 
 const EventName = styled("div")({
   fontSize: "12px",
-  fontWeight: "bold"
-})
+  fontWeight: "bold",
+});
+
+const EventColors = styled("div")({
+  display: "flex",
+  gap: "1rem",
+});
+
+const EventColor = styled("div")(
+  {
+    padding: "0.5rem 1rem",
+    textTransform: "uppercase",
+    fontSize: "9px",
+    fontWeight: "normal",
+  },
+  (props) => ({
+    backgroundColor: props.color,
+    color:
+      props.color === "yellow" || props.color === "orange"
+        ? "var(--black)"
+        : "var(--white)",
+  })
+);
 
 const EventLocation = styled("div")({
-  display: "flex"
-})
+  display: "flex",
+});
 
 const EventTime = styled("div")({
-  display: "flex"
-})
+  display: "flex",
+  textTransform: "uppercase",
+});

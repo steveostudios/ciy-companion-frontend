@@ -1,20 +1,23 @@
-import styled from "@emotion/styled"
+import styled from "@emotion/styled";
 import { useContext } from "react";
+import { useParams } from "react-router-dom";
 import { EventContext } from "../App";
-import { getLogoById } from "../helpers/data";
+import { Logo } from "./Logo";
 
 const Header = () => {
   const eventContext = useContext(EventContext);
+  const { program } = useParams();
   const event = eventContext ? eventContext[0] : null;
 
-  console.log(event)
+  console.log(event);
   return (
     <Nav>
-      {event && getLogoById(event.program[0])}
-      {event && `${event?.title?.rendered} | ${event?.acf?.location} | ${event?.acf?.start_date}` }
-      </Nav>
+      {program && <Logo slug={program} />}
+      {event &&
+        `${event?.title?.rendered} | ${event?.acf?.location} | ${event?.acf?.start_date}`}
+    </Nav>
   );
-}
+};
 
 export default Header;
 
@@ -26,9 +29,10 @@ const Nav = styled("nav")({
   justifyContent: "center",
   alignItems: "center",
   fontSize: "10px",
+  color: "var(--white)",
   fontFamily: "PragmaticaExtended-ExtraBold",
   gap: "1rem",
-  "img": {
-    height: "3rem"
-  }
-})
+  img: {
+    height: "3rem",
+  },
+});

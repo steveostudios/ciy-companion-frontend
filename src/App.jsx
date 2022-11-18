@@ -1,15 +1,11 @@
 import React, { createContext, useEffect, useState } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
-import Root from "./routes/root"
-import Program from "./routes/program"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Root from "./routes/root";
+import Program from "./routes/program";
 import styled from "@emotion/styled";
-import BackgroundImage from "./img/bg.png"
+import BackgroundImage from "./img/bg.png";
 import Event from "./routes/event";
-import Convos from "./routes/convos"
+import Convos from "./routes/convos";
 import Selah from "./routes/selah";
 import Store from "./routes/store";
 import DamageReport from "./routes/damage-report";
@@ -24,28 +20,26 @@ import YouthGroupTimeQuestions from "./routes/youth-group-time-questions";
 import BeyondTheEvent from "./routes/beyond-the-event";
 import NoMatch from "./routes/no-match";
 
-
-export const EventContext = createContext()
+export const EventContext = createContext();
 
 export default function BasicExample() {
   const [event, setEvent] = useState();
 
   useEffect(() => {
-    const eventLocal = localStorage.getItem('event')
+    const eventLocal = localStorage.getItem("event");
 
     try {
       if (eventLocal && JSON.parse(eventLocal)) {
-        setEvent(JSON.parse(eventLocal))
+        setEvent(JSON.parse(eventLocal));
       }
-    }
-    catch(e) {
+    } catch (e) {
       // return false;
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('event', JSON.stringify(event))
-  }, [event])
+    localStorage.setItem("event", JSON.stringify(event));
+  }, [event]);
 
   return (
     <Router>
@@ -55,21 +49,79 @@ export default function BasicExample() {
             <Route exact path="/" element={<Root />} />
             <Route exact path="/:program" element={<Program />} />
             <Route exact path="/:program/:slug" element={<Event />} />
-            <Route exact path="/:program/:slug/schedule" element={<Schedule />} />
-            <Route exact path="/:program/:slug/seating-chart" element={<SeatingChart />} />
-            <Route exact path="/:program/:slug/seating-chart/:chart" element={<SeatingChart />} />
-            <Route exact path="/:program/:slug/campus-map" element={<CampusMap />} />
-            <Route exact path="/:program/:slug/campus-map/:campusMap" element={<CampusMap />} />
-            <Route exact path="/:program/:slug/event-contacts" element={<EventContacts />} />
-            <Route exact path="/:program/:slug/damage-report" element={<DamageReport />} />
+            <Route
+              exact
+              path="/:program/:slug/schedule"
+              element={<Schedule />}
+            />
+            <Route
+              exact
+              path="/:program/:slug/seating-chart"
+              element={<SeatingChart />}
+            />
+            <Route
+              exact
+              path="/:program/:slug/seating-chart/:chart"
+              element={<SeatingChart />}
+            />
+            <Route
+              exact
+              path="/:program/:slug/campus-map"
+              element={<CampusMap />}
+            />
+            <Route
+              exact
+              path="/:program/:slug/campus-map/:campusMap"
+              element={<CampusMap />}
+            />
+            <Route
+              exact
+              path="/:program/:slug/event-contacts"
+              element={<EventContacts />}
+            />
+            <Route
+              exact
+              path="/:program/:slug/damage-report"
+              element={<DamageReport />}
+            />
             <Route exact path="/:program/:slug/store" element={<Store />} />
-            <Route exact path="/:program/:slug/campus-contacts" element={<CampusContacts />} />
+            <Route
+              exact
+              path="/:program/:slug/campus-contacts"
+              element={<CampusContacts />}
+            />
             <Route exact path="/:program/:slug/convos" element={<Convos />} />
             <Route exact path="/:program/:slug/selah" element={<Selah />} />
-            <Route exact path="/:program/:slug/tournament-rules" element={<TournamentRules />} />
-            <Route exact path="/:program/:slug/tournament-rules/:rules" element={<TournamentRules />} />
-            <Route exact path="/:program/:slug/youth-group-time-questions" element={<YouthGroupTimeQuestions />} />
-            <Route exact path="/:program/:slug/beyond-the-event" element={<BeyondTheEvent />} />
+            <Route
+              exact
+              path="/:program/:slug/tournament-rules"
+              element={<TournamentRules />}
+            />
+            <Route
+              exact
+              path="/:program/:slug/tournament-rules/:rules"
+              element={<TournamentRules />}
+            />
+            <Route
+              exact
+              path="/:program/:slug/youth-group-time-questions"
+              element={<YouthGroupTimeQuestions />}
+            />
+            <Route
+              exact
+              path="/:program/:slug/youth-group-time-questions/:set"
+              element={<YouthGroupTimeQuestions />}
+            />
+            <Route
+              exact
+              path="/:program/:slug/beyond-the-event"
+              element={<BeyondTheEvent />}
+            />
+            <Route
+              exact
+              path="/:program/:slug/beyond-the-event/:page"
+              element={<BeyondTheEvent />}
+            />
             <Route exact path="/:program/:slug/connect" element={<Connect />} />
             <Route path="*" element={<NoMatch />} />
           </Routes>
@@ -88,5 +140,5 @@ const Body = styled("div")({
   backgroundColor: "var(--dark-grey)",
   backgroundImage: `url(${BackgroundImage})`,
   backgroundPosition: "center",
-  backgroundSize: "cover"
-})
+  backgroundSize: "cover",
+});

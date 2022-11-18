@@ -1,22 +1,16 @@
 import Page from "../components/Page";
 import { useContext } from "react";
 import { EventContext } from "../App";
-import {Spinner} from "./../components/Spinner"
-import styled from "@emotion/styled";
+import IFrame from "../components/IFrame";
 
 const DamageReport = (props) => {
   const [event] = useContext(EventContext);
 
   return (
     <Page padding={0} title="Damage Report" background="dark">
-      <SpinnerStyled />
-      {event?.acf?.damage_report_url && <iframe frameborder="0" title="Damage Report" src={event.acf.damage_report_url}/>}
+      <IFrame url={event?.acf?.damage_report_url} title="Damage Report" />
     </Page>
   );
-}
+};
 
 export default DamageReport;
-
-const SpinnerStyled = styled(Spinner)({
-  position: "absolute",
-})
