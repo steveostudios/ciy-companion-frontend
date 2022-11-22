@@ -13,18 +13,20 @@ const Schedule = (props) => {
     <Page title="Schedule" background="light">
       <DaySelector>
         <span>DAY</span>
-        {event?.acf?.schedule.map((day, i) => (
-          <DaySelectorButton
-            key={i}
-            className={currentDay === i ? "active" : ""}
-            onClick={() => setCurrentDay(i)}
-          >
-            {i + 1}
-          </DaySelectorButton>
-        ))}
+        <ul>
+          {event?.acf?.schedule.map((day, i) => (
+            <DaySelectorButton
+              key={i}
+              className={currentDay === i ? "active" : ""}
+              onClick={() => setCurrentDay(i)}
+            >
+              {i + 1}
+            </DaySelectorButton>
+          ))}
+        </ul>
       </DaySelector>
 
-      <NormalList>
+      <EventList>
         {event?.acf?.schedule[currentDay]?.event.map((item, i) => (
           <Event key={i}>
             <EventIcon>
@@ -46,24 +48,32 @@ const Schedule = (props) => {
             <EventTime>{item.start_time}</EventTime>
           </Event>
         ))}
-      </NormalList>
+      </EventList>
     </Page>
   );
 };
 
 export default Schedule;
 
-const DaySelector = styled("ul")({
+const DaySelector = styled("div")({
   margin: 0,
   padding: 0,
   listStyle: "none",
   display: "flex",
+  justifyContent: "space-between",
+  flexDirection: "row",
   textTransform: "uppercase",
   fontSize: "32px",
   fontFamily: "PragmaticaExtended-ExtraBold",
-  marginBottom: "2rem",
   span: {
     marginRight: "1rem",
+  },
+  ul: {
+    margin: 0,
+    padding: 0,
+    display: "flex",
+
+    flexDirection: "row",
   },
 });
 
@@ -78,10 +88,16 @@ const DaySelectorButton = styled("li")({
   },
 });
 
+const EventList = styled(NormalList)({
+  maxHeight: "calc(100% - 13rem)",
+});
+
 const Event = styled("li")({
+  padding: "2rem 0",
   listStyle: "none",
   display: "flex",
-  minHeight: "6rem",
+  boxSizing: "border-box",
+  borderBottom: "1px solid var(--trim)",
 });
 
 const EventIcon = styled("div")({
@@ -104,6 +120,7 @@ const EventMain = styled("div")({
 const EventName = styled("div")({
   fontSize: "12px",
   fontWeight: "bold",
+  display: "flex",
 });
 
 const EventColors = styled("div")({
@@ -117,9 +134,10 @@ const EventColor = styled("div")(
     textTransform: "uppercase",
     fontSize: "9px",
     fontWeight: "normal",
+    display: "flex",
   },
   (props) => ({
-    backgroundColor: props.color,
+    backgroundColor: `var(--${props.color})`,
     color:
       props.color === "yellow" || props.color === "orange"
         ? "var(--black)"

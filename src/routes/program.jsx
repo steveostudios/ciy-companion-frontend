@@ -1,35 +1,56 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { BorderList } from "../components/List";
-import { api, categoryMap, environment } from "../helpers/data";
+import {
+  api,
+  categoryMap,
+  environment,
+  getHumanReadableDateRange,
+} from "../helpers/data";
 import Page from "../components/Page";
 import BorderListButton from "../components/BorderListButton";
+import { Spinner } from "../components/Spinner";
 
 const Program = (props) => {
   const { program } = useParams();
+  const [loading, setLoading] = useState(false);
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    const url = `${api[environment]}/wp-json/wp/v2/events?program=${categoryMap[program]}&per_page=100`;
+    const url = `${api[environment]}/wp-json/wp/v2/events?program=${categoryMap[program]}&per_page=100&_fields[]=title.rendered&_fields[]=acf.start_date&_fields[]=acf.end_date&_fields[]=slug&acf_format=standard&status=publish`;
     console.log(url);
+
+    setLoading(true);
     fetch(url)
       .then((response) => response.json())
-      .then((data) => setEvents(data));
+      .then((data) => {
+        setEvents(data);
+        setLoading(false);
+      });
   }, [program, setEvents]);
 
   return (
     <Page>
       <div>
-        <BorderList>
-          {events.map((event) => (
-            <li key={event.id}>
-              <BorderListButton
-                href={`/${program}/${event.slug}`}
-                title={`${event.title.rendered} | ${event.acf.start_date}`}
-              />
-            </li>
-          ))}
-        </BorderList>
+        {loading ? (
+          <Spinner />
+        ) : events.length ? (
+          <BorderList>
+            {events.map((event) => (
+              <li key={event.slug}>
+                <BorderListButton
+                  href={`/${program}/${event.slug}`}
+                  title={`${event.title.rendered} | ${getHumanReadableDateRange(
+                    event.acf.start_date,
+                    event.acf.end_date
+                  )}`}
+                />
+              </li>
+            ))}
+          </BorderList>
+        ) : (
+          <p>There are no active events yet. Please check back later.</p>
+        )}
       </div>
     </Page>
   );

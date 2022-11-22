@@ -18,6 +18,7 @@ import IconTools from "./../img/icons/tools.svg";
 import { EventContext } from "../App";
 import { api, environment } from "./../helpers/data";
 import Page from "../components/Page";
+import { Spinner } from "../components/Spinner";
 
 const Event = (props) => {
   const { slug, program } = useParams();
@@ -33,100 +34,104 @@ const Event = (props) => {
   return (
     <Page>
       <div>
-        <Menu>
-          {event?.acf?.schedule_show && (
-            <Button
-              link={`/${program}/${slug}/schedule`}
-              icon={IconCalendar}
-              name="Schedule"
-            />
-          )}
-          {event?.acf?.seating_chart_show && (
-            <Button
-              link={`/${program}/${slug}/seating-chart`}
-              icon={IconCouch}
-              name="Seating Chart"
-            />
-          )}
-          {event?.acf?.campus_map_show && (
-            <Button
-              link={`/${program}/${slug}/campus-map`}
-              icon={IconMap}
-              name="Campus Map"
-            />
-          )}
-          {event?.acf?.event_contact_show && (
-            <Button
-              link={`/${program}/${slug}/event-contacts`}
-              icon={IconAddressBook}
-              name="Event Contacts"
-            />
-          )}
-          {event?.acf?.damage_report_show && (
-            <Button
-              link={`/${program}/${slug}/damage-report`}
-              icon={IconTools}
-              name="Damage Report"
-            />
-          )}
-          {event?.acf?.store_show && (
-            <Button
-              link={`/${program}/${slug}/store`}
-              icon={IconShirt}
-              name="Store"
-            />
-          )}
-          {event?.acf?.campus_contact_show && (
-            <Button
-              link={`/${program}/${slug}/campus-contacts`}
-              icon={IconPhone}
-              name="Campus Contacts"
-            />
-          )}
-          {event?.acf?.convos_show && (
-            <Button
-              link={`/${program}/${slug}/convos`}
-              icon={IconComments}
-              name="Convos"
-            />
-          )}
-          {event?.acf?.selah_show && (
-            <Button
-              link={`/${program}/${slug}/selah`}
-              icon={IconCloud}
-              name="SELAH"
-            />
-          )}
-          {event?.acf?.youth_group_time_questions_show && (
-            <Button
-              link={`/${program}/${slug}/youth-group-time-questions`}
-              icon={IconQuestionBox}
-              name="Youth Group Time Questions"
-            />
-          )}
-          {event?.acf?.tournament_rules_show && (
-            <Button
-              link={`/${program}/${slug}/tournament-rules`}
-              icon={IconWhistle}
-              name="Tournament Rules"
-            />
-          )}
-          {event?.acf?.beyond_the_event_show && (
-            <Button
-              link={`/${program}/${slug}/beyond-the-event`}
-              icon={IconCrown}
-              name="Beyond the Event"
-            />
-          )}
-          <Button link={`/`} icon={IconSignOut} name="Sign Out" />
-          {event?.acf?.connect_show && (
-            <Button
-              link={`/${program}/${slug}/connect`}
-              icon={IconShare}
-              name="Connect"
-            />
-          )}
-        </Menu>
+        {!event ? (
+          <Spinner />
+        ) : (
+          <Menu>
+            {event?.acf?.schedule_show && (
+              <Button
+                link={`/${program}/${slug}/schedule`}
+                icon={IconCalendar}
+                name="Schedule"
+              />
+            )}
+            {event?.acf?.seating_chart_show && (
+              <Button
+                link={`/${program}/${slug}/seating-chart`}
+                icon={IconCouch}
+                name="Seating Chart"
+              />
+            )}
+            {event?.acf?.campus_map_show && (
+              <Button
+                link={`/${program}/${slug}/campus-map`}
+                icon={IconMap}
+                name="Campus Map"
+              />
+            )}
+            {event?.acf?.event_contact_show && (
+              <Button
+                link={`/${program}/${slug}/event-contacts`}
+                icon={IconAddressBook}
+                name="Event Contacts"
+              />
+            )}
+            {event?.acf?.damage_report_show && (
+              <Button
+                link={`/${program}/${slug}/damage-report`}
+                icon={IconTools}
+                name="Damage Report"
+              />
+            )}
+            {event?.acf?.store_show && (
+              <Button
+                link={`/${program}/${slug}/store`}
+                icon={IconShirt}
+                name="Store"
+              />
+            )}
+            {event?.acf?.campus_contact_show && (
+              <Button
+                link={`/${program}/${slug}/campus-contacts`}
+                icon={IconPhone}
+                name="Campus Contacts"
+              />
+            )}
+            {event?.acf?.convos_show && (
+              <Button
+                link={`/${program}/${slug}/convos`}
+                icon={IconComments}
+                name="Convos"
+              />
+            )}
+            {event?.acf?.selah_show && (
+              <Button
+                link={`/${program}/${slug}/selah`}
+                icon={IconCloud}
+                name="SELAH"
+              />
+            )}
+            {event?.acf?.youth_group_time_questions_show && (
+              <Button
+                link={`/${program}/${slug}/youth-group-time-questions`}
+                icon={IconQuestionBox}
+                name="Youth Group Time Questions"
+              />
+            )}
+            {event?.acf?.tournament_rules_show && (
+              <Button
+                link={`/${program}/${slug}/tournament-rules`}
+                icon={IconWhistle}
+                name="Tournament Rules"
+              />
+            )}
+            {event?.acf?.beyond_the_event_show && (
+              <Button
+                link={`/${program}/${slug}/beyond-the-event`}
+                icon={IconCrown}
+                name="Beyond the Event"
+              />
+            )}
+            <Button link={`/`} icon={IconSignOut} name="Sign Out" />
+            {event?.acf?.connect_show && (
+              <Button
+                link={`/${program}/${slug}/connect`}
+                icon={IconShare}
+                name="Connect"
+              />
+            )}
+          </Menu>
+        )}
       </div>
     </Page>
   );
@@ -178,5 +183,9 @@ const ButtonWrapper = styled("li")({
   a: {
     color: "var(--white)",
     textDecoration: "none",
+    img: {
+      width: "3rem",
+      height: "3rem",
+    },
   },
 });

@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { EventContext } from "../App";
+import { getHumanReadableDateRange } from "../helpers/data";
 import { Logo } from "./Logo";
 
 const Header = () => {
@@ -13,8 +14,14 @@ const Header = () => {
   return (
     <Nav>
       {program && <Logo slug={program} />}
-      {event &&
-        `${event?.title?.rendered} | ${event?.acf?.location} | ${event?.acf?.start_date}`}
+      <p>{event && `${event?.title?.rendered} | ${event?.acf?.location}`}</p>
+      <p>
+        {event &&
+          getHumanReadableDateRange(
+            event?.acf?.start_date,
+            event?.acf?.end_date
+          )}
+      </p>
     </Nav>
   );
 };
@@ -31,8 +38,11 @@ const Nav = styled("nav")({
   fontSize: "10px",
   color: "var(--white)",
   fontFamily: "PragmaticaExtended-ExtraBold",
-  gap: "1rem",
   img: {
+    marginBottom: "1rem",
     height: "3rem",
+  },
+  p: {
+    margin: 0,
   },
 });
