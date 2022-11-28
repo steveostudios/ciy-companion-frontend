@@ -10,6 +10,7 @@ import {
 import Page from "../components/Page";
 import BorderListButton from "../components/BorderListButton";
 import { Spinner } from "../components/Spinner";
+import BorderButton from "../components/BorderButton";
 
 const Program = (props) => {
   const { program } = useParams();
@@ -49,7 +50,10 @@ const Program = (props) => {
             ))}
           </BorderList>
         ) : (
-          <p>There are no active events yet. Please check back later.</p>
+          <>
+            <p>There are no active events yet. Please check back later.</p>
+            <BorderButton title="Back" href="/" />
+          </>
         )}
       </div>
     </Page>

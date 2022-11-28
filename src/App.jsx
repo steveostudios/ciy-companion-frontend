@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Root from "./routes/root";
 import Program from "./routes/program";
 import styled from "@emotion/styled";
-import BackgroundImage from "./img/bg.png";
+// import BackgroundImage from "./img/bg.png";
 import Event from "./routes/event";
 import Convos from "./routes/convos";
 import Selah from "./routes/selah";
@@ -137,8 +137,4 @@ const Body = styled("div")({
   flexDirection: "column",
   width: "100vw",
   overflow: "hidden",
-  backgroundColor: "var(--dark-grey)",
-  backgroundImage: `url(${BackgroundImage})`,
-  backgroundPosition: "center",
-  backgroundSize: "cover",
 });

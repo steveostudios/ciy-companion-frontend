@@ -27,14 +27,12 @@ const Connect = (props) => {
       <NormalList>
         {connections.length &&
           connections.map((connection, i) => (
-            <Connection key={i}>
-              <a href={connection.url}>
-                <ConnectionIcon
-                  src={icons[connection.service]}
-                  alt={connection.service}
-                />
-                <ConnectionHandle>{connection.service}</ConnectionHandle>
-              </a>
+            <Connection key={i} href={connection.url}>
+              <ConnectionIcon
+                src={icons[connection.service]}
+                alt={connection.service}
+              />
+              <ConnectionHandle>{connection.service}</ConnectionHandle>
             </Connection>
           ))}
       </NormalList>
@@ -45,16 +43,21 @@ const Connect = (props) => {
 export default Connect;
 
 const Connection = styled("li")({
-  marginBottom: "2rem",
+  // marginBottom: "4rem",
+  margin: "2rem",
   display: "flex",
   gap: "2rem",
 });
 
 const ConnectionIcon = styled("img")({
-  marginRight: "2rem",
+  // marginRight: "1rem",
   width: "3rem",
 });
-const ConnectionHandle = styled("div")({
+const ConnectionHandle = styled("a")({
   color: "var(--black)",
   fontSize: "18px",
+  fontFamily: "PragmaticaExtended-ExtraBold",
+  display: "flex",
+  textTransform: "uppercase",
+  textDecoration: "none",
 });

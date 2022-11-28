@@ -70,9 +70,12 @@ const BackButton = styled("div")({
 
 const H2 = styled("h2")({
   textTransform: "uppercase",
+  padding: 0,
+  margin: 0,
   fontSize: "24px",
   fontFamily: "PragmaticaExtended-ExtraBold",
-  marginTop: "3rem",
+  display: "flex",
+  alignItems: "center",
 });
 
 const Main = styled("main")(
@@ -84,6 +87,12 @@ const Main = styled("main")(
     width: "100%",
     minWidth: "40rem",
     maxWidth: "56rem",
+    touchAction: "manipulation",
+    ".react-transform-wrapper": {
+      width: "100%",
+      height: "100%",
+      padding: 0,
+    },
     "> *": {
       display: "flex",
       flexDirection: "column",

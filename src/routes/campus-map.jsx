@@ -2,9 +2,12 @@ import Page from "../components/Page";
 import { useContext } from "react";
 import { EventContext } from "../App";
 import { useParams } from "react-router-dom";
-import styled from "@emotion/styled";
 import { ExposedList } from "../components/List";
 import BorderButton from "../components/BorderButton";
+import {
+  TransformWrapper,
+  TransformComponent,
+} from "@pronestor/react-zoom-pan-pinch";
 
 const CampusMap = (props) => {
   const [event] = useContext(EventContext);
@@ -15,7 +18,11 @@ const CampusMap = (props) => {
     if (!data) return;
     return (
       <Page title="Campus Map" background="dark">
-        <PanImage src={data.image} alt={data.label} />
+        <TransformWrapper maxScale={15} minScale={0.25}>
+          <TransformComponent>
+            <img src={data.image} alt={data.label} />
+          </TransformComponent>
+        </TransformWrapper>
       </Page>
     );
   }
@@ -38,7 +45,3 @@ const CampusMap = (props) => {
 };
 
 export default CampusMap;
-
-const PanImage = styled("img")({
-  touchAction: "pan-right pinch-zoom",
-});

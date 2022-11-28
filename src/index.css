@@ -5,15 +5,23 @@
 
 html {
   font-size: 8px;
+  touch-action: none;
+  background-color: var(--dark-grey);
+  background-image: url("./img/bg.png");
+  background-position: center;
+  background-size: cover;
 }
 
 body {
+  touch-action: none;
   margin: 0;
   font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 10px;
   color: var(--white);
+  max-height: 100vh;
+  overflow: hidden;
 }
 
 code {
