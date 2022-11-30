@@ -1,15 +1,17 @@
 import styled from "@emotion/styled";
 import IconChevron from "./../img/icons/chevron-left.svg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Header from "./Header";
 
 const Page = (props) => {
   const navigate = useNavigate();
+  const { program } = useParams();
+
   return (
     <PageWrapper background={props.background}>
       {props.hideHeader === undefined && <Header />}
       {props.title && (
-        <SubNav>
+        <SubNav program={program}>
           <BackButton onClick={() => navigate(-1)}>
             <img src={IconChevron} alt="Back" />
           </BackButton>
@@ -51,14 +53,18 @@ const PageWrapper = styled("div")(
   })
 );
 
-const SubNav = styled("div")({
-  backgroundColor: "var(--move-primary)",
-  height: "10rem",
-  display: "flex",
-  gap: "1rem",
-  color: "var(--black)",
-  alignContent: "center",
-});
+const SubNav = styled("div")(
+  {
+    height: "10rem",
+    display: "flex",
+    gap: "1rem",
+    color: "var(--black)",
+    alignContent: "center",
+  },
+  (props) => ({
+    backgroundColor: `var(--${props.program}-primary)`,
+  })
+);
 
 const BackButton = styled("div")({
   display: "flex",

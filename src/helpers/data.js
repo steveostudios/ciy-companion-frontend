@@ -7,8 +7,8 @@ export const api = {
 
 export const categoryMap = {
   move: 4,
-  mix: 5,
-  superstart: 6,
+  mix: 3,
+  superstart: 5,
 };
 
 export const getHumanReadableDateRange = (startDate, endDate) => {
