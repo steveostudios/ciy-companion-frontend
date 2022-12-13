@@ -28,7 +28,9 @@ const Event = (props) => {
     const url = `${api[environment]}/wp-json/wp/v2/events?slug=${slug}&acf_format=standard`;
     fetch(url)
       .then((response) => response.json())
-      .then((data) => setEvent(data[0]));
+      .then((data) => {
+        if (data[0]) setEvent(data[0]);
+      });
   }, [slug, setEvent]);
 
   return (
@@ -64,6 +66,20 @@ const Event = (props) => {
                 link={`/${program}/${slug}/event-contacts`}
                 icon={IconAddressBook}
                 name="Event Contacts"
+              />
+            )}
+            {event?.acf?.staff_contact_show && (
+              <Button
+                link={`/${program}/${slug}/staff-contacts`}
+                icon={IconAddressBook}
+                name="Staff Contacts"
+              />
+            )}
+            {event?.acf?.attendee_contact_show && (
+              <Button
+                link={`/${program}/${slug}/attendee-contacts`}
+                icon={IconAddressBook}
+                name="Attendee Contacts"
               />
             )}
             {event?.acf?.damage_report_show && (

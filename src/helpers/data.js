@@ -1,4 +1,4 @@
-export const environment = "production";
+export const environment = "dev";
 
 export const api = {
   dev: `http://ciy-companion.local/`,
@@ -9,6 +9,14 @@ export const categoryMap = {
   move: 4,
   mix: 3,
   superstart: 5,
+  yms: 11,
+};
+
+export const learnMoreURLs = {
+  move: "https://ciy.com/move",
+  mix: "https://ciy.com/mix",
+  superstart: "https://ciy.com/superstart",
+  yms: "https://ciy.com/youthministrysummit",
 };
 
 export const getHumanReadableDateRange = (startDate, endDate) => {

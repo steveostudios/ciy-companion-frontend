@@ -10,7 +10,6 @@ const Header = () => {
   const { program } = useParams();
   const event = eventContext ? eventContext[0] : null;
 
-  console.log(event);
   return (
     <Nav>
       {program && <Logo slug={program} />}

@@ -6,6 +6,7 @@ import {
   categoryMap,
   environment,
   getHumanReadableDateRange,
+  learnMoreURLs,
 } from "../helpers/data";
 import Page from "../components/Page";
 import BorderListButton from "../components/BorderListButton";
@@ -52,9 +53,10 @@ const Program = (props) => {
         ) : (
           <>
             <p>There are no active events yet. Please check back later.</p>
-            <BorderButton title="Back" href="/" />
           </>
         )}
+        <BorderButton title="Learn More" href={learnMoreURLs[program]} />
+        <BorderButton title="Back" href="/" />
       </div>
     </Page>
   );

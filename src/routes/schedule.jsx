@@ -1,14 +1,16 @@
 import styled from "@emotion/styled";
 import { useState, useContext } from "react";
-import { EventContext } from "../App";
+import { ColorsContext, EventContext } from "../App";
 import { Icon } from "../components/Icon";
 import { NormalList } from "../components/List";
 import Page from "../components/Page";
 
 const Schedule = (props) => {
   const [event] = useContext(EventContext);
+  const [colors] = useContext(ColorsContext);
   const [currentDay, setCurrentDay] = useState(0);
 
+  console.log(colors);
   return (
     <Page title="Schedule" background="light">
       <DaySelector>
@@ -34,12 +36,20 @@ const Schedule = (props) => {
             </EventIcon>
             <EventMain>
               <EventName>{item.name}</EventName>
-              {!!item.color.length && (
+              {!!item.colors.length && (
                 <EventColors>
-                  {item.color.length
-                    ? item.color.map((color, i) => (
-                        <EventColor color={color}>{color}</EventColor>
-                      ))
+                  {item.colors && item.colors.length
+                    ? item.colors.map((colorId, i) => {
+                        const thisColor = colors.find(
+                          (item) => item.id === colorId
+                        );
+
+                        return (
+                          <EventColor key={i} color={thisColor.color}>
+                            {thisColor.name}
+                          </EventColor>
+                        );
+                      })
                     : null}
                 </EventColors>
               )}
@@ -137,7 +147,7 @@ const EventColor = styled("div")(
     display: "flex",
   },
   (props) => ({
-    backgroundColor: `var(--${props.color})`,
+    backgroundColor: props.color,
     color:
       props.color === "yellow" || props.color === "orange"
         ? "var(--black)"
