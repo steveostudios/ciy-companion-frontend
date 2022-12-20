@@ -7,18 +7,14 @@ import IFrame from "../components/IFrame";
 import { StyledDivContent } from "../components/StyledDivContent";
 import BorderButton, { BorderButtonGroup } from "../components/BorderButton";
 
-const BeyondTheEvent = (props) => {
+const LeaderResources = (props) => {
   const { program, slug, page } = useParams();
   const [event] = useContext(EventContext);
   console.log(page);
 
   if (page === "ministry-interest") {
     return (
-      <Page
-        title="Beyond the Event"
-        background="dark"
-        data={event?.acf?.beyond_the_event_ministry_interest_url}
-      >
+      <Page title="Beyond the Event" background="dark">
         <IFrame
           url={event?.acf?.beyond_the_event_ministry_interest_url}
           title="Want to go into ministry?"
@@ -29,15 +25,7 @@ const BeyondTheEvent = (props) => {
 
   if (page === "engage-interest") {
     return (
-      <Page
-        title="Beyond the Event"
-        background="dark"
-        data={
-          event?.acf?.beyond_the_event_engage_trip_interest_content &&
-          event?.acf?.beyond_the_event_engage_trip_interest_groups_url &&
-          event?.acf?.beyond_the_event_engage_trip_interest_individual_url
-        }
-      >
+      <Page title="Beyond the Event" background="dark">
         <div>
           <StyledDivContent
             pad
@@ -64,15 +52,7 @@ const BeyondTheEvent = (props) => {
 
   if (page === "move-intern-interest") {
     return (
-      <Page
-        title="Beyond the Event"
-        background="dark"
-        data={
-          event?.acf?.beyond_the_event_move_intern_interest_content &&
-          event?.acf?.beyond_the_event_move_intern_interest_learn_more_url &&
-          event?.acf?.beyond_the_event_move_intern_interest_signup_url
-        }
-      >
+      <Page title="Beyond the Event" background="dark">
         <div>
           <StyledDivContent
             pad
@@ -99,15 +79,7 @@ const BeyondTheEvent = (props) => {
 
   if (page === "kingdom-worker-crash-nomination") {
     return (
-      <Page
-        title="Beyond the Event"
-        background="dark"
-        data={
-          event?.acf
-            ?.beyond_the_event_kingdom_worker_crash_nomination_content &&
-          event?.acf?.beyond_the_event_kingdom_worker_crash_nomination_url
-        }
-      >
+      <Page title="Beyond the Event" background="dark">
         <div>
           <StyledDivContent
             pad
@@ -131,13 +103,7 @@ const BeyondTheEvent = (props) => {
 
   if (page === "college-partners") {
     return (
-      <Page
-        title="Beyond the Event"
-        background="dark"
-        data={
-          event?.acf?.beyond_the_event_kingdom_worker_crash_nomination_content
-        }
-      >
+      <Page title="Beyond the Event" background="dark">
         <div>
           <StyledDivContent
             pad
@@ -153,15 +119,7 @@ const BeyondTheEvent = (props) => {
 
   if (page === "wrkr-gathering") {
     return (
-      <Page
-        title="Beyond the Event"
-        background="dark"
-        data={
-          event?.acf?.beyond_the_event_wrkr_gathering_content &&
-          event?.acf?.beyond_the_event_wrkr_gathering_interest_url &&
-          event?.acf?.beyond_the_event_wrkr_gathering_register_url
-        }
-      >
+      <Page title="Beyond the Event" background="dark">
         <div>
           <StyledDivContent
             pad
@@ -182,47 +140,8 @@ const BeyondTheEvent = (props) => {
     );
   }
 
-  if (page === "convos-beta") {
-    return (
-      <Page
-        title="Convos Beta"
-        background="dark"
-        data={
-          event?.acf?.beyond_the_event_convos_beta_content &&
-          event?.acf?.beyond_the_event_convos_beta_url
-        }
-      >
-        <div>
-          <StyledDivContent
-            pad
-            content={event?.acf?.beyond_the_event_convos_beta_content}
-          />
-          <BorderButtonGroup>
-            <BorderButton
-              href={event?.acf?.beyond_the_event_convos_beta_url}
-              title="Learn More"
-            />
-          </BorderButtonGroup>
-        </div>
-      </Page>
-    );
-  }
-
   return (
-    <Page
-      title="Beyond the Event"
-      background="dark"
-      data={
-        event?.acf?.beyond_the_event_ministry_interest_show ||
-        event?.acf?.beyond_the_event_engage_trip_interest_show ||
-        event?.acf?.beyond_the_event_move_intern_interest_show ||
-        event?.acf?.beyond_the_event_kingdom_worker_crash_nomination_show ||
-        event?.acf?.beyond_the_event_college_partners_show ||
-        event?.acf?.beyond_the_event_wrkr_gathering_show ||
-        event?.acf?.beyond_the_event_youth_ministry_resources_show ||
-        event?.acf?.beyond_the_event_convos_beta_show
-      }
-    >
+    <Page title="Leader Resources" background="dark">
       <ExposedList>
         {event?.acf?.beyond_the_event_ministry_interest_show && (
           <li>
@@ -277,27 +196,9 @@ const BeyondTheEvent = (props) => {
             />
           </li>
         )}
-        {event?.acf?.beyond_the_event_youth_ministry_resources_show && (
-          <li>
-            <BorderButton
-              href={event?.acf?.beyond_the_event_youth_ministry_resources_url}
-              title="Youth Ministry Resources
-"
-            />
-          </li>
-        )}
-        {event?.acf?.beyond_the_event_convos_beta_show && (
-          <li>
-            <BorderButton
-              href={`/${program}/${slug}/beyond-the-event/convos-beta/`}
-              title="Convos Beta
-"
-            />
-          </li>
-        )}
       </ExposedList>
     </Page>
   );
 };
 
-export default BeyondTheEvent;
+export default LeaderResources;

@@ -7,7 +7,12 @@ const DamageReport = (props) => {
   const [event] = useContext(EventContext);
 
   return (
-    <Page padding={0} title="Damage Report" background="dark">
+    <Page
+      padding={0}
+      title="Damage Report"
+      background="dark"
+      data={event?.acf?.damage_report_url}
+    >
       <IFrame url={event?.acf?.damage_report_url} title="Damage Report" />
     </Page>
   );

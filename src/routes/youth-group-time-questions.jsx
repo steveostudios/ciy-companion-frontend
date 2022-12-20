@@ -12,7 +12,11 @@ const YouthGroupTimeQuestions = (props) => {
 
   if (set) {
     return (
-      <Page title="Youth Group Time Questions" background="dark">
+      <Page
+        title="Youth Group Time Questions"
+        background="dark"
+        data={event?.acf?.youth_group_time_questions_set?.[set].content}
+      >
         <StyledDivContent
           content={event?.acf?.youth_group_time_questions_set?.[set].content}
         />
@@ -21,7 +25,11 @@ const YouthGroupTimeQuestions = (props) => {
   }
 
   return (
-    <Page title="Youth Group Time Questions" background="dark">
+    <Page
+      title="Youth Group Time Questions"
+      background="dark"
+      data={event?.acf?.youth_group_time_questions_set.length > 0}
+    >
       <ExposedList>
         {event?.acf?.youth_group_time_questions_show &&
           event?.acf?.youth_group_time_questions_set.length &&

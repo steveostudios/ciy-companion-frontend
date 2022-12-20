@@ -8,9 +8,13 @@ const Store = (props) => {
   const [event] = useContext(EventContext);
 
   return (
-    <Page title="Store" background="dark">
+    <Page
+      title="Store"
+      background="dark"
+      data={event?.acf?.["store_pick-up_url"] || event.acf.store_ship_url}
+    >
       <ExposedList>
-        {event?.acf?.selah_apple_store_url && (
+        {event?.acf?.["store_pick-up_url"] && (
           <li>
             <BorderButton
               href={event.acf["store_pick-up_url"]}

@@ -16,7 +16,7 @@ export default function Root() {
   }, [event, setEvent]);
 
   return (
-    <Page hideHeader>
+    <Page hideHeader data>
       <div>
         <H1>Choose an Event</H1>
         <BorderList>

@@ -2,6 +2,8 @@ import styled from "@emotion/styled";
 import IconChevron from "./../img/icons/chevron-left.svg";
 import { useNavigate, useParams } from "react-router-dom";
 import Header from "./Header";
+import NoData from "./NoData";
+import { Spinner } from "./Spinner";
 
 const Page = (props) => {
   const navigate = useNavigate();
@@ -18,7 +20,17 @@ const Page = (props) => {
           <H2>{props.title}</H2>
         </SubNav>
       )}
-      <Main padding={props.padding}>{props.children}</Main>
+      <Main padding={props.padding}>
+        {props.loading && <Spinner />}
+        {!props.loading && !props.data && (
+          <NoData
+            noDataContent={props.noDataContent}
+            background={props.background}
+            title={props.title}
+          />
+        )}
+        {props.data && props.children}
+      </Main>
     </PageWrapper>
   );
 };

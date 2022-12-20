@@ -10,8 +10,8 @@ import {
 } from "../helpers/data";
 import Page from "../components/Page";
 import BorderListButton from "../components/BorderListButton";
-import { Spinner } from "../components/Spinner";
 import BorderButton from "../components/BorderButton";
+import styled from "@emotion/styled";
 
 const Program = (props) => {
   const { program } = useParams();
@@ -32,11 +32,18 @@ const Program = (props) => {
   }, [program, setEvents]);
 
   return (
-    <Page>
-      <div>
-        {loading ? (
-          <Spinner />
-        ) : events.length ? (
+    <Page
+      data={!loading && events.length > 0}
+      loading={loading}
+      noDataContent={
+        <div>
+          <p>There are no active events yet. Please check back later.</p>
+          <BorderButton title="Learn More" href={learnMoreURLs[program]} />
+        </div>
+      }
+    >
+      {events.length > 0 && (
+        <Main>
           <BorderList>
             {events.map((event) => (
               <li key={event.slug}>
@@ -50,16 +57,25 @@ const Program = (props) => {
               </li>
             ))}
           </BorderList>
-        ) : (
-          <>
-            <p>There are no active events yet. Please check back later.</p>
-          </>
-        )}
-        <BorderButton title="Learn More" href={learnMoreURLs[program]} />
-        <BorderButton title="Back" href="/" />
-      </div>
+          <BorderButton title="Learn More" href={learnMoreURLs[program]} />
+          <BorderButton title="Back" href="/" />
+        </Main>
+      )}
     </Page>
   );
 };
 
 export default Program;
+
+const Main = styled("div")({
+  gap: "2rem",
+  p: {
+    fontSize: "2rem",
+  },
+  "> ul": {
+    minHeight: "calc(100vh - 30rem)",
+  },
+  "> a": {
+    margin: "0 4rem",
+  },
+});

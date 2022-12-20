@@ -10,7 +10,13 @@ const Convos = (props) => {
   const [event] = useContext(EventContext);
 
   return (
-    <Page title="Convos" background="light">
+    <Page
+      title="Convos"
+      background="light"
+      data={
+        event?.acf?.convos_apple_store_url && event?.acf?.convos_google_play_url
+      }
+    >
       <div>
         <AppHeader>
           <img src={ConvosAppIcon} alt="Convos" />

@@ -23,16 +23,22 @@ const Connect = (props) => {
   });
 
   return (
-    <Page title="Connect" background="light">
+    <Page
+      title="Connect"
+      background="light"
+      data={connections.filter((item) => item.url).length > 0}
+    >
       <NormalList>
         {connections.length &&
           connections.map((connection, i) => (
-            <Connection key={i} href={connection.url}>
-              <ConnectionIcon
-                src={icons[connection.service]}
-                alt={connection.service}
-              />
-              <ConnectionHandle>{connection.service}</ConnectionHandle>
+            <Connection key={i}>
+              <ConnectionLink href={connection.url}>
+                <ConnectionIcon
+                  src={icons[connection.service]}
+                  alt={connection.service}
+                />
+                <ConnectionHandle>{connection.service}</ConnectionHandle>
+              </ConnectionLink>
             </Connection>
           ))}
       </NormalList>
@@ -46,7 +52,12 @@ const Connection = styled("li")({
   // marginBottom: "4rem",
   margin: "2rem",
   display: "flex",
+});
+
+const ConnectionLink = styled("a")({
+  display: "flex",
   gap: "2rem",
+  textDecoration: "none",
 });
 
 const ConnectionIcon = styled("img")({

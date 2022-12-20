@@ -12,14 +12,28 @@ const TournamentRules = (props) => {
 
   if (rules) {
     return (
-      <Page title="Tournament Rules" background="dark">
+      <Page
+        title="Tournament Rules"
+        background="dark"
+        data={event?.acf?.[`${rules}_content`]}
+      >
         <StyledDivContent content={event?.acf?.[`${rules}_content`]} />
       </Page>
     );
   }
 
   return (
-    <Page title="Tournament Rules" background="dark">
+    <Page
+      title="Tournament Rules"
+      background="dark"
+      data={
+        event?.acf?.basketball_show ||
+        event?.acf?.dodgeball_show ||
+        event?.acf?.volleyball_show ||
+        event?.acf?.ultimate_frisbee_show ||
+        event?.acf?.soccer_show
+      }
+    >
       <ExposedList>
         {event?.acf?.basketball_show && (
           <li>

@@ -13,11 +13,10 @@ const CampusMap = (props) => {
   const [event] = useContext(EventContext);
   const { program, slug, campusMap } = useParams();
 
-  if (campusMap !== undefined) {
+  if (event && campusMap !== undefined) {
     const data = event?.acf?.campus_map[campusMap];
-    if (!data) return;
     return (
-      <Page title="Campus Map" background="dark">
+      <Page title="Campus Map" background="dark" data={data}>
         <TransformWrapper maxScale={15} minScale={0.25}>
           <TransformComponent>
             <img src={data.image} alt={data.label} />
@@ -28,7 +27,11 @@ const CampusMap = (props) => {
   }
 
   return (
-    <Page title="Campus Map" background="dark">
+    <Page
+      title="Campus Map"
+      background="dark"
+      data={event?.acf?.seating_chart.length > 0}
+    >
       <ExposedList>
         {event?.acf?.campus_map.length &&
           event.acf.campus_map.map((campusMap, i) => (

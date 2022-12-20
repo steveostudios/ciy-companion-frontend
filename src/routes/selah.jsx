@@ -10,7 +10,13 @@ const Selah = (props) => {
   const [event] = useContext(EventContext);
 
   return (
-    <Page title="SELAH" background="light">
+    <Page
+      title="SELAH"
+      background="light"
+      data={
+        event?.acf?.selah_apple_store_url && event?.acf?.selah_google_play_url
+      }
+    >
       <div>
         <AppHeader>
           <img src={SelahAppIcon} alt="SELAH" />

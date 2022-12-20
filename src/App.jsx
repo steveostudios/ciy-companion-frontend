@@ -22,6 +22,7 @@ import NoMatch from "./routes/no-match";
 import { api, environment } from "./helpers/data";
 import StaffContacts from "./routes/staff-contacts";
 import AttendeeContacts from "./routes/attendee-contacts";
+import LeaderResources from "./routes/leader-resources";
 
 export const EventContext = createContext();
 export const ColorsContext = createContext();
@@ -174,6 +175,11 @@ export default function BasicExample() {
                 exact
                 path="/:program/:slug/beyond-the-event/:page"
                 element={<BeyondTheEvent />}
+              />
+              <Route
+                exact
+                path="/:program/:slug/leader-resources"
+                element={<LeaderResources />}
               />
               <Route
                 exact
