@@ -13,11 +13,10 @@ const SeatingChart = (props) => {
   const [event] = useContext(EventContext);
   const { program, slug, chart } = useParams();
 
-  if (chart !== undefined) {
+  if (event && chart !== undefined) {
     const data = event?.acf?.seating_chart[chart];
-    if (!data) return;
     return (
-      <Page title="Seating Chart" background="dark">
+      <Page title="Seating Chart" background="dark" data={data}>
         <TransformWrapper maxScale={15} minScale={0.5}>
           <TransformComponent>
             <img src={data.image} alt={data.label} />
@@ -28,7 +27,11 @@ const SeatingChart = (props) => {
   }
 
   return (
-    <Page title="Seating Chart" background="dark">
+    <Page
+      title="Seating Chart"
+      background="dark"
+      data={event?.acf?.seating_chart.length > 0}
+    >
       <ExposedList>
         {event?.acf?.seating_chart.length &&
           event.acf.seating_chart.map((chart, i) => (
