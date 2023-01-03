@@ -220,7 +220,10 @@ const BeyondTheEvent = (props) => {
         event?.acf?.beyond_the_event_college_partners_show ||
         event?.acf?.beyond_the_event_wrkr_gathering_show ||
         event?.acf?.beyond_the_event_youth_ministry_resources_show ||
-        event?.acf?.beyond_the_event_convos_beta_show
+        event?.acf?.beyond_the_event_convos_beta_show ||
+        event?.acf?.beyond_the_event_session_4_resource_show ||
+        event?.acf?.beyond_the_event_event_eval_show ||
+        event?.acf?.beyond_the_event_preteen_ministry_resources_show
       }
     >
       <ExposedList>
@@ -291,6 +294,33 @@ const BeyondTheEvent = (props) => {
             <BorderButton
               href={`/${program}/${slug}/beyond-the-event/convos-beta/`}
               title="Convos Beta
+"
+            />
+          </li>
+        )}
+        {event?.acf?.beyond_the_event_session_4_resource_show && (
+          <li>
+            <BorderButton
+              href={event?.acf?.beyond_the_event_session_4_resource_url}
+              title="Session 4 Resource
+"
+            />
+          </li>
+        )}
+        {event?.acf?.beyond_the_event_event_eval_show && (
+          <li>
+            <BorderButton
+              href={event?.acf?.beyond_the_event_event_eval_url}
+              title="Event Eval
+"
+            />
+          </li>
+        )}
+        {event?.acf?.beyond_the_event_preteen_ministry_resources_show && (
+          <li>
+            <BorderButton
+              href={event?.acf?.beyond_the_event_preteen_ministry_resources_url}
+              title="Preteen Ministry Resources
 "
             />
           </li>
