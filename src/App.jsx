@@ -183,6 +183,16 @@ export default function BasicExample() {
               />
               <Route
                 exact
+                path="/:program/:slug/leader-resources/:page"
+                element={<LeaderResources />}
+              />
+              <Route
+                exact
+                path="/:program/:slug/leader-resources/:page/:resourceId"
+                element={<LeaderResources />}
+              />
+              <Route
+                exact
                 path="/:program/:slug/connect"
                 element={<Connect />}
               />

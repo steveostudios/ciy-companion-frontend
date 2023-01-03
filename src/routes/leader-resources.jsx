@@ -3,195 +3,138 @@ import { useContext } from "react";
 import { EventContext } from "../App";
 import { ExposedList } from "../components/List";
 import { useParams } from "react-router-dom";
-import IFrame from "../components/IFrame";
 import { StyledDivContent } from "../components/StyledDivContent";
 import BorderButton, { BorderButtonGroup } from "../components/BorderButton";
 
 const LeaderResources = (props) => {
-  const { program, slug, page } = useParams();
+  const { program, slug, page, resourceId } = useParams();
   const [event] = useContext(EventContext);
   console.log(page);
 
-  if (page === "ministry-interest") {
+  if (page === "program-write-up") {
     return (
-      <Page title="Beyond the Event" background="dark">
-        <IFrame
-          url={event?.acf?.beyond_the_event_ministry_interest_url}
-          title="Want to go into ministry?"
-        />
-      </Page>
-    );
-  }
-
-  if (page === "engage-interest") {
-    return (
-      <Page title="Beyond the Event" background="dark">
+      <Page
+        title="Leader Resources"
+        background="dark"
+        data={event?.acf?.leader_resources_program_write_up_content}
+      >
         <div>
           <StyledDivContent
             pad
-            content={event?.acf?.beyond_the_event_engage_trip_interest_content}
-          />
-          <BorderButtonGroup>
-            <BorderButton
-              href={
-                event?.acf?.beyond_the_event_engage_trip_interest_groups_url
-              }
-              title="Groups"
-            />
-            <BorderButton
-              href={
-                event?.acf?.beyond_the_event_engage_trip_interest_individual_url
-              }
-              title="Individuals"
-            />
-          </BorderButtonGroup>
-        </div>
-      </Page>
-    );
-  }
-
-  if (page === "move-intern-interest") {
-    return (
-      <Page title="Beyond the Event" background="dark">
-        <div>
-          <StyledDivContent
-            pad
-            content={event?.acf?.beyond_the_event_move_intern_interest_content}
-          />
-          <BorderButtonGroup>
-            <BorderButton
-              href={
-                event?.acf?.beyond_the_event_move_intern_interest_learn_more_url
-              }
-              title="Learn More"
-            />
-            <BorderButton
-              href={
-                event?.acf?.beyond_the_event_move_intern_interest_signup_url
-              }
-              title="Interested?"
-            />
-          </BorderButtonGroup>
-        </div>
-      </Page>
-    );
-  }
-
-  if (page === "kingdom-worker-crash-nomination") {
-    return (
-      <Page title="Beyond the Event" background="dark">
-        <div>
-          <StyledDivContent
-            pad
-            content={
-              event?.acf
-                ?.beyond_the_event_kingdom_worker_crash_nomination_content
-            }
-          />
-          <BorderButtonGroup>
-            <BorderButton
-              href={
-                event?.acf?.beyond_the_event_kingdom_worker_crash_nomination_url
-              }
-              title="Learn More"
-            />
-          </BorderButtonGroup>
-        </div>
-      </Page>
-    );
-  }
-
-  if (page === "college-partners") {
-    return (
-      <Page title="Beyond the Event" background="dark">
-        <div>
-          <StyledDivContent
-            pad
-            content={
-              event?.acf
-                ?.beyond_the_event_kingdom_worker_crash_nomination_content
-            }
+            content={event?.acf?.leader_resources_program_write_up_content}
           />
         </div>
       </Page>
     );
   }
 
-  if (page === "wrkr-gathering") {
+  if (page === "adult-leader-videos" && resourceId) {
     return (
-      <Page title="Beyond the Event" background="dark">
+      <Page
+        title="Leader Resources"
+        background="dark"
+        data={event?.acf?.leader_resources_amp_up_dance_video_url}
+      >
         <div>
-          <StyledDivContent
-            pad
-            content={event?.acf?.beyond_the_event_wrkr_gathering_content}
-          />
-          <BorderButtonGroup>
-            <BorderButton
-              href={event?.acf?.beyond_the_event_wrkr_gathering_interest_url}
-              title="Learn More"
-            />
-            <BorderButton
-              href={event?.acf?.beyond_the_event_wrkr_gathering_register_url}
-              title="Register"
-            />
-          </BorderButtonGroup>
+          <iframe
+            title="vimeo-player"
+            src={`https://player.vimeo.com/video/${resourceId}`}
+            width="640"
+            height="360"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </Page>
+    );
+  }
+
+  if (page === "adult-leader-videos") {
+    return (
+      <Page
+        title="Leader Resources"
+        background="dark"
+        data={event?.acf?.leader_resources_adult_leader_videos_objects}
+      >
+        <div>
+          {event?.acf?.leader_resources_adult_leader_videos_objects && (
+            <BorderButtonGroup>
+              {event?.acf?.leader_resources_adult_leader_videos_objects.map(
+                (obj) => {
+                  const urlParts = obj.url.split("/");
+                  const id = urlParts[urlParts.length - 1];
+                  return (
+                    <BorderButton
+                      title={obj.name}
+                      href={`/${program}/${slug}/leader-resources/adult-leader-videos/${id}`}
+                    />
+                  );
+                }
+              )}
+            </BorderButtonGroup>
+          )}
+        </div>
+      </Page>
+    );
+  }
+
+  if (page === "amp-up-dance") {
+    const urlParts =
+      event?.acf?.leader_resources_amp_up_dance_video_url.split("/");
+    const id = urlParts[urlParts.length - 1];
+    return (
+      <Page
+        title="Leader Resources"
+        background="dark"
+        data={event?.acf?.leader_resources_amp_up_dance_video_url}
+      >
+        <div>
+          <iframe
+            title="vimeo-player"
+            src={`https://player.vimeo.com/video/${id}`}
+            width="640"
+            height="360"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
         </div>
       </Page>
     );
   }
 
   return (
-    <Page title="Leader Resources" background="dark">
+    <Page
+      title="Leader Resources"
+      background="dark"
+      data={
+        event?.acf?.leader_resources_program_write_up_show ||
+        event?.acf?.leader_resources_adult_leader_videos_show ||
+        event?.acf?.leader_resources_amp_up_dance_show
+      }
+    >
       <ExposedList>
-        {event?.acf?.beyond_the_event_ministry_interest_show && (
+        {event?.acf?.leader_resources_program_write_up_show && (
           <li>
             <BorderButton
-              href={`/${program}/${slug}/beyond-the-event/ministry-interest/`}
-              title="Want to go into ministry?"
+              href={`/${program}/${slug}/leader-resources/program-write-up/`}
+              title="Program Write Up"
             />
           </li>
         )}
-        {event?.acf?.beyond_the_event_engage_trip_interest_show && (
+        {event?.acf?.leader_resources_adult_leader_videos_show && (
           <li>
             <BorderButton
-              href={`/${program}/${slug}/beyond-the-event/engage-interest/`}
-              title="Want to go on an Engage Trip?
+              href={`/${program}/${slug}/leader-resources/adult-leader-videos/`}
+              title="Adult Leader Videos
 "
             />
           </li>
         )}
-        {event?.acf?.beyond_the_event_move_intern_interest_show && (
+        {event?.acf?.leader_resources_amp_up_dance_show && (
           <li>
             <BorderButton
-              href={`/${program}/${slug}/beyond-the-event/move-intern-interest/`}
-              title="Want to intern with MOVE next summer?
-"
-            />
-          </li>
-        )}
-        {event?.acf?.beyond_the_event_kingdom_worker_crash_nomination_show && (
-          <li>
-            <BorderButton
-              href={`/${program}/${slug}/beyond-the-event/kingdom-worker-crash-nomination/`}
-              title="Kingdom Worker Crash Nomination
-"
-            />
-          </li>
-        )}
-        {event?.acf?.beyond_the_event_college_partners_show && (
-          <li>
-            <BorderButton
-              href={`/${program}/${slug}/beyond-the-event/college-partners/`}
-              title="College Partners
-"
-            />
-          </li>
-        )}
-        {event?.acf?.beyond_the_event_wrkr_gathering_show && (
-          <li>
-            <BorderButton
-              href={`/${program}/${slug}/beyond-the-event/wrkr-gathering/`}
-              title="WRKR Gathering
+              href={`/${program}/${slug}/leader-resources/amp-up-dance/`}
+              title="Amp Up Dance
 "
             />
           </li>

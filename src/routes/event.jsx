@@ -152,7 +152,7 @@ const Event = (props) => {
               name="Connect"
             />
           )}
-          <Button link={`/`} icon={IconSignOut} name="Sign Out" />
+          <Button link={`/`} icon={IconSignOut} name="Change Event" />
         </Menu>
       </div>
     </Page>
