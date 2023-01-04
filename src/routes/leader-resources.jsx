@@ -11,7 +11,7 @@ const LeaderResources = (props) => {
   const [event] = useContext(EventContext);
   console.log(page);
 
-  if (page === "program-write-up") {
+  if (page === "theme-write-up") {
     return (
       <Page
         title="Leader Resources"
@@ -116,8 +116,8 @@ const LeaderResources = (props) => {
         {event?.acf?.leader_resources_program_write_up_show && (
           <li>
             <BorderButton
-              href={`/${program}/${slug}/leader-resources/program-write-up/`}
-              title="Program Write Up"
+              href={`/${program}/${slug}/leader-resources/theme-write-up/`}
+              title="Theme Write Up"
             />
           </li>
         )}
@@ -134,7 +134,7 @@ const LeaderResources = (props) => {
           <li>
             <BorderButton
               href={`/${program}/${slug}/leader-resources/amp-up-dance/`}
-              title="Amp Up Dance
+              title="Amp-Up Dance
 "
             />
           </li>

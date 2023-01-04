@@ -5,6 +5,7 @@ import Page from "../components/Page";
 import { useContext } from "react";
 import { EventContext } from "../App";
 import { AppButtons, AppHeader } from "../components/AppComponents";
+import { StyledDivContent } from "../components/StyledDivContent";
 
 const Selah = (props) => {
   const [event] = useContext(EventContext);
@@ -35,15 +36,7 @@ const Selah = (props) => {
         </AppHeader>
         <h1>SELAH</h1>
         <p>By CIY</p>
-        <p>
-          Selah is a personal devotion experience brought to you by Christ in
-          Youth Æffect. Designed for Kingdom workers looking to set aside time
-          each day to stop, exhale, look, ask, and hear the word, Selah exists
-          to spark the habit of conversing with God. Each experience series is a
-          week long, helping you integrate prayer and scripture into your mobile
-          life. Choose from a growing library of topical and Biblical
-          meditations and start a conversation with God today.
-        </p>
+        <StyledDivContent content={event?.acf?.selah_description} />
       </div>
     </Page>
   );

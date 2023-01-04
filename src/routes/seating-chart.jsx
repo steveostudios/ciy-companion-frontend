@@ -17,11 +17,16 @@ const SeatingChart = (props) => {
     const data = event?.acf?.seating_chart[chart];
     return (
       <Page title="Seating Chart" background="dark" data={data}>
-        <TransformWrapper maxScale={15} minScale={0.5}>
-          <TransformComponent>
-            <img src={data.image} alt={data.label} />
-          </TransformComponent>
-        </TransformWrapper>
+        {data.image && (
+          <TransformWrapper maxScale={15} minScale={0.5}>
+            <TransformComponent>
+              <img src={data.image} alt={data.label} />
+            </TransformComponent>
+          </TransformWrapper>
+        )}
+        {!data.image && (
+          <p>Seating charts will be uploaded soon! Check back later.</p>
+        )}
       </Page>
     );
   }
