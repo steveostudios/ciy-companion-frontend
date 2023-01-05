@@ -73,7 +73,7 @@ const Main = styled("div")({
     fontSize: "2rem",
   },
   "> ul": {
-    minHeight: "calc(100vh - 30rem)",
+    minHeight: "calc(100vh - 40rem)",
   },
   "> a": {
     margin: "0 4rem",

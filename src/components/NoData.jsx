@@ -25,7 +25,7 @@ export default NoData;
 const Message = styled("div")({
   margin: "2rem",
   lineHeight: 1.5,
-  minHeight: "calc(100vh - 34rem)",
+  minHeight: "calc(100vh - 44rem)",
   display: "flex",
   p: {
     fontSize: "2rem",

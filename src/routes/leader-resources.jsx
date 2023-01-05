@@ -142,6 +142,16 @@ const LeaderResources = (props) => {
             />
           </li>
         )}
+        {event?.acf?.leader_resources_photo_scavenger_hunt_show && (
+          <li>
+            <BorderButton
+              href={event?.acf?.leader_resources_photo_scavenger_hunt_url}
+              title="Photo Scavenger Hunt
+"
+              target="_blank"
+            />
+          </li>
+        )}
       </ExposedList>
     </Page>
   );

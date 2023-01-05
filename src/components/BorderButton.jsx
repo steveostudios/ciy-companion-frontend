@@ -2,7 +2,12 @@ import styled from "@emotion/styled";
 
 const BorderButton = (props) => {
   return (
-    <A href={props.href} onClick={props.onClick} background={props.background}>
+    <A
+      href={props.href}
+      onClick={props.onClick}
+      background={props.background}
+      target={props.target || "_self"}
+    >
       {props.title}
     </A>
   );
