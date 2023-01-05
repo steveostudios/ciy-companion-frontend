@@ -105,6 +105,7 @@ const Main = styled("main")(
     width: "100%",
     minWidth: "40rem",
     maxWidth: "56rem",
+    maxHeight: "calc(100vh - 30rem)",
     touchAction: "manipulation",
     ".react-transform-wrapper": {
       width: "100%",
