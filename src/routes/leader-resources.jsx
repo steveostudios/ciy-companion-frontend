@@ -41,8 +41,8 @@ const LeaderResources = (props) => {
             src={`https://player.vimeo.com/video/${resourceId}`}
             width="640"
             height="360"
-            frameborder="0"
-            allowfullscreen
+            frameBorder="0"
+            allowFullScreen
           ></iframe>
         </div>
       </Page>
@@ -60,11 +60,12 @@ const LeaderResources = (props) => {
           {event?.acf?.leader_resources_adult_leader_videos_objects && (
             <BorderButtonGroup>
               {event?.acf?.leader_resources_adult_leader_videos_objects.map(
-                (obj) => {
+                (obj, i) => {
                   const urlParts = obj.url.split("/");
                   const id = urlParts[urlParts.length - 1];
                   return (
                     <BorderButton
+                      key={i}
                       title={obj.name}
                       href={`/${program}/${slug}/leader-resources/adult-leader-videos/${id}`}
                     />
@@ -80,7 +81,9 @@ const LeaderResources = (props) => {
 
   if (page === "amp-up-dance") {
     const urlParts =
-      event?.acf?.leader_resources_amp_up_dance_video_url.split("/");
+      (event?.acf?.leader_resources_amp_up_dance_video_url &&
+        event?.acf?.leader_resources_amp_up_dance_video_url.split("/")) ||
+      "";
     const id = urlParts[urlParts.length - 1];
     return (
       <Page
@@ -94,8 +97,8 @@ const LeaderResources = (props) => {
             src={`https://player.vimeo.com/video/${id}`}
             width="640"
             height="360"
-            frameborder="0"
-            allowfullscreen
+            frameBorder="0"
+            allowFullScreen
           ></iframe>
         </div>
       </Page>

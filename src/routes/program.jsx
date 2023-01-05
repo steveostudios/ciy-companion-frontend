@@ -19,7 +19,7 @@ const Program = (props) => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    const url = `${api[environment]}/wp-json/wp/v2/events?program=${categoryMap[program]}&per_page=100&_fields[]=title.rendered&_fields[]=acf.start_date&_fields[]=acf.end_date&_fields[]=slug&acf_format=standard&status=publish`;
+    const url = `${api[environment]}/wp-json/wp/v2/events?program=${categoryMap[program]}&per_page=100&_fields[]=title.rendered&_fields[]=acf.location&_fields[]=acf.start_date&_fields[]=acf.end_date&_fields[]=slug&acf_format=standard&status=publish`;
     console.log(url);
 
     setLoading(true);
@@ -52,7 +52,7 @@ const Program = (props) => {
                   title={`${event.title.rendered} | ${getHumanReadableDateRange(
                     event.acf.start_date,
                     event.acf.end_date
-                  )}`}
+                  )} | ${event.acf.location}`}
                 />
               </li>
             ))}

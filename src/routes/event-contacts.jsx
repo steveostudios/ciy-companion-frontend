@@ -2,6 +2,7 @@ import Page from "../components/Page";
 import { useContext } from "react";
 import { EventContext } from "../App";
 import EmailIcon from "./../img/icons/envelope.svg";
+import PhoneIcon from "./../img/icons/phone-dark.svg";
 import styled from "@emotion/styled";
 import { NormalList } from "../components/List";
 
@@ -27,9 +28,16 @@ const EventContacts = (props) => {
                 <ContactRole>{contact.role}</ContactRole>
               </ContactMain>
               <ContactMethods>
-                <a href={`mailto:${contact.email}`}>
-                  <img src={EmailIcon} alt={`Email ${contact.name}`} />
-                </a>
+                {contact.phone_number && (
+                  <a href={`tel:${contact.phone_number}`}>
+                    <img src={PhoneIcon} alt={`Call ${contact.name}`} />
+                  </a>
+                )}
+                {contact.email && (
+                  <a href={`mailto:${contact.email}`}>
+                    <img src={EmailIcon} alt={`Email ${contact.name}`} />
+                  </a>
+                )}
               </ContactMethods>
             </Contact>
           ))}
@@ -66,4 +74,11 @@ const ContactRole = styled("div")({
   textTransform: "uppercase",
 });
 
-const ContactMethods = styled("div")({});
+const ContactMethods = styled("div")({
+  a: {
+    marginLeft: "1rem",
+  },
+  img: {
+    height: "2.5rem",
+  },
+});
