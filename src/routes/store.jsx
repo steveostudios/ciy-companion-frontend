@@ -10,13 +10,14 @@ const Store = (props) => {
   return (
     <Page
       title="Store"
-      background="dark"
+      background="light"
       data={event?.acf?.["store_pick-up_url"] || event.acf.store_ship_url}
     >
       <ExposedList>
         {event?.acf?.["store_pick-up_url"] && (
           <li>
             <BorderButton
+              background="light"
               href={event.acf["store_pick-up_url"]}
               title="Pick up at Event"
             />
@@ -25,6 +26,7 @@ const Store = (props) => {
         {event?.acf?.store_ship_url && (
           <li>
             <BorderButton
+              background="light"
               href={event.acf.store_ship_url}
               title="Ship to my house"
             />

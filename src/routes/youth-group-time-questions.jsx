@@ -14,7 +14,7 @@ const YouthGroupTimeQuestions = (props) => {
     return (
       <Page
         title="Youth Group Time Questions"
-        background="dark"
+        background="light"
         data={event?.acf?.youth_group_time_questions_set?.[set].content}
       >
         <StyledDivContent
@@ -27,7 +27,7 @@ const YouthGroupTimeQuestions = (props) => {
   return (
     <Page
       title="Youth Group Time Questions"
-      background="dark"
+      background="light"
       data={event?.acf?.youth_group_time_questions_set.length > 0}
     >
       <ExposedList>
@@ -36,6 +36,7 @@ const YouthGroupTimeQuestions = (props) => {
           event?.acf?.youth_group_time_questions_set.map((item, i) => (
             <li>
               <BorderButton
+                background="light"
                 href={`/${program}/${slug}/youth-group-time-questions/${i}`}
                 title={item.title}
               />

@@ -16,7 +16,7 @@ const BeyondTheEvent = (props) => {
     return (
       <Page
         title="Beyond the Event"
-        background="dark"
+        background="light"
         data={event?.acf?.beyond_the_event_ministry_interest_url}
       >
         <IFrame
@@ -31,7 +31,7 @@ const BeyondTheEvent = (props) => {
     return (
       <Page
         title="Beyond the Event"
-        background="dark"
+        background="light"
         data={
           event?.acf?.beyond_the_event_engage_trip_interest_content &&
           event?.acf?.beyond_the_event_engage_trip_interest_groups_url &&
@@ -45,12 +45,14 @@ const BeyondTheEvent = (props) => {
           />
           <BorderButtonGroup>
             <BorderButton
+              background="light"
               href={
                 event?.acf?.beyond_the_event_engage_trip_interest_groups_url
               }
               title="Groups"
             />
             <BorderButton
+              background="light"
               href={
                 event?.acf?.beyond_the_event_engage_trip_interest_individual_url
               }
@@ -66,7 +68,7 @@ const BeyondTheEvent = (props) => {
     return (
       <Page
         title="Beyond the Event"
-        background="dark"
+        background="light"
         data={
           event?.acf?.beyond_the_event_move_intern_interest_content &&
           event?.acf?.beyond_the_event_move_intern_interest_learn_more_url &&
@@ -80,12 +82,14 @@ const BeyondTheEvent = (props) => {
           />
           <BorderButtonGroup>
             <BorderButton
+              background="light"
               href={
                 event?.acf?.beyond_the_event_move_intern_interest_learn_more_url
               }
               title="Learn More"
             />
             <BorderButton
+              background="light"
               href={
                 event?.acf?.beyond_the_event_move_intern_interest_signup_url
               }
@@ -101,7 +105,7 @@ const BeyondTheEvent = (props) => {
     return (
       <Page
         title="Beyond the Event"
-        background="dark"
+        background="light"
         data={
           event?.acf
             ?.beyond_the_event_kingdom_worker_crash_nomination_content &&
@@ -118,6 +122,7 @@ const BeyondTheEvent = (props) => {
           />
           <BorderButtonGroup>
             <BorderButton
+              background="light"
               href={
                 event?.acf?.beyond_the_event_kingdom_worker_crash_nomination_url
               }
@@ -133,7 +138,7 @@ const BeyondTheEvent = (props) => {
     return (
       <Page
         title="Beyond the Event"
-        background="dark"
+        background="light"
         data={
           event?.acf?.beyond_the_event_kingdom_worker_crash_nomination_content
         }
@@ -155,7 +160,7 @@ const BeyondTheEvent = (props) => {
     return (
       <Page
         title="Beyond the Event"
-        background="dark"
+        background="light"
         data={
           event?.acf?.beyond_the_event_wrkr_gathering_content &&
           event?.acf?.beyond_the_event_wrkr_gathering_interest_url &&
@@ -169,10 +174,12 @@ const BeyondTheEvent = (props) => {
           />
           <BorderButtonGroup>
             <BorderButton
+              background="light"
               href={event?.acf?.beyond_the_event_wrkr_gathering_interest_url}
               title="Learn More"
             />
             <BorderButton
+              background="light"
               href={event?.acf?.beyond_the_event_wrkr_gathering_register_url}
               title="Register"
             />
@@ -186,7 +193,7 @@ const BeyondTheEvent = (props) => {
     return (
       <Page
         title="Convos Beta"
-        background="dark"
+        background="light"
         data={
           event?.acf?.beyond_the_event_convos_beta_content &&
           event?.acf?.beyond_the_event_convos_beta_url
@@ -199,6 +206,7 @@ const BeyondTheEvent = (props) => {
           />
           <BorderButtonGroup>
             <BorderButton
+              background="light"
               href={event?.acf?.beyond_the_event_convos_beta_url}
               title="Learn More"
             />
@@ -211,7 +219,7 @@ const BeyondTheEvent = (props) => {
   return (
     <Page
       title="Beyond the Event"
-      background="dark"
+      background="light"
       data={
         event?.acf?.beyond_the_event_ministry_interest_show ||
         event?.acf?.beyond_the_event_engage_trip_interest_show ||
@@ -230,6 +238,7 @@ const BeyondTheEvent = (props) => {
         {event?.acf?.beyond_the_event_ministry_interest_show && (
           <li>
             <BorderButton
+              background="light"
               href={`/${program}/${slug}/beyond-the-event/ministry-interest/`}
               title="Want to go into ministry?"
             />
@@ -238,6 +247,7 @@ const BeyondTheEvent = (props) => {
         {event?.acf?.beyond_the_event_engage_trip_interest_show && (
           <li>
             <BorderButton
+              background="light"
               href={`/${program}/${slug}/beyond-the-event/engage-interest/`}
               title="Want to go on an Engage Trip?
 "
@@ -247,6 +257,7 @@ const BeyondTheEvent = (props) => {
         {event?.acf?.beyond_the_event_move_intern_interest_show && (
           <li>
             <BorderButton
+              background="light"
               href={`/${program}/${slug}/beyond-the-event/move-intern-interest/`}
               title="Want to intern with MOVE next summer?
 "
@@ -256,6 +267,7 @@ const BeyondTheEvent = (props) => {
         {event?.acf?.beyond_the_event_kingdom_worker_crash_nomination_show && (
           <li>
             <BorderButton
+              background="light"
               href={`/${program}/${slug}/beyond-the-event/kingdom-worker-crash-nomination/`}
               title="Kingdom Worker Crash Nomination
 "
@@ -265,6 +277,7 @@ const BeyondTheEvent = (props) => {
         {event?.acf?.beyond_the_event_college_partners_show && (
           <li>
             <BorderButton
+              background="light"
               href={`/${program}/${slug}/beyond-the-event/college-partners/`}
               title="College Partners
 "
@@ -274,6 +287,7 @@ const BeyondTheEvent = (props) => {
         {event?.acf?.beyond_the_event_wrkr_gathering_show && (
           <li>
             <BorderButton
+              background="light"
               href={`/${program}/${slug}/beyond-the-event/wrkr-gathering/`}
               title="WRKR Gathering
 "
@@ -283,6 +297,7 @@ const BeyondTheEvent = (props) => {
         {event?.acf?.beyond_the_event_youth_ministry_resources_show && (
           <li>
             <BorderButton
+              background="light"
               href={event?.acf?.beyond_the_event_youth_ministry_resources_url}
               title="Youth Ministry Resources
 "
@@ -292,6 +307,7 @@ const BeyondTheEvent = (props) => {
         {event?.acf?.beyond_the_event_convos_beta_show && (
           <li>
             <BorderButton
+              background="light"
               href={`/${program}/${slug}/beyond-the-event/convos-beta/`}
               title="Convos Beta
 "
@@ -301,6 +317,7 @@ const BeyondTheEvent = (props) => {
         {event?.acf?.beyond_the_event_session_4_resource_show && (
           <li>
             <BorderButton
+              background="light"
               href={event?.acf?.beyond_the_event_session_4_resource_url}
               title="Session 4 Resource
 "
@@ -310,6 +327,7 @@ const BeyondTheEvent = (props) => {
         {event?.acf?.beyond_the_event_event_eval_show && (
           <li>
             <BorderButton
+              background="light"
               href={event?.acf?.beyond_the_event_event_eval_url}
               title="Event Eval
 "
@@ -319,6 +337,7 @@ const BeyondTheEvent = (props) => {
         {event?.acf?.beyond_the_event_preteen_ministry_resources_show && (
           <li>
             <BorderButton
+              background="light"
               href={event?.acf?.beyond_the_event_preteen_ministry_resources_url}
               title="Preteen Ministry Resources
 "

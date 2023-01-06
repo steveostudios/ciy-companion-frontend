@@ -21,7 +21,10 @@ export default function Root() {
         <H1>Choose an Event</H1>
         <BorderList>
           <li>
-            <BorderListButton href="/move" title={<Logo slug="move" />} />
+            <BorderListButton
+              href="/move"
+              title={<Logo slug="move" height={32} />}
+            />
           </li>
           <li>
             <BorderListButton href="/yms" title={<Logo slug="yms" />} />
@@ -43,6 +46,7 @@ export default function Root() {
 
 const H1 = styled("h1")({
   fontSize: "48px",
+  textAlign: "center",
   textTransform: "uppercase",
   fontFamily: "PragmaticaExtended-ExtraBold",
 });

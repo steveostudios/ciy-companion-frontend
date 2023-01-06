@@ -14,7 +14,7 @@ const TournamentRules = (props) => {
     return (
       <Page
         title="Tournament Rules"
-        background="dark"
+        background="light"
         data={event?.acf?.[`${rules}_content`]}
       >
         <StyledDivContent content={event?.acf?.[`${rules}_content`]} />
@@ -25,7 +25,7 @@ const TournamentRules = (props) => {
   return (
     <Page
       title="Tournament Rules"
-      background="dark"
+      background="light"
       data={
         event?.acf?.basketball_show ||
         event?.acf?.dodgeball_show ||
@@ -38,6 +38,7 @@ const TournamentRules = (props) => {
         {event?.acf?.basketball_show && (
           <li>
             <BorderButton
+              background="light"
               href={`/${program}/${slug}/tournament-rules/basketball`}
               title="Basketball"
             />
@@ -46,6 +47,7 @@ const TournamentRules = (props) => {
         {event?.acf?.dodgeball_show && (
           <li>
             <BorderButton
+              background="light"
               href={`/${program}/${slug}/tournament-rules/dodgeball`}
               title="Dodgeball"
             />
@@ -54,6 +56,7 @@ const TournamentRules = (props) => {
         {event?.acf?.volleyball_show && (
           <li>
             <BorderButton
+              background="light"
               href={`/${program}/${slug}/tournament-rules/volleyball`}
               title="Volleyball"
             />
@@ -62,6 +65,7 @@ const TournamentRules = (props) => {
         {event?.acf?.ultimate_frisbee_show && (
           <li>
             <BorderButton
+              background="light"
               href={`/${program}/${slug}/tournament-rules/ultimate_frisbee`}
               title="Ultimate Frisbee"
             />
@@ -70,6 +74,7 @@ const TournamentRules = (props) => {
         {event?.acf?.soccer_show && (
           <li>
             <BorderButton
+              background="light"
               href={`/${program}/${slug}/tournament-rules/soccer`}
               title="Soccer"
             />

@@ -10,7 +10,7 @@ const DamageReport = (props) => {
     <Page
       padding={0}
       title="Damage Report"
-      background="dark"
+      background="light"
       data={event?.acf?.damage_report_url}
     >
       <IFrame url={event?.acf?.damage_report_url} title="Damage Report" />

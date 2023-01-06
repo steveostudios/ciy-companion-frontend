@@ -16,7 +16,7 @@ const CampusMap = (props) => {
   if (event && campusMap !== undefined) {
     const data = event?.acf?.campus_map[campusMap];
     return (
-      <Page title="Campus Map" background="dark" data={data}>
+      <Page title="Campus Map" background="light" data={data}>
         <TransformWrapper maxScale={15} minScale={0.25}>
           <TransformComponent>
             <img src={data.image} alt={data.label} />
@@ -29,7 +29,7 @@ const CampusMap = (props) => {
   return (
     <Page
       title="Campus Map"
-      background="dark"
+      background="light"
       data={event?.acf?.seating_chart.length > 0}
     >
       <ExposedList>

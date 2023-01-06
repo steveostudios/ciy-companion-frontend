@@ -16,7 +16,7 @@ const SeatingChart = (props) => {
   if (event && chart !== undefined) {
     const data = event?.acf?.seating_chart[chart];
     return (
-      <Page title="Seating Chart" background="dark" data={data}>
+      <Page title="Seating Chart" background="light" data={data}>
         {data.image && (
           <TransformWrapper maxScale={15} minScale={0.5}>
             <TransformComponent>
@@ -34,7 +34,7 @@ const SeatingChart = (props) => {
   return (
     <Page
       title="Seating Chart"
-      background="dark"
+      background="light"
       data={event?.acf?.seating_chart.length > 0}
       noDataContent="Seating charts will be uploaded soon! Check back later."
     >
@@ -43,6 +43,7 @@ const SeatingChart = (props) => {
           event.acf.seating_chart.map((chart, i) => (
             <li key={i}>
               <BorderButton
+                background="light"
                 href={`/${program}/${slug}/seating-chart/${i}`}
                 title={chart.label}
               />

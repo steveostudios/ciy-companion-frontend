@@ -13,6 +13,7 @@ export const StyledDivContent = (props) => {
 
 const StyledContent = styled("div")(
   {
+    color: "var(--black)",
     h2: {
       fontSize: "16px",
       textTransform: "uppercase",

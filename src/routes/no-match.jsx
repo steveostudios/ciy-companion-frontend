@@ -4,21 +4,17 @@ import Page from "../components/Page";
 // import { EventContext } from "../App";
 
 const NoMatch = (props) => {
-  const params = useParams()
-  const location = useLocation()
+  const params = useParams();
+  const location = useLocation();
   // const [event] = useContext(EventContext);
 
   return (
-    <Page title="Oh no!" background="dark">
+    <Page title="Oh no!" background="light">
       <h1>404</h1>
-      <p>
-        {JSON.stringify(params)}
-        </p>
-      <p>
-        {location.pathname}
-        </p>
+      <p>{JSON.stringify(params)}</p>
+      <p>{location.pathname}</p>
     </Page>
   );
-}
+};
 
 export default NoMatch;

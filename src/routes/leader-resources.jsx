@@ -15,7 +15,7 @@ const LeaderResources = (props) => {
     return (
       <Page
         title="Leader Resources"
-        background="dark"
+        background="light"
         data={event?.acf?.leader_resources_program_write_up_content}
       >
         <div>
@@ -32,7 +32,7 @@ const LeaderResources = (props) => {
     return (
       <Page
         title="Leader Resources"
-        background="dark"
+        background="light"
         data={event?.acf?.leader_resources_amp_up_dance_video_url}
       >
         <div>
@@ -53,7 +53,7 @@ const LeaderResources = (props) => {
     return (
       <Page
         title="Leader Resources"
-        background="dark"
+        background="light"
         data={event?.acf?.leader_resources_adult_leader_videos_objects}
       >
         <div>
@@ -65,6 +65,7 @@ const LeaderResources = (props) => {
                   const id = urlParts[urlParts.length - 1];
                   return (
                     <BorderButton
+                      background="light"
                       key={i}
                       title={obj.name}
                       href={`/${program}/${slug}/leader-resources/adult-leader-videos/${id}`}
@@ -88,7 +89,7 @@ const LeaderResources = (props) => {
     return (
       <Page
         title="Leader Resources"
-        background="dark"
+        background="light"
         data={event?.acf?.leader_resources_amp_up_dance_video_url}
       >
         <div>
@@ -108,7 +109,7 @@ const LeaderResources = (props) => {
   return (
     <Page
       title="Leader Resources"
-      background="dark"
+      background="light"
       data={
         event?.acf?.leader_resources_program_write_up_show ||
         event?.acf?.leader_resources_adult_leader_videos_show ||
@@ -119,6 +120,7 @@ const LeaderResources = (props) => {
         {event?.acf?.leader_resources_program_write_up_show && (
           <li>
             <BorderButton
+              background="light"
               href={`/${program}/${slug}/leader-resources/theme-write-up/`}
               title="Theme Write Up"
             />
@@ -127,6 +129,7 @@ const LeaderResources = (props) => {
         {event?.acf?.leader_resources_adult_leader_videos_show && (
           <li>
             <BorderButton
+              background="light"
               href={`/${program}/${slug}/leader-resources/adult-leader-videos/`}
               title="Adult Leader Videos
 "
@@ -136,6 +139,7 @@ const LeaderResources = (props) => {
         {event?.acf?.leader_resources_amp_up_dance_show && (
           <li>
             <BorderButton
+              background="light"
               href={`/${program}/${slug}/leader-resources/amp-up-dance/`}
               title="Amp-Up Dance
 "
@@ -145,6 +149,7 @@ const LeaderResources = (props) => {
         {event?.acf?.leader_resources_photo_scavenger_hunt_show && (
           <li>
             <BorderButton
+              background="light"
               href={event?.acf?.leader_resources_photo_scavenger_hunt_url}
               title="Photo Scavenger Hunt
 "

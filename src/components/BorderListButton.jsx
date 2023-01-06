@@ -18,7 +18,6 @@ const A = styled("a")({
   textTransform: "uppercase",
   color: "var(--white)",
   img: {
-    maxHeight: "3rem",
     margin: "0 auto",
   },
   "&:hover": {
