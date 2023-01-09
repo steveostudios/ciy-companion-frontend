@@ -5,6 +5,7 @@ import { ExposedList } from "../components/List";
 import { useParams } from "react-router-dom";
 import { StyledDivContent } from "../components/StyledDivContent";
 import BorderButton, { BorderButtonGroup } from "../components/BorderButton";
+import Vimeo from "../components/Vimeo";
 
 const LeaderResources = (props) => {
   const { program, slug, page, resourceId } = useParams();
@@ -33,18 +34,10 @@ const LeaderResources = (props) => {
       <Page
         title="Leader Resources"
         background="light"
+        padding={0}
         data={event?.acf?.leader_resources_amp_up_dance_video_url}
       >
-        <div>
-          <iframe
-            title="vimeo-player"
-            src={`https://player.vimeo.com/video/${resourceId}`}
-            width="640"
-            height="360"
-            frameBorder="0"
-            allowFullScreen
-          ></iframe>
-        </div>
+        <Vimeo id={resourceId} />
       </Page>
     );
   }
@@ -88,20 +81,12 @@ const LeaderResources = (props) => {
     const id = urlParts[urlParts.length - 1];
     return (
       <Page
+        padding={0}
         title="Leader Resources"
         background="light"
         data={event?.acf?.leader_resources_amp_up_dance_video_url}
       >
-        <div>
-          <iframe
-            title="vimeo-player"
-            src={`https://player.vimeo.com/video/${id}`}
-            width="640"
-            height="360"
-            frameBorder="0"
-            allowFullScreen
-          ></iframe>
-        </div>
+        <Vimeo id={id} />
       </Page>
     );
   }

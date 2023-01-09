@@ -35,7 +35,6 @@ const Convos = (props) => {
           </AppButtons>
         </AppHeader>
         <h1>Convos</h1>
-        <p>Guided small group Convos</p>
         <p>By CIY</p>
         <StyledDivContent content={event?.acf?.convos_description} />
       </div>

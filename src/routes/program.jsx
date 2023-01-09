@@ -45,17 +45,21 @@ const Program = (props) => {
       {events.length > 0 && (
         <Main>
           <BorderList>
-            {events.map((event) => (
-              <li key={event.slug}>
-                <BorderListButton
-                  href={`/${program}/${event.slug}`}
-                  title={`${event.title.rendered} | ${getHumanReadableDateRange(
-                    event.acf.start_date,
-                    event.acf.end_date
-                  )} | ${event.acf.location}`}
-                />
-              </li>
-            ))}
+            {events
+              .sort((a, b) => (a.acf.start_date > b.acf.start_date ? 1 : -1))
+              .map((event) => (
+                <li key={event.slug}>
+                  <BorderListButton
+                    href={`/${program}/${event.slug}`}
+                    title={`${
+                      event.title.rendered
+                    } | ${getHumanReadableDateRange(
+                      event.acf.start_date,
+                      event.acf.end_date
+                    )} | ${event.acf.location}`}
+                  />
+                </li>
+              ))}
           </BorderList>
           <BorderButton title="Learn More" href={learnMoreURLs[program]} />
           <BorderButton title="Back" href="/" />

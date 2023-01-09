@@ -1,6 +1,6 @@
 import SelahAppIcon from "./../img/SelahAppIcon.png";
-import ButtonAppleStore from "./../img/ButtonAppleStore.png";
-import ButtonGooglePlay from "./../img/ButtonGooglePlay.png";
+import ButtonAppleStore from "./../img/ButtonAppleStore.svg";
+import ButtonGooglePlay from "./../img/ButtonGooglePlay.svg";
 import Page from "../components/Page";
 import { useContext } from "react";
 import { EventContext } from "../App";

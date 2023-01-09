@@ -43,5 +43,6 @@ const Nav = styled("nav")({
   },
   p: {
     margin: 0,
+    fontSize: "14px",
   },
 });

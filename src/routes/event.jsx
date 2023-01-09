@@ -209,5 +209,8 @@ const ButtonWrapper = styled("li")({
       width: "3rem",
       height: "3rem",
     },
+    "> div": {
+      margin: "0 0.5rem",
+    },
   },
 });
