@@ -35,7 +35,6 @@ const Selah = (props) => {
           </AppButtons>
         </AppHeader>
         <h1>SELAH</h1>
-        <p>By CIY</p>
         <StyledDivContent content={event?.acf?.selah_description} />
       </div>
     </Page>

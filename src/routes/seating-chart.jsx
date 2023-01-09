@@ -18,7 +18,13 @@ const SeatingChart = (props) => {
     return (
       <Page title="Seating Chart" background="light" data={data}>
         {data.image && (
-          <TransformWrapper maxScale={15} minScale={0.5}>
+          <TransformWrapper
+            maxScale={15}
+            minScale={0.15}
+            centerOnInit={true}
+            centerZoomedOut={true}
+            initialScale={0.15}
+          >
             <TransformComponent>
               <img src={data.image} alt={data.label} />
             </TransformComponent>
