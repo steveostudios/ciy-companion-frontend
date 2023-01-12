@@ -13,6 +13,17 @@ import BorderListButton from "../components/BorderListButton";
 import BorderButton from "../components/BorderButton";
 import styled from "@emotion/styled";
 
+const Title = (props) => {
+  return (
+    <div>
+      <div>
+        {props.title} | {props.dates}
+      </div>
+      <div>{props.location}</div>
+    </div>
+  );
+};
+
 const Program = (props) => {
   const { program } = useParams();
   const [loading, setLoading] = useState(false);
@@ -47,19 +58,25 @@ const Program = (props) => {
           <BorderList>
             {events
               .sort((a, b) => (a.acf.start_date > b.acf.start_date ? 1 : -1))
-              .map((event) => (
-                <li key={event.slug}>
-                  <BorderListButton
-                    href={`/${program}/${event.slug}`}
-                    title={`${
-                      event.title.rendered
-                    } | ${getHumanReadableDateRange(
-                      event.acf.start_date,
-                      event.acf.end_date
-                    )} | ${event.acf.location}`}
-                  />
-                </li>
-              ))}
+              .map((event) => {
+                return (
+                  <li key={event.slug}>
+                    <BorderListButton
+                      href={`/${program}/${event.slug}`}
+                      title={
+                        <Title
+                          title={event.title.rendered}
+                          dates={getHumanReadableDateRange(
+                            event.acf.start_date,
+                            event.acf.end_date
+                          )}
+                          location={event.acf.location}
+                        />
+                      }
+                    />
+                  </li>
+                );
+              })}
           </BorderList>
           <BorderButton title="Learn More" href={learnMoreURLs[program]} />
           <BorderButton title="Back" href="/" />

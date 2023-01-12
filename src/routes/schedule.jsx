@@ -16,61 +16,68 @@ const Schedule = (props) => {
       background="light"
       data={event?.acf?.schedule.length > 0}
     >
-      {event?.acf?.schedule.length && (
-        <DaySelector>
-          <span>DAY</span>
-          <ul>
-            {event?.acf?.schedule.map((day, i) => (
-              <DaySelectorButton
-                key={i}
-                className={currentDay === i ? "active" : ""}
-                onClick={() => setCurrentDay(i)}
-              >
-                {i + 1}
-              </DaySelectorButton>
+      <Container>
+        {event?.acf?.schedule.length && (
+          <DaySelector>
+            <span>DAY</span>
+            <ul>
+              {event?.acf?.schedule.map((day, i) => (
+                <DaySelectorButton
+                  key={i}
+                  className={currentDay === i ? "active" : ""}
+                  onClick={() => setCurrentDay(i)}
+                >
+                  {i + 1}
+                </DaySelectorButton>
+              ))}
+            </ul>
+          </DaySelector>
+        )}
+
+        {event?.acf?.schedule.length && (
+          <EventList>
+            {event?.acf?.schedule[currentDay]?.event.map((item, i) => (
+              <Event key={i}>
+                <EventIcon>
+                  <Icon slug={item.type} />
+                </EventIcon>
+                <EventMain>
+                  <EventName>{item.name}</EventName>
+                  {!!item.colors.length && (
+                    <EventColors>
+                      {item.colors && item.colors.length
+                        ? item.colors.map((colorId, i) => {
+                            const thisColor = colors.find(
+                              (item) => item.id === colorId
+                            );
+
+                            return (
+                              <EventColor key={i} color={thisColor.color}>
+                                {thisColor.name}
+                              </EventColor>
+                            );
+                          })
+                        : null}
+                    </EventColors>
+                  )}
+                  <EventLocation>{item.location}</EventLocation>
+                </EventMain>
+                <EventTime>{item.start_time}</EventTime>
+              </Event>
             ))}
-          </ul>
-        </DaySelector>
-      )}
-
-      {event?.acf?.schedule.length && (
-        <EventList>
-          {event?.acf?.schedule[currentDay]?.event.map((item, i) => (
-            <Event key={i}>
-              <EventIcon>
-                <Icon slug={item.type} />
-              </EventIcon>
-              <EventMain>
-                <EventName>{item.name}</EventName>
-                {!!item.colors.length && (
-                  <EventColors>
-                    {item.colors && item.colors.length
-                      ? item.colors.map((colorId, i) => {
-                          const thisColor = colors.find(
-                            (item) => item.id === colorId
-                          );
-
-                          return (
-                            <EventColor key={i} color={thisColor.color}>
-                              {thisColor.name}
-                            </EventColor>
-                          );
-                        })
-                      : null}
-                  </EventColors>
-                )}
-                <EventLocation>{item.location}</EventLocation>
-              </EventMain>
-              <EventTime>{item.start_time}</EventTime>
-            </Event>
-          ))}
-        </EventList>
-      )}
+          </EventList>
+        )}
+      </Container>
     </Page>
   );
 };
 
 export default Schedule;
+
+const Container = styled("div")({
+  display: "flex",
+  flexDirection: "column",
+});
 
 const DaySelector = styled("div")({
   margin: 0,
@@ -107,6 +114,7 @@ const DaySelectorButton = styled("li")({
 
 const EventList = styled(NormalList)({
   maxHeight: "calc(100% - 13rem)",
+  margin: 0,
 });
 
 const Event = styled("li")({

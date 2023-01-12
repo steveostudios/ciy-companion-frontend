@@ -1,6 +1,6 @@
 import ConvosAppIcon from "./../img/ConvosAppIcon.png";
-import ButtonAppleStore from "./../img/ButtonAppleStore.png";
-import ButtonGooglePlay from "./../img/ButtonGooglePlay.png";
+import ButtonAppleStore from "./../img/ButtonAppleStore.svg";
+import ButtonGooglePlay from "./../img/ButtonGooglePlay.svg";
 import { useContext } from "react";
 import { EventContext } from "../App";
 import Page from "../components/Page";

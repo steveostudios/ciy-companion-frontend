@@ -4,6 +4,9 @@ export const AppHeader = styled("div")({
   display: "flex",
   width: "inherit",
   marginBottom: "2rem",
+  img: {
+    width: "140px",
+  },
 });
 
 export const AppButtons = styled("div")({
@@ -12,4 +15,9 @@ export const AppButtons = styled("div")({
   display: "flex",
   flexDirection: "column",
   alignItems: "flex-end",
+  a: {
+    img: {
+      width: "180px",
+    },
+  },
 });

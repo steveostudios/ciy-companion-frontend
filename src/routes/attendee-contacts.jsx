@@ -81,13 +81,9 @@ const ContactName = styled("div")({
   fontWeight: "bold",
 });
 
-const ContactRole = styled("div")({
-  textTransform: "uppercase",
-});
+const ContactRole = styled("div")({});
 
-const ContactLocation = styled("div")({
-  textTransform: "uppercase",
-});
+const ContactLocation = styled("div")({});
 
 const ContactMethods = styled("div")({
   a: {

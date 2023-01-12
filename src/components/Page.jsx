@@ -105,9 +105,13 @@ const Main = styled("main")(
     width: "100%",
     minWidth: "40rem",
     maxWidth: "56rem",
-    maxHeight: "calc(100vh - 22rem)",
+    // maxHeight: "calc(100vh - 22rem)",
     touchAction: "manipulation",
-    paddingBottom: "12rem",
+    height: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    // paddingBottom: "12rem",
     ".react-transform-wrapper": {
       width: "100%",
       height: "100%",
@@ -119,10 +123,14 @@ const Main = styled("main")(
       flex: 1,
     },
     "> div": {
+      alignSelf: "flex-start",
       padding: "2rem",
+      maxHeight: "calc(100% - 14rem)",
     },
-    "> ul": {},
-    iframe: {
+    "> ul": {
+      height: "calc(100% - 4rem)",
+    },
+    "iframe.form": {
       top: 0,
       zIndex: 2,
       position: "absolute",

@@ -6,7 +6,12 @@ const IFrame = (props) => {
     <>
       <SpinnerStyled />
       {props.url && (
-        <iframe frameBorder="0" title={props.title} src={props.url} />
+        <iframe
+          className="form"
+          frameBorder="0"
+          title={props.title}
+          src={props.url}
+        />
       )}
     </>
   );
