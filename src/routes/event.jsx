@@ -15,7 +15,7 @@ import IconSignOut from "./../img/icons/sign-out.svg";
 import IconShare from "./../img/icons/share.svg";
 import IconShirt from "./../img/icons/shirt.svg";
 import IconTools from "./../img/icons/tools.svg";
-import IconGuitarElectric from "./../img/icons/guitar-electric.svg";
+import IconMicrophoneStand from "./../img/icons/microphone-stand.svg";
 import { EventContext } from "../App";
 import { api, environment } from "./../helpers/data";
 import Page from "../components/Page";
@@ -149,8 +149,8 @@ const Event = (props) => {
           {event?.acf?.stage_show && (
             <Button
               link={`/${program}/${slug}/stage`}
-              icon={IconGuitarElectric}
-              name="Stage"
+              icon={IconMicrophoneStand}
+              name="On Stage"
             />
           )}
           {event?.acf?.connect_show && (

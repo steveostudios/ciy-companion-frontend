@@ -37,7 +37,7 @@ const Stage = (props) => {
 
   return (
     <Page
-      title="Stage"
+      title="On Stage"
       background="light"
       data={event?.acf?.stage_contacts.length > 0}
     >
@@ -47,25 +47,25 @@ const Stage = (props) => {
             .sort((a, b) => (a.name > b.name ? 1 : -1))
             .map((contact, i) => (
               <Contact key={i}>
-                {contact?.image?.sizes?.thumbnail ? (
-                  <ContactImage
-                    src={contact.image.sizes.thumbnail}
-                    alt={contact.name}
-                  />
-                ) : (
-                  <ContactImage src={AvatarIcon} alt={contact.name} />
-                )}
-                <ContactMain>
-                  <ContactName>{contact.name}</ContactName>
-                  <ContactRole>{contact.title}</ContactRole>
-                </ContactMain>
-                <ContactMethods>
-                  {contact.bio && (
-                    <a href={`/${program}/${slug}/stage/${i}`}>
-                      <img src={ChevronRightIcon} alt="See more" />
-                    </a>
+                <a href={`/${program}/${slug}/stage/${i}`}>
+                  {contact?.image?.sizes?.thumbnail ? (
+                    <ContactImage
+                      src={contact.image.sizes.thumbnail}
+                      alt={contact.name}
+                    />
+                  ) : (
+                    <ContactImage src={AvatarIcon} alt={contact.name} />
                   )}
-                </ContactMethods>
+                  <ContactMain>
+                    <ContactName>{contact.name}</ContactName>
+                    <ContactRole>{contact.title}</ContactRole>
+                  </ContactMain>
+                  <ContactMethods>
+                    {contact.bio && (
+                      <img src={ChevronRightIcon} alt="See more" />
+                    )}
+                  </ContactMethods>
+                </a>
               </Contact>
             ))}
       </NormalList>
@@ -76,9 +76,15 @@ const Stage = (props) => {
 export default Stage;
 
 const Contact = styled("li")({
-  marginBottom: "2rem",
   display: "flex",
-  gap: "2rem",
+  a: {
+    width: "100%",
+    marginBottom: "2rem",
+    gap: "2rem",
+    display: "flex",
+    textDecoration: "none",
+    color: "var(--dark-grey)",
+  },
 });
 const ContactImage = styled("img")({
   width: "8rem",
@@ -109,19 +115,20 @@ const ContactMethods = styled("div")({
   },
 });
 
-const IndContact = styled("li")({
+const IndContact = styled("div")({
   marginBottom: "2rem",
   display: "flex",
   gap: "2rem",
   flexDirection: "column",
 });
 const IndContactImage = styled("img")({
-  width: "56rem",
+  maxWidth: "56rem",
   height: "auto",
 });
 const IndContactMain = styled("div")({
   display: "flex",
   flex: 1,
+  padding: "2rem",
   flexDirection: "column",
 });
 
