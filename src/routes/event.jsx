@@ -6,7 +6,7 @@ import IconAddressBook from "./../img/icons/address-book.svg";
 import IconCloud from "./../img/icons/cloud.svg";
 import IconComments from "./../img/icons/comments.svg";
 import IconPhone from "./../img/icons/phone.svg";
-import IconQuestionBox from "./../img/icons/question-box.svg";
+import IconUsers from "./../img/icons/users.svg";
 import IconCouch from "./../img/icons/couch.svg";
 import IconMap from "./../img/icons/map.svg";
 import IconWhistle from "./../img/icons/whistle.svg";
@@ -121,7 +121,7 @@ const Event = (props) => {
           {event?.acf?.youth_group_time_questions_show && (
             <Button
               link={`/${program}/${slug}/youth-group-time-questions`}
-              icon={IconQuestionBox}
+              icon={IconUsers}
               name="Youth Group Time Questions"
             />
           )}

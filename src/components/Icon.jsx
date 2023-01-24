@@ -7,8 +7,8 @@ import KingdomWorker from "./../img/event_icons/kingdom_worker.svg";
 import Star from "./../img/event_icons/star.svg";
 import MainProgram from "./../img/event_icons/main_program.svg";
 import Paper from "./../img/event_icons/paper.svg";
-import YouthGroupTime from "./../img/event_icons/youth_group_time.svg";
 import Selah from "./../img/event_icons/selah.svg";
+import Users from "./../img/event_icons/users.svg";
 
 export const Icon = (props) => {
   if (props.slug === "bed") return <img src={Bed} alt="bed" />;
@@ -24,7 +24,7 @@ export const Icon = (props) => {
     return <img src={MainProgram} alt="main program" />;
   if (props.slug === "paper") return <img src={Paper} alt="paper" />;
   if (props.slug === "youth_group_time")
-    return <img src={YouthGroupTime} alt="youth group time" />;
+    return <img src={Users} alt="youth group time" />;
   if (props.slug === "selah") return <img src={Selah} alt="selah" />;
 
   return null;

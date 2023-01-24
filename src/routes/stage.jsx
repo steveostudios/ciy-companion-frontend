@@ -12,19 +12,25 @@ import { StyledDivContent } from "../components/StyledDivContent";
 const Stage = (props) => {
   const [event] = useContext(EventContext);
   const { program, slug, page } = useParams();
-  const contact = event?.acf?.stage_contacts[parseInt(page)];
+  const contact = event?.acf?.stage_contacts.sort((a, b) =>
+    a.name > b.name ? 1 : -1
+  )[parseInt(page)];
 
   if (contact) {
     return (
       <Page title={contact.name} background="light" data={true}>
         <IndContact>
           {contact?.image?.sizes?.medium ? (
-            <IndContactImage
-              src={contact.image.sizes.medium}
-              alt={contact.name}
-            />
+            <IndContactImageContainer>
+              <IndContactImage
+                src={contact.image.sizes.medium}
+                alt={contact.name}
+              />
+            </IndContactImageContainer>
           ) : (
-            <IndContactImage src={AvatarIcon} alt={contact.name} />
+            <IndContactImageContainer>
+              <IndContactImage src={AvatarIcon} alt={contact.name} />
+            </IndContactImageContainer>
           )}
           <IndContactMain>
             <IndContactName>{contact.name}</IndContactName>
@@ -121,9 +127,17 @@ const IndContact = styled("div")({
   gap: "2rem",
   flexDirection: "column",
 });
-const IndContactImage = styled("img")({
+const IndContactImageContainer = styled("div")({
   maxWidth: "56rem",
+  maxHeight: "56rem",
+  width: "auto",
   height: "auto",
+  display: "flex",
+});
+const IndContactImage = styled("img")({
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
 });
 const IndContactMain = styled("div")({
   display: "flex",
