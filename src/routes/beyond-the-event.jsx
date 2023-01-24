@@ -1,11 +1,16 @@
 import Page from "../components/Page";
 import { useContext } from "react";
 import { EventContext } from "../App";
-import { ExposedList } from "../components/List";
+import { ExposedList, NormalList } from "../components/List";
 import { useParams } from "react-router-dom";
 import IFrame from "../components/IFrame";
 import { StyledDivContent } from "../components/StyledDivContent";
 import BorderButton, { BorderButtonGroup } from "../components/BorderButton";
+import FacebookIcon from "./../img/icons/facebook.svg";
+import InstagramIcon from "./../img/icons/instagram.svg";
+import SpotifyIcon from "./../img/icons/microphone.svg";
+import PodcastIcon from "./../img/icons/spotify.svg";
+import styled from "@emotion/styled";
 
 const BeyondTheEvent = (props) => {
   const { program, slug, page } = useParams();
@@ -216,6 +221,50 @@ const BeyondTheEvent = (props) => {
     );
   }
 
+  if (page === "connect") {
+    const icons = {
+      facebook: FacebookIcon,
+      instagram: InstagramIcon,
+      spotify: SpotifyIcon,
+      podcast: PodcastIcon,
+    };
+
+    console.log(event?.acf?.beyond_the_event_connection_urls);
+    const connections =
+      event?.acf?.beyond_the_event_connection_urls &&
+      Object.entries(event?.acf?.beyond_the_event_connection_urls).map(
+        (contact, i) => {
+          return { service: contact[0], url: contact[1] };
+        }
+      );
+
+    return (
+      <Page
+        title="Connect"
+        background="light"
+        data={
+          event?.acf?.beyond_the_event_connect_show &&
+          event?.acf?.beyond_the_event_connection_urls
+        }
+      >
+        <NormalList>
+          {connections &&
+            connections.map((connection, i) => (
+              <Connection key={i}>
+                <ConnectionLink href={connection.url}>
+                  <ConnectionIcon
+                    src={icons[connection.service]}
+                    alt={connection.service}
+                  />
+                  <ConnectionHandle>{connection.service}</ConnectionHandle>
+                </ConnectionLink>
+              </Connection>
+            ))}
+        </NormalList>
+      </Page>
+    );
+  }
+
   return (
     <Page
       title="Beyond the Event"
@@ -231,7 +280,8 @@ const BeyondTheEvent = (props) => {
         event?.acf?.beyond_the_event_convos_beta_show ||
         event?.acf?.beyond_the_event_session_4_resource_show ||
         event?.acf?.beyond_the_event_event_eval_show ||
-        event?.acf?.beyond_the_event_preteen_ministry_resources_show
+        event?.acf?.beyond_the_event_preteen_ministry_resources_show ||
+        event?.acf?.beyond_the_event_connect_show
       }
     >
       <ExposedList>
@@ -344,9 +394,44 @@ const BeyondTheEvent = (props) => {
             />
           </li>
         )}
+        {event?.acf?.beyond_the_event_connect_show && (
+          <li>
+            <BorderButton
+              background="light"
+              href={`/${program}/${slug}/beyond-the-event/connect/`}
+              title="Connect
+"
+            />
+          </li>
+        )}
       </ExposedList>
     </Page>
   );
 };
+
+const Connection = styled("li")({
+  // marginBottom: "4rem",
+  margin: "2rem",
+  display: "flex",
+});
+
+const ConnectionLink = styled("a")({
+  display: "flex",
+  gap: "2rem",
+  textDecoration: "none",
+});
+
+const ConnectionIcon = styled("img")({
+  // marginRight: "1rem",
+  width: "3rem",
+});
+const ConnectionHandle = styled("span")({
+  color: "var(--black)",
+  fontSize: "18px",
+  fontFamily: "PragmaticaExtended-ExtraBold",
+  display: "flex",
+  textTransform: "uppercase",
+  textDecoration: "none",
+});
 
 export default BeyondTheEvent;

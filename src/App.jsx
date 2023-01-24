@@ -23,6 +23,7 @@ import { api, environment } from "./helpers/data";
 import StaffContacts from "./routes/staff-contacts";
 import AttendeeContacts from "./routes/attendee-contacts";
 import LeaderResources from "./routes/leader-resources";
+import Stage from "./routes/stage";
 
 export const EventContext = createContext();
 export const ColorsContext = createContext();
@@ -175,6 +176,12 @@ export default function BasicExample() {
                 exact
                 path="/:program/:slug/beyond-the-event/:page"
                 element={<BeyondTheEvent />}
+              />
+              <Route exact path="/:program/:slug/stage" element={<Stage />} />
+              <Route
+                exact
+                path="/:program/:slug/stage/:page"
+                element={<Stage />}
               />
               <Route
                 exact
