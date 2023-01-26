@@ -369,7 +369,7 @@ const BeyondTheEvent = (props) => {
             <BorderButton
               background="light"
               href={event?.acf?.beyond_the_event_session_4_resource_url}
-              title="Session 4 Resource
+              title="SuperStart ReCap Session
 "
             />
           </li>
