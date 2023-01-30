@@ -10,6 +10,7 @@ export const categoryMap = {
   mix: 3,
   superstart: 5,
   yms: 11,
+  engage: 12,
 };
 
 export const learnMoreURLs = {
@@ -17,6 +18,7 @@ export const learnMoreURLs = {
   mix: "https://ciy.com/mix",
   superstart: "https://ciy.com/superstart",
   yms: "https://ciy.com/youthministrysummit",
+  engage: "https://ciy.com/engage",
 };
 
 export const getHumanReadableDateRange = (startDate, endDate) => {

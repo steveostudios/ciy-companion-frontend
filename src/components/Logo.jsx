@@ -1,6 +1,7 @@
 import MoveLogo from "./../img/logos/move.svg";
 import MixLogo from "./../img/logos/mix.svg";
 import YMSLogo from "./../img/logos/yms.svg";
+import EngageLogo from "./../img/logos/engage.svg";
 import SuperStartLogo from "./../img/logos/superstart.svg";
 
 export const Logo = (props) => {
@@ -18,6 +19,8 @@ export const Logo = (props) => {
     );
   if (props.id === 11 || props.slug === "yms")
     return <img src={YMSLogo} alt="YMS" height={props.height || "24"} />;
+  if (props.id === 12 || props.slug === "engage")
+    return <img src={EngageLogo} alt="YMS" height={props.height || "24"} />;
 
   return null;
 };

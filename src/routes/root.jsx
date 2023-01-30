@@ -38,6 +38,9 @@ export default function Root() {
               title={<Logo slug="superstart" />}
             />
           </li>
+          <li>
+            <BorderListButton href="/engage" title={<Logo slug="engage" />} />
+          </li>
         </BorderList>
       </div>
     </Page>
