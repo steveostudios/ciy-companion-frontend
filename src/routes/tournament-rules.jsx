@@ -15,9 +15,11 @@ const TournamentRules = (props) => {
       <Page
         title="Tournament Rules"
         background="light"
-        data={event?.acf?.[`${rules}_content`]}
+        data={event?.acf?.tournament_rules?.[rules]?.content}
       >
-        <StyledDivContent content={event?.acf?.[`${rules}_content`]} />
+        <StyledDivContent
+          content={event?.acf?.tournament_rules?.[rules]?.content}
+        />
       </Page>
     );
   }
@@ -27,15 +29,15 @@ const TournamentRules = (props) => {
       title="Tournament Rules"
       background="light"
       data={
-        event?.acf?.basketball_show ||
-        event?.acf?.dodgeball_show ||
-        event?.acf?.volleyball_show ||
-        event?.acf?.ultimate_frisbee_show ||
-        event?.acf?.soccer_show
+        event?.acf?.tournament_rules.basketball.show ||
+        event?.acf?.tournament_rules.dodgeball.show ||
+        event?.acf?.tournament_rules.volleyball.show ||
+        event?.acf?.tournament_rules.ultimate_frisbee.show ||
+        event?.acf?.tournament_rules.soccer.show
       }
     >
       <ExposedList>
-        {event?.acf?.basketball_show && (
+        {event?.acf?.tournament_rules.basketball.show && (
           <li>
             <BorderButton
               background="light"
@@ -44,7 +46,7 @@ const TournamentRules = (props) => {
             />
           </li>
         )}
-        {event?.acf?.dodgeball_show && (
+        {event?.acf?.tournament_rules.dodgeball.show && (
           <li>
             <BorderButton
               background="light"
@@ -53,7 +55,7 @@ const TournamentRules = (props) => {
             />
           </li>
         )}
-        {event?.acf?.volleyball_show && (
+        {event?.acf?.tournament_rules.volleyball.show && (
           <li>
             <BorderButton
               background="light"
@@ -62,7 +64,7 @@ const TournamentRules = (props) => {
             />
           </li>
         )}
-        {event?.acf?.ultimate_frisbee_show && (
+        {event?.acf?.tournament_rules.ultimate_frisbee.show && (
           <li>
             <BorderButton
               background="light"
@@ -71,7 +73,7 @@ const TournamentRules = (props) => {
             />
           </li>
         )}
-        {event?.acf?.soccer_show && (
+        {event?.acf?.tournament_rules.soccer.show && (
           <li>
             <BorderButton
               background="light"

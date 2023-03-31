@@ -8,8 +8,9 @@ import { StyledDivContent } from "../components/StyledDivContent";
 import BorderButton, { BorderButtonGroup } from "../components/BorderButton";
 import FacebookIcon from "./../img/icons/facebook.svg";
 import InstagramIcon from "./../img/icons/instagram.svg";
-import SpotifyIcon from "./../img/icons/microphone.svg";
-import PodcastIcon from "./../img/icons/spotify.svg";
+import SpotifyIcon from "./../img/icons/spotify.svg";
+import PodcastIcon from "./../img/icons/microphone.svg";
+import TiktokIcon from "./../img/icons/tiktok.svg";
 import styled from "@emotion/styled";
 
 const BeyondTheEvent = (props) => {
@@ -22,10 +23,10 @@ const BeyondTheEvent = (props) => {
       <Page
         title="Beyond the Event"
         background="light"
-        data={event?.acf?.beyond_the_event_ministry_interest_url}
+        data={event?.acf?.bte.ministry_interest.url}
       >
         <IFrame
-          url={event?.acf?.beyond_the_event_ministry_interest_url}
+          url={event?.acf?.bte.ministry_interest.url}
           title="Want to go into ministry?"
         />
       </Page>
@@ -38,29 +39,25 @@ const BeyondTheEvent = (props) => {
         title="Beyond the Event"
         background="light"
         data={
-          event?.acf?.beyond_the_event_engage_trip_interest_content &&
-          event?.acf?.beyond_the_event_engage_trip_interest_groups_url &&
-          event?.acf?.beyond_the_event_engage_trip_interest_individual_url
+          event?.acf?.bte.engage_trip_interest.content &&
+          event?.acf?.bte.engage_trip_interest.groups_url &&
+          event?.acf?.bte.engage_trip_interest.individual_url
         }
       >
         <div>
           <StyledDivContent
             pad
-            content={event?.acf?.beyond_the_event_engage_trip_interest_content}
+            content={event?.acf?.bte.engage_trip_interest.content}
           />
           <BorderButtonGroup>
             <BorderButton
               background="light"
-              href={
-                event?.acf?.beyond_the_event_engage_trip_interest_groups_url
-              }
+              href={event?.acf?.bte.engage_trip_interest.groups_url}
               title="Groups"
             />
             <BorderButton
               background="light"
-              href={
-                event?.acf?.beyond_the_event_engage_trip_interest_individual_url
-              }
+              href={event?.acf?.bte.engage_trip_interest.individual_url}
               title="Individuals"
             />
           </BorderButtonGroup>
@@ -75,29 +72,58 @@ const BeyondTheEvent = (props) => {
         title="Beyond the Event"
         background="light"
         data={
-          event?.acf?.beyond_the_event_move_intern_interest_content &&
-          event?.acf?.beyond_the_event_move_intern_interest_learn_more_url &&
-          event?.acf?.beyond_the_event_move_intern_interest_signup_url
+          event?.acf?.bte.move_intern_interest.content &&
+          event?.acf?.bte.move_intern_interest.learn_more_url &&
+          event?.acf?.bte.move_intern_interest.signup_url
         }
       >
         <div>
           <StyledDivContent
             pad
-            content={event?.acf?.beyond_the_event_move_intern_interest_content}
+            content={event?.acf?.bte.move_intern_interest.content}
           />
           <BorderButtonGroup>
             <BorderButton
               background="light"
-              href={
-                event?.acf?.beyond_the_event_move_intern_interest_learn_more_url
-              }
+              href={event?.acf?.bte.move_intern_interest.learn_more_url}
               title="Learn More"
             />
             <BorderButton
               background="light"
-              href={
-                event?.acf?.beyond_the_event_move_intern_interest_signup_url
-              }
+              href={event?.acf?.bte.move_intern_interest.signup_url}
+              title="Interested?"
+            />
+          </BorderButtonGroup>
+        </div>
+      </Page>
+    );
+  }
+
+  if (page === "mix-intern-interest") {
+    return (
+      <Page
+        title="Beyond the Event"
+        background="light"
+        data={
+          event?.acf?.bte.mix_intern_interest.content &&
+          event?.acf?.bte.mix_intern_interest.learn_more_url &&
+          event?.acf?.bte.mix_intern_interest.signup_url
+        }
+      >
+        <div>
+          <StyledDivContent
+            pad
+            content={event?.acf?.bte.mix_intern_interest.content}
+          />
+          <BorderButtonGroup>
+            <BorderButton
+              background="light"
+              href={event?.acf?.bte.mix_intern_interest.learn_more_url}
+              title="Learn More"
+            />
+            <BorderButton
+              background="light"
+              href={event?.acf?.bte.mix_intern_interest.signup_url}
               title="Interested?"
             />
           </BorderButtonGroup>
@@ -112,25 +138,19 @@ const BeyondTheEvent = (props) => {
         title="Beyond the Event"
         background="light"
         data={
-          event?.acf
-            ?.beyond_the_event_kingdom_worker_crash_nomination_content &&
-          event?.acf?.beyond_the_event_kingdom_worker_crash_nomination_url
+          event?.acf?.bte.kingdom_worker_crash_nomination.content &&
+          event?.acf?.bte.kingdom_worker_crash_nomination.url
         }
       >
         <div>
           <StyledDivContent
             pad
-            content={
-              event?.acf
-                ?.beyond_the_event_kingdom_worker_crash_nomination_content
-            }
+            content={event?.acf?.bte.kingdom_worker_crash_nomination.content}
           />
           <BorderButtonGroup>
             <BorderButton
               background="light"
-              href={
-                event?.acf?.beyond_the_event_kingdom_worker_crash_nomination_url
-              }
+              href={event?.acf?.bte.kingdom_worker_crash_nomination.url}
               title="Learn More"
             />
           </BorderButtonGroup>
@@ -141,55 +161,8 @@ const BeyondTheEvent = (props) => {
 
   if (page === "college-partners") {
     return (
-      <Page
-        title="Beyond the Event"
-        background="light"
-        data={
-          event?.acf?.beyond_the_event_kingdom_worker_crash_nomination_content
-        }
-      >
-        <div>
-          <StyledDivContent
-            pad
-            content={
-              event?.acf
-                ?.beyond_the_event_kingdom_worker_crash_nomination_content
-            }
-          />
-        </div>
-      </Page>
-    );
-  }
-
-  if (page === "wrkr-gathering") {
-    return (
-      <Page
-        title="Beyond the Event"
-        background="light"
-        data={
-          event?.acf?.beyond_the_event_wrkr_gathering_content &&
-          event?.acf?.beyond_the_event_wrkr_gathering_interest_url &&
-          event?.acf?.beyond_the_event_wrkr_gathering_register_url
-        }
-      >
-        <div>
-          <StyledDivContent
-            pad
-            content={event?.acf?.beyond_the_event_wrkr_gathering_content}
-          />
-          <BorderButtonGroup>
-            <BorderButton
-              background="light"
-              href={event?.acf?.beyond_the_event_wrkr_gathering_interest_url}
-              title="Learn More"
-            />
-            <BorderButton
-              background="light"
-              href={event?.acf?.beyond_the_event_wrkr_gathering_register_url}
-              title="Register"
-            />
-          </BorderButtonGroup>
-        </div>
+      <Page title="Beyond the Event" background="light" data={false}>
+        <div></div>
       </Page>
     );
   }
@@ -200,19 +173,16 @@ const BeyondTheEvent = (props) => {
         title="Convos Creator Beta"
         background="light"
         data={
-          event?.acf?.beyond_the_event_convos_beta_content &&
-          event?.acf?.beyond_the_event_convos_beta_url
+          event?.acf?.bte.convos_beta.content &&
+          event?.acf?.bte.convos_beta.beta_url
         }
       >
         <div>
-          <StyledDivContent
-            pad
-            content={event?.acf?.beyond_the_event_convos_beta_content}
-          />
+          <StyledDivContent pad content={event?.acf?.bte.convos_beta.content} />
           <BorderButtonGroup>
             <BorderButton
               background="light"
-              href={event?.acf?.beyond_the_event_convos_beta_url}
+              href={event?.acf?.bte.convos_beta.beta_url}
               title="Learn More"
             />
           </BorderButtonGroup>
@@ -227,39 +197,37 @@ const BeyondTheEvent = (props) => {
       instagram: InstagramIcon,
       spotify: SpotifyIcon,
       podcast: PodcastIcon,
+      tiktok: TiktokIcon,
     };
 
-    console.log(event?.acf?.beyond_the_event_connection_urls);
+    console.log(event?.acf?.bte.connection_urls);
     const connections =
-      event?.acf?.beyond_the_event_connection_urls &&
-      Object.entries(event?.acf?.beyond_the_event_connection_urls).map(
-        (contact, i) => {
-          return { service: contact[0], url: contact[1] };
-        }
-      );
+      event?.acf?.bte.connect.service &&
+      Object.entries(event?.acf?.bte.connect.service).map((contact, i) => {
+        return { service: contact[0], url: contact[1] };
+      });
 
     return (
       <Page
         title="Connect"
         background="light"
-        data={
-          event?.acf?.beyond_the_event_connect_show &&
-          event?.acf?.beyond_the_event_connection_urls
-        }
+        data={event?.acf?.bte.connect.show && event?.acf?.bte.connect.service}
       >
         <NormalList>
           {connections &&
-            connections.map((connection, i) => (
-              <Connection key={i}>
-                <ConnectionLink href={connection.url}>
-                  <ConnectionIcon
-                    src={icons[connection.service]}
-                    alt={connection.service}
-                  />
-                  <ConnectionHandle>{connection.service}</ConnectionHandle>
-                </ConnectionLink>
-              </Connection>
-            ))}
+            connections
+              .filter((connection) => connection.url)
+              .map((connection, i) => (
+                <Connection key={i}>
+                  <ConnectionLink href={connection.url}>
+                    <ConnectionIcon
+                      src={icons[connection.service]}
+                      alt={connection.service}
+                    />
+                    <ConnectionHandle>{connection.service}</ConnectionHandle>
+                  </ConnectionLink>
+                </Connection>
+              ))}
         </NormalList>
       </Page>
     );
@@ -270,22 +238,21 @@ const BeyondTheEvent = (props) => {
       title="Beyond the Event"
       background="light"
       data={
-        event?.acf?.beyond_the_event_ministry_interest_show ||
-        event?.acf?.beyond_the_event_engage_trip_interest_show ||
-        event?.acf?.beyond_the_event_move_intern_interest_show ||
-        event?.acf?.beyond_the_event_kingdom_worker_crash_nomination_show ||
-        event?.acf?.beyond_the_event_college_partners_show ||
-        event?.acf?.beyond_the_event_wrkr_gathering_show ||
-        event?.acf?.beyond_the_event_youth_ministry_resources_show ||
-        event?.acf?.beyond_the_event_convos_beta_show ||
-        event?.acf?.beyond_the_event_session_4_resource_show ||
-        event?.acf?.beyond_the_event_event_eval_show ||
-        event?.acf?.beyond_the_event_preteen_ministry_resources_show ||
-        event?.acf?.beyond_the_event_connect_show
+        event?.acf?.bte.ministry_interest.show ||
+        event?.acf?.bte.engage_trip_interest.show ||
+        event?.acf?.bte.move_intern_interest.show ||
+        event?.acf?.bte.mix_intern_interest.show ||
+        event?.acf?.bte.kingdom_worker_crash_nomination.show ||
+        event?.acf?.bte.college_partners.show ||
+        event?.acf?.bte.youth_ministry_resources.show ||
+        event?.acf?.bte.convos_beta.show ||
+        event?.acf?.bte.session_4.show ||
+        event?.acf?.bte.preteen_ministry_resources.show ||
+        event?.acf?.bte.connect.show
       }
     >
       <ExposedList>
-        {event?.acf?.beyond_the_event_ministry_interest_show && (
+        {event?.acf?.bte.ministry_interest.show && (
           <li>
             <BorderButton
               background="light"
@@ -294,7 +261,7 @@ const BeyondTheEvent = (props) => {
             />
           </li>
         )}
-        {event?.acf?.beyond_the_event_engage_trip_interest_show && (
+        {event?.acf?.bte.engage_trip_interest.show && (
           <li>
             <BorderButton
               background="light"
@@ -304,7 +271,7 @@ const BeyondTheEvent = (props) => {
             />
           </li>
         )}
-        {event?.acf?.beyond_the_event_move_intern_interest_show && (
+        {event?.acf?.bte.move_intern_interest.show && (
           <li>
             <BorderButton
               background="light"
@@ -314,7 +281,17 @@ const BeyondTheEvent = (props) => {
             />
           </li>
         )}
-        {event?.acf?.beyond_the_event_kingdom_worker_crash_nomination_show && (
+        {event?.acf?.bte.mix_intern_interest.show && (
+          <li>
+            <BorderButton
+              background="light"
+              href={`/${program}/${slug}/beyond-the-event/mix-intern-interest/`}
+              title="Want to intern with MIX next summer?
+"
+            />
+          </li>
+        )}
+        {event?.acf?.bte.kingdom_worker_crash_nomination.show && (
           <li>
             <BorderButton
               background="light"
@@ -324,7 +301,7 @@ const BeyondTheEvent = (props) => {
             />
           </li>
         )}
-        {event?.acf?.beyond_the_event_college_partners_show && (
+        {event?.acf?.bte.college_partners.show && (
           <li>
             <BorderButton
               background="light"
@@ -334,27 +311,17 @@ const BeyondTheEvent = (props) => {
             />
           </li>
         )}
-        {event?.acf?.beyond_the_event_wrkr_gathering_show && (
+        {event?.acf?.bte.youth_ministry_resources.show && (
           <li>
             <BorderButton
               background="light"
-              href={`/${program}/${slug}/beyond-the-event/wrkr-gathering/`}
-              title="WRKR Gathering
-"
-            />
-          </li>
-        )}
-        {event?.acf?.beyond_the_event_youth_ministry_resources_show && (
-          <li>
-            <BorderButton
-              background="light"
-              href={event?.acf?.beyond_the_event_youth_ministry_resources_url}
+              href={event?.acf?.bte.youth_ministry_resources.url}
               title="Youth Ministry Resources
 "
             />
           </li>
         )}
-        {event?.acf?.beyond_the_event_convos_beta_show && (
+        {event?.acf?.bte.convos_beta.show && (
           <li>
             <BorderButton
               background="light"
@@ -364,37 +331,27 @@ const BeyondTheEvent = (props) => {
             />
           </li>
         )}
-        {event?.acf?.beyond_the_event_session_4_resource_show && (
+        {event?.acf?.bte.session_4.show && (
           <li>
             <BorderButton
               background="light"
-              href={event?.acf?.beyond_the_event_session_4_resource_url}
+              href={event?.acf?.bte.session_4.resource_url}
               title="SuperStart ReCap Session
 "
             />
           </li>
         )}
-        {event?.acf?.beyond_the_event_event_eval_show && (
+        {event?.acf?.bte.preteen_ministry_resources.show && (
           <li>
             <BorderButton
               background="light"
-              href={event?.acf?.beyond_the_event_event_eval_url}
-              title="Event Eval
-"
-            />
-          </li>
-        )}
-        {event?.acf?.beyond_the_event_preteen_ministry_resources_show && (
-          <li>
-            <BorderButton
-              background="light"
-              href={event?.acf?.beyond_the_event_preteen_ministry_resources_url}
+              href={event?.acf?.bte.preteen_ministry_resources.url}
               title="Preteen Ministry Resources
 "
             />
           </li>
         )}
-        {event?.acf?.beyond_the_event_connect_show && (
+        {event?.acf?.bte.connect.show && (
           <li>
             <BorderButton
               background="light"

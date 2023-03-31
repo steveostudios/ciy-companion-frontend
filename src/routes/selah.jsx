@@ -15,27 +15,27 @@ const Selah = (props) => {
       title="SELAH"
       background="light"
       data={
-        event?.acf?.selah_apple_store_url && event?.acf?.selah_google_play_url
+        event?.acf?.selah.apple_store_url && event?.acf?.selah.google_play_url
       }
     >
       <div>
         <AppHeader>
           <img src={SelahAppIcon} alt="SELAH" />
           <AppButtons>
-            {event?.acf?.selah_apple_store_url && (
-              <a href={event.acf.selah_apple_store_url}>
+            {event?.acf?.selah.apple_store_url && (
+              <a href={event.acf.selah.apple_store_url}>
                 <img src={ButtonAppleStore} alt="SELAH" />
               </a>
             )}
-            {event?.acf?.selah_google_play_url && (
-              <a href={event.acf.selah_google_play_url}>
+            {event?.acf?.selah.google_play_url && (
+              <a href={event.acf.selah.google_play_url}>
                 <img src={ButtonGooglePlay} alt="SELAH" />
               </a>
             )}
           </AppButtons>
         </AppHeader>
         <h1>SELAH</h1>
-        <StyledDivContent content={event?.acf?.selah_description} />
+        <StyledDivContent content={event?.acf?.selah.description} />
       </div>
     </Page>
   );

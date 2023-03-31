@@ -11,23 +11,23 @@ const Store = (props) => {
     <Page
       title="Store"
       background="light"
-      data={event?.acf?.["store_pick-up_url"] || event.acf.store_ship_url}
+      data={event?.acf?.store["pick-up_url"] || event.acf.store.ship_url}
     >
       <ExposedList>
-        {event?.acf?.["store_pick-up_url"] && (
+        {event?.acf?.store["pick-up_url"] && (
           <li>
             <BorderButton
               background="light"
-              href={event.acf["store_pick-up_url"]}
+              href={event.acf.store["pick-up_url"]}
               title="Pick up at Event"
             />
           </li>
         )}
-        {event?.acf?.store_ship_url && (
+        {event?.acf?.store.ship_url && (
           <li>
             <BorderButton
               background="light"
-              href={event.acf.store_ship_url}
+              href={event.acf.store.ship_url}
               title="Ship to my house"
             />
           </li>

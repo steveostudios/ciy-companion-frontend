@@ -8,15 +8,12 @@ import Event from "./routes/event";
 import Convos from "./routes/convos";
 import Selah from "./routes/selah";
 import Store from "./routes/store";
-import DamageReport from "./routes/damage-report";
 import Schedule from "./routes/schedule";
 import SeatingChart from "./routes/seating-chart";
 import EventContacts from "./routes/event-contacts";
-import CampusContacts from "./routes/campus-contacts";
 import Connect from "./routes/connect";
 import TournamentRules from "./routes/tournament-rules";
 import CampusMap from "./routes/campus-map";
-import YouthGroupTimeQuestions from "./routes/youth-group-time-questions";
 import BeyondTheEvent from "./routes/beyond-the-event";
 import NoMatch from "./routes/no-match";
 import { api } from "./helpers/data";
@@ -24,6 +21,7 @@ import StaffContacts from "./routes/staff-contacts";
 import AttendeeContacts from "./routes/attendee-contacts";
 import LeaderResources from "./routes/leader-resources";
 import Stage from "./routes/stage";
+import OnCampusActivities from "./routes/on-campus-activities";
 
 export const EventContext = createContext();
 export const ColorsContext = createContext();
@@ -130,6 +128,11 @@ export default function BasicExample() {
               />
               <Route
                 exact
+                path="/:program/:slug/on-campus-activities"
+                element={<OnCampusActivities />}
+              />
+              <Route
+                exact
                 path="/:program/:slug/staff-contacts"
                 element={<StaffContacts />}
               />
@@ -138,17 +141,8 @@ export default function BasicExample() {
                 path="/:program/:slug/attendee-contacts"
                 element={<AttendeeContacts />}
               />
-              <Route
-                exact
-                path="/:program/:slug/damage-report"
-                element={<DamageReport />}
-              />
+
               <Route exact path="/:program/:slug/store" element={<Store />} />
-              <Route
-                exact
-                path="/:program/:slug/campus-contacts"
-                element={<CampusContacts />}
-              />
               <Route exact path="/:program/:slug/convos" element={<Convos />} />
               <Route exact path="/:program/:slug/selah" element={<Selah />} />
               <Route
@@ -160,16 +154,6 @@ export default function BasicExample() {
                 exact
                 path="/:program/:slug/tournament-rules/:rules"
                 element={<TournamentRules />}
-              />
-              <Route
-                exact
-                path="/:program/:slug/youth-group-time-questions"
-                element={<YouthGroupTimeQuestions />}
-              />
-              <Route
-                exact
-                path="/:program/:slug/youth-group-time-questions/:set"
-                element={<YouthGroupTimeQuestions />}
               />
               <Route
                 exact

@@ -5,16 +5,14 @@ import IconCalendar from "./../img/icons/calendar.svg";
 import IconAddressBook from "./../img/icons/address-book.svg";
 import IconCloud from "./../img/icons/cloud.svg";
 import IconComments from "./../img/icons/comments.svg";
-import IconPhone from "./../img/icons/phone.svg";
-import IconUsers from "./../img/icons/users.svg";
 import IconCouch from "./../img/icons/couch.svg";
 import IconMap from "./../img/icons/map.svg";
+import IconTableTennis from "./../img/icons/table-tennis-solid.svg";
 import IconWhistle from "./../img/icons/whistle.svg";
 import IconCrown from "./../img/icons/crown.svg";
 import IconSignOut from "./../img/icons/sign-out.svg";
 import IconShare from "./../img/icons/share.svg";
 import IconShirt from "./../img/icons/shirt.svg";
-import IconTools from "./../img/icons/tools.svg";
 import IconMicrophoneStand from "./../img/icons/microphone-stand.svg";
 import { EventContext } from "../App";
 import { api } from "./../helpers/data";
@@ -43,119 +41,105 @@ const Event = (props) => {
     <Page data={!!(!loading && event)} loading={loading}>
       <div>
         <Menu>
-          {event?.acf?.schedule_show && (
+          {event?.acf?.schedule.show && (
             <Button
               link={`/${program}/${slug}/schedule`}
               icon={IconCalendar}
               name="Schedule"
             />
           )}
-          {event?.acf?.seating_chart_show && (
+          {event?.acf?.seating_chart.show && (
             <Button
               link={`/${program}/${slug}/seating-chart`}
               icon={IconCouch}
               name="Seating Chart"
             />
           )}
-          {event?.acf?.campus_map_show && (
+          {event?.acf?.campus_map.show && (
             <Button
               link={`/${program}/${slug}/campus-map`}
               icon={IconMap}
               name="Campus Map"
             />
           )}
-          {event?.acf?.event_contact_show && (
+          {event?.acf?.event_contact.show && (
             <Button
               link={`/${program}/${slug}/event-contacts`}
               icon={IconAddressBook}
               name="Event Contacts"
             />
           )}
-          {event?.acf?.staff_contact_show && (
+          {event?.acf?.staff_contact.show && (
             <Button
               link={`/${program}/${slug}/staff-contacts`}
               icon={IconAddressBook}
               name="Staff Contacts"
             />
           )}
-          {event?.acf?.attendee_contact_show && (
+          {event?.acf?.attendee_contact.show && (
             <Button
               link={`/${program}/${slug}/attendee-contacts`}
               icon={IconAddressBook}
               name="Attendee Contacts"
             />
           )}
-          {event?.acf?.damage_report_show && (
+          {event?.acf?.on_campus_activities.show && (
             <Button
-              link={`/${program}/${slug}/damage-report`}
-              icon={IconTools}
-              name="Damage Report"
+              link={`/${program}/${slug}/on-campus-activities`}
+              icon={IconTableTennis}
+              name="On-Campus Activities"
             />
           )}
-          {event?.acf?.store_show && (
+          {event?.acf?.store.show && (
             <Button
               link={`/${program}/${slug}/store`}
               icon={IconShirt}
               name="Store"
             />
           )}
-          {event?.acf?.campus_contact_show && (
-            <Button
-              link={`/${program}/${slug}/campus-contacts`}
-              icon={IconPhone}
-              name="Campus Contacts"
-            />
-          )}
-          {event?.acf?.convos_show && (
+          {event?.acf?.convos.show && (
             <Button
               link={`/${program}/${slug}/convos`}
               icon={IconComments}
               name="Convos"
             />
           )}
-          {event?.acf?.selah_show && (
+          {event?.acf?.selah.show && (
             <Button
               link={`/${program}/${slug}/selah`}
               icon={IconCloud}
               name="SELAH"
             />
           )}
-          {event?.acf?.youth_group_time_questions_show && (
-            <Button
-              link={`/${program}/${slug}/youth-group-time-questions`}
-              icon={IconUsers}
-              name="Youth Group Time Questions"
-            />
-          )}
-          {event?.acf?.tournament_rules_show && (
+          {event?.acf?.tournament_rules.show && (
             <Button
               link={`/${program}/${slug}/tournament-rules`}
               icon={IconWhistle}
               name="Tournament Rules"
             />
           )}
-          {event?.acf?.beyond_the_event_show && (
+          {event?.acf?.bte.show && (
             <Button
               link={`/${program}/${slug}/beyond-the-event`}
               icon={IconCrown}
               name="Beyond the Event"
             />
           )}
-          {event?.acf?.leader_resources_show && (
+          {event?.acf?.leader_resources.show && (
             <Button
               link={`/${program}/${slug}/leader-resources`}
               icon={IconCrown}
               name="Leader Resources"
             />
           )}
-          {event?.acf?.stage_show && (
+          {event?.acf?.stage_contacts.show && (
             <Button
               link={`/${program}/${slug}/stage`}
               icon={IconMicrophoneStand}
               name="On Stage"
             />
           )}
-          {event?.acf?.connect_show && (
+          {event?.acf?.connect.show && (
             <Button
               link={`/${program}/${slug}/connect`}
               icon={IconShare}

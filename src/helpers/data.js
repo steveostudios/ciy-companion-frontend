@@ -1,5 +1,3 @@
-export const environment = "dev";
-
 export const api = {
   dev: `http://ciy-companion.local/`,
   production: `https://ciy-companion.flywheelsites.com/`,

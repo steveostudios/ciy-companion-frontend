@@ -3,8 +3,9 @@ import { useContext } from "react";
 import { EventContext } from "../App";
 import FacebookIcon from "./../img/icons/facebook.svg";
 import InstagramIcon from "./../img/icons/instagram.svg";
-import SpotifyIcon from "./../img/icons/microphone.svg";
-import PodcastIcon from "./../img/icons/spotify.svg";
+import SpotifyIcon from "./../img/icons/spotify.svg";
+import PodcastIcon from "./../img/icons/microphone.svg";
+import TiktokIcon from "./../img/icons/tiktok.svg";
 import styled from "@emotion/styled";
 import { NormalList } from "../components/List";
 
@@ -16,11 +17,14 @@ const Connect = (props) => {
     instagram: InstagramIcon,
     spotify: SpotifyIcon,
     podcast: PodcastIcon,
+    tiktok: TiktokIcon,
   };
 
-  const connections = Object.entries(event.acf.connect).map((contact, i) => {
-    return { service: contact[0], url: contact[1] };
-  });
+  const connections = Object.entries(event.acf.connect.service).map(
+    (contact, i) => {
+      return { service: contact[0], url: contact[1] };
+    }
+  );
 
   return (
     <Page
@@ -30,17 +34,19 @@ const Connect = (props) => {
     >
       <NormalList>
         {connections.length &&
-          connections.map((connection, i) => (
-            <Connection key={i}>
-              <ConnectionLink href={connection.url}>
-                <ConnectionIcon
-                  src={icons[connection.service]}
-                  alt={connection.service}
-                />
-                <ConnectionHandle>{connection.service}</ConnectionHandle>
-              </ConnectionLink>
-            </Connection>
-          ))}
+          connections
+            .filter((connection) => connection.url)
+            .map((connection, i) => (
+              <Connection key={i}>
+                <ConnectionLink href={connection.url}>
+                  <ConnectionIcon
+                    src={icons[connection.service]}
+                    alt={connection.service}
+                  />
+                  <ConnectionHandle>{connection.service}</ConnectionHandle>
+                </ConnectionLink>
+              </Connection>
+            ))}
       </NormalList>
     </Page>
   );

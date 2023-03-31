@@ -14,7 +14,7 @@ const SeatingChart = (props) => {
   const { program, slug, chart } = useParams();
 
   if (event && chart !== undefined) {
-    const data = event?.acf?.seating_chart[chart];
+    const data = event?.acf?.seating_chart.seating_chart[chart];
     return (
       <Page title="Seating Chart" background="light" data={data}>
         {data.image && (
@@ -41,12 +41,12 @@ const SeatingChart = (props) => {
     <Page
       title="Seating Chart"
       background="light"
-      data={event?.acf?.seating_chart.length > 0}
+      data={event?.acf?.seating_chart.seating_chart.length > 0}
       noDataContent="Seating charts will be uploaded soon! Check back later."
     >
       <ExposedList>
-        {event?.acf?.seating_chart.length &&
-          event.acf.seating_chart.map((chart, i) => (
+        {event?.acf?.seating_chart.seating_chart.length > 0 &&
+          event.acf.seating_chart.seating_chart.map((chart, i) => (
             <li key={i}>
               <BorderButton
                 background="light"

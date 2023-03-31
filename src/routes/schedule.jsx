@@ -14,14 +14,14 @@ const Schedule = (props) => {
     <Page
       title="Schedule"
       background="light"
-      data={event?.acf?.schedule.length > 0}
+      data={event?.acf?.schedule.schedule.length > 0}
     >
       <Container>
-        {event?.acf?.schedule.length && (
+        {event?.acf?.schedule.schedule.length && (
           <DaySelector>
             <span>DAY</span>
             <ul>
-              {event?.acf?.schedule.map((day, i) => (
+              {event?.acf?.schedule.schedule.map((day, i) => (
                 <DaySelectorButton
                   key={i}
                   className={currentDay === i ? "active" : ""}
@@ -34,9 +34,9 @@ const Schedule = (props) => {
           </DaySelector>
         )}
 
-        {event?.acf?.schedule.length && (
+        {event?.acf?.schedule.schedule.length && (
           <EventList>
-            {event?.acf?.schedule[currentDay]?.event.map((item, i) => (
+            {event?.acf?.schedule.schedule[currentDay]?.event.map((item, i) => (
               <Event key={i}>
                 <EventIcon>
                   <Icon slug={item.type} />

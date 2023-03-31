@@ -15,27 +15,27 @@ const Convos = (props) => {
       title="Convos"
       background="light"
       data={
-        event?.acf?.convos_apple_store_url && event?.acf?.convos_google_play_url
+        event?.acf?.convos.apple_store_url && event?.acf?.convos.google_play_url
       }
     >
       <div>
         <AppHeader>
           <img src={ConvosAppIcon} alt="Convos" />
           <AppButtons>
-            {event?.acf?.convos_apple_store_url && (
-              <a href={event.acf.convos_apple_store_url}>
+            {event?.acf?.convos.apple_store_url && (
+              <a href={event.acf.convos.apple_store_url}>
                 <img src={ButtonAppleStore} alt="Convos" />
               </a>
             )}
-            {event?.acf?.convos_google_play_url && (
-              <a href={event.acf.convos_google_play_url}>
+            {event?.acf?.convos.google_play_url && (
+              <a href={event.acf.convos.google_play_url}>
                 <img src={ButtonGooglePlay} alt="Convos" />
               </a>
             )}
           </AppButtons>
         </AppHeader>
         <h1>Convos</h1>
-        <StyledDivContent content={event?.acf?.convos_description} />
+        <StyledDivContent content={event?.acf?.convos.description} />
       </div>
     </Page>
   );
