@@ -19,7 +19,7 @@ import CampusMap from "./routes/campus-map";
 import YouthGroupTimeQuestions from "./routes/youth-group-time-questions";
 import BeyondTheEvent from "./routes/beyond-the-event";
 import NoMatch from "./routes/no-match";
-import { api, environment } from "./helpers/data";
+import { api } from "./helpers/data";
 import StaffContacts from "./routes/staff-contacts";
 import AttendeeContacts from "./routes/attendee-contacts";
 import LeaderResources from "./routes/leader-resources";
@@ -47,7 +47,9 @@ export default function BasicExample() {
   }, []);
 
   useEffect(() => {
-    const url = `${api[environment]}/wp-json/wp/v2/colors?_fields[]=id&_fields[]=acf.color&_fields[]=title.rendered`;
+    const url = `${
+      api[process.env.REACT_APP_ENV]
+    }/wp-json/wp/v2/colors?_fields[]=id&_fields[]=acf.color&_fields[]=title.rendered`;
     fetch(url)
       .then((response) => response.json())
       .then((data) =>
@@ -64,7 +66,9 @@ export default function BasicExample() {
   }, []);
 
   useEffect(() => {
-    const url = `${api[environment]}/wp-json/wp/v2/colors?_fields[]=id&_fields[]=acf.color&_fields[]=title.rendered`;
+    const url = `${
+      api[process.env.REACT_APP_ENV]
+    }/wp-json/wp/v2/colors?_fields[]=id&_fields[]=acf.color&_fields[]=title.rendered`;
     fetch(url)
       .then((response) => response.json())
       .then((data) =>

@@ -1,4 +1,4 @@
-export const environment = "production";
+export const environment = "dev";
 
 export const api = {
   dev: `http://ciy-companion.local/`,

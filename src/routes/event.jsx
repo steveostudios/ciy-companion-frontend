@@ -17,7 +17,7 @@ import IconShirt from "./../img/icons/shirt.svg";
 import IconTools from "./../img/icons/tools.svg";
 import IconMicrophoneStand from "./../img/icons/microphone-stand.svg";
 import { EventContext } from "../App";
-import { api, environment } from "./../helpers/data";
+import { api } from "./../helpers/data";
 import Page from "../components/Page";
 
 const Event = (props) => {
@@ -26,7 +26,9 @@ const Event = (props) => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const url = `${api[environment]}/wp-json/wp/v2/events?slug=${slug}&acf_format=standard`;
+    const url = `${
+      api[process.env.REACT_APP_ENV]
+    }/wp-json/wp/v2/events?slug=${slug}&acf_format=standard`;
 
     setLoading(true);
     fetch(url)

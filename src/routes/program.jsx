@@ -4,7 +4,6 @@ import { BorderList } from "../components/List";
 import {
   api,
   categoryMap,
-  environment,
   getHumanReadableDateRange,
   learnMoreURLs,
 } from "../helpers/data";
@@ -30,7 +29,11 @@ const Program = (props) => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    const url = `${api[environment]}/wp-json/wp/v2/events?program=${categoryMap[program]}&per_page=100&_fields[]=title.rendered&_fields[]=acf.location&_fields[]=acf.start_date&_fields[]=acf.end_date&_fields[]=slug&acf_format=standard&status=publish`;
+    const url = `${
+      api[process.env.REACT_APP_ENV]
+    }/wp-json/wp/v2/events?program=${
+      categoryMap[program]
+    }&per_page=100&_fields[]=title.rendered&_fields[]=acf.location&_fields[]=acf.start_date&_fields[]=acf.end_date&_fields[]=slug&acf_format=standard&status=publish`;
     console.log(url);
 
     setLoading(true);
