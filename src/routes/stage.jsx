@@ -22,20 +22,26 @@ const Stage = (props) => {
     return (
       <Page title={contact.name} background="light" data={true}>
         <IndContact>
-          {contact?.image?.sizes?.medium ? (
-            <IndContactImageContainer>
-              <IndContactImage
-                src={contact.image.sizes.medium}
-                alt={contact.name}
-              />
-            </IndContactImageContainer>
-          ) : (
-            <IndContactImageContainer>
-              <IndContactImage src={AvatarIcon} alt={contact.name} />
-            </IndContactImageContainer>
-          )}
+          <IndContactHeader>
+            {contact?.image?.sizes?.medium ? (
+              <IndContactImageContainer>
+                <IndContactImage
+                  src={contact.image.sizes.medium}
+                  alt={contact.name}
+                />
+              </IndContactImageContainer>
+            ) : (
+              <IndContactImageContainer>
+                <IndContactImage src={AvatarIcon} alt={contact.name} />
+              </IndContactImageContainer>
+            )}
+            <div>
+              <IndContactName>{contact.name}</IndContactName>
+              <IndContactRole>{contact.role}</IndContactRole>
+            </div>
+          </IndContactHeader>
+
           <IndContactMain>
-            <IndContactName>{contact.name}</IndContactName>
             {<StyledDivContent content={contact.bio} />}
           </IndContactMain>
         </IndContact>
@@ -73,29 +79,34 @@ export default Stage;
 const IndContact = styled("div")({
   marginBottom: "2rem",
   display: "flex",
-  gap: "2rem",
+  gap: "1rem",
   flexDirection: "column",
 });
 const IndContactImageContainer = styled("div")({
-  maxWidth: "56rem",
-  maxHeight: "56rem",
-  width: "auto",
-  height: "auto",
   display: "flex",
 });
+const IndContactHeader = styled("div")({
+  display: "flex",
+  flexDirection: "row",
+  gap: "2rem",
+});
 const IndContactImage = styled("img")({
-  width: "100%",
-  height: "100%",
+  width: "24rem",
+  height: "24rem",
   objectFit: "cover",
 });
 const IndContactMain = styled("div")({
   display: "flex",
   flex: 1,
-  padding: "2rem",
+  padding: "0rem",
   flexDirection: "column",
 });
 
 const IndContactName = styled("div")({
   fontSize: "18px",
   fontWeight: "bold",
+});
+
+const IndContactRole = styled("div")({
+  fontSize: "14px",
 });
