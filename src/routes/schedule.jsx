@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { useState, useContext } from "react";
+import { useParams } from "react-router-dom";
 import { ColorsContext, EventContext } from "../App";
 import { Icon } from "../components/Icon";
 import { NormalList } from "../components/List";
@@ -9,6 +10,7 @@ const Schedule = (props) => {
   const [event] = useContext(EventContext);
   const [colors] = useContext(ColorsContext);
   const [currentDay, setCurrentDay] = useState(0);
+  const { program } = useParams();
 
   return (
     <Page
@@ -23,6 +25,7 @@ const Schedule = (props) => {
             <ul>
               {event?.acf?.schedule.schedule.map((day, i) => (
                 <DaySelectorButton
+                  program={program}
                   key={i}
                   className={currentDay === i ? "active" : ""}
                   onClick={() => setCurrentDay(i)}
@@ -101,16 +104,20 @@ const DaySelector = styled("div")({
   },
 });
 
-const DaySelectorButton = styled("li")({
-  width: "6rem",
-  height: "6rem",
-  display: "flex",
-  alignContent: "center",
-  justifyContent: "center",
-  "&.active": {
-    backgroundColor: "var(--move-secondary)",
+const DaySelectorButton = styled("li")(
+  {
+    width: "6rem",
+    height: "6rem",
+    display: "flex",
+    alignContent: "center",
+    justifyContent: "center",
   },
-});
+  (props) => ({
+    "&.active": {
+      backgroundColor: `var(--${props.program}-secondary)`,
+    },
+  })
+);
 
 const EventList = styled(NormalList)({
   maxHeight: "calc(100% - 13rem)",

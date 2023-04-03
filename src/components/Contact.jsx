@@ -83,7 +83,7 @@ const ContactName = styled("div")({
 });
 
 const ContactRole = styled("div")({
-  textTransform: "uppercase",
+  // textTransform: "uppercase",
 });
 
 const ContactLocation = styled("div")({});

@@ -10,13 +10,16 @@ const EventContacts = (props) => {
     <Page
       title="Event Contacts"
       background="light"
-      data={event?.acf?.event_contact.contact.length > 0}
+      data={
+        event?.acf?.event_contact.contact &&
+        event?.acf?.event_contact.contact.length > 0
+      }
     >
       <NormalList>
         {event?.acf?.event_contact.contact.length > 0 &&
-          event.acf.event_contact.contact
-            .sort((a, b) => (a.name > b.name ? 1 : -1))
-            .map((contact, i) => <Contact key={i} {...contact} />)}
+          event.acf.event_contact.contact.map((contact, i) => (
+            <Contact key={i} {...contact} />
+          ))}
       </NormalList>
     </Page>
   );

@@ -1,6 +1,7 @@
 @font-face {
-  font-family: 'PragmaticaExtended-ExtraBold';
-  src: local('PragmaticaExtended-ExtraBold'), url('./fonts/PragmaticaExtended-ExtraBold.ttf') format('truetype');
+  font-family: "PragmaticaExtended-ExtraBold";
+  src: local("PragmaticaExtended-ExtraBold"),
+    url("./fonts/PragmaticaExtended-ExtraBold.ttf") format("truetype");
 }
 
 html {
@@ -15,7 +16,7 @@ html {
 body {
   touch-action: none;
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 14px;
@@ -25,7 +26,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -36,19 +37,19 @@ code {
   --trim: #cfd8d1;
   --grey: #9f9f9f;
   --dark-grey: #454545;
-  --move-primary: #BCD530;
-  --move-secondary: #12DDB6;
-  --superstart-primary: #EB224F;
-  --superstart-secondary: #27C4DE;
-  --mix-primary: #F05A28;
-  --mix-secondary: #050505;
-  --yms-primary: #ED2079;
+  --move-primary: #bcd530;
+  --move-secondary: #12ddb6;
+  --superstart-primary: #eb224f;
+  --superstart-secondary: #27c4de;
+  --mix-primary: #f05a28;
+  --mix-secondary: #696a6c;
+  --yms-primary: #ed2079;
   --yms-secondary: #c55b4b;
   --engage-primary: #d84f45;
-  --engage-secondary: #2C3944;
-  --red: #FF4136;
-  --yellow: #FFDC00;
-  --green: #2ECC40;
-  --blue: #0074D9;
-  --orange: #FF851B;
+  --engage-secondary: #2c3944;
+  --red: #ff4136;
+  --yellow: #ffdc00;
+  --green: #2ecc40;
+  --blue: #0074d9;
+  --orange: #ff851b;
 }

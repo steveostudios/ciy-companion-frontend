@@ -41,7 +41,10 @@ const SeatingChart = (props) => {
     <Page
       title="Seating Chart"
       background="light"
-      data={event?.acf?.seating_chart.seating_chart.length > 0}
+      data={
+        event?.acf?.seating_chart.seating_chart &&
+        event?.acf?.seating_chart.seating_chart.length > 0
+      }
       noDataContent="Seating charts will be uploaded soon! Check back later."
     >
       <ExposedList>

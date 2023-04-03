@@ -11,7 +11,10 @@ const AttendeeContacts = (props) => {
     <Page
       title="Attendee Contacts"
       background="light"
-      data={event?.acf?.attendee_contact.contact.length > 0}
+      data={
+        event?.acf?.attendee_contact.contact &&
+        event?.acf?.attendee_contact.contact.length > 0
+      }
     >
       <NormalList>
         {event?.acf?.attendee_contact.contact.length > 0 &&

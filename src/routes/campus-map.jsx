@@ -41,7 +41,11 @@ const CampusMap = (props) => {
     <Page
       title="Campus Map"
       background="light"
-      data={event?.acf?.campus_map.campus_map.length > 0}
+      data={
+        event?.acf?.campus_map.campus_map &&
+        event?.acf?.campus_map.campus_map.event?.acf?.campus_map.campus_map
+          .length > 0
+      }
       noDataContent="Campus maps will be uploaded soon! Check back later."
     >
       <ExposedList>

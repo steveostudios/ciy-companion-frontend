@@ -12,9 +12,11 @@ import { StyledDivContent } from "../components/StyledDivContent";
 const Stage = (props) => {
   const [event] = useContext(EventContext);
   const { program, slug, page } = useParams();
-  const contact = event?.acf?.stage_contacts?.contact.sort((a, b) =>
-    a.name > b.name ? 1 : -1
-  )[parseInt(page)];
+  const contact = event?.acf?.stage_contacts?.contact
+    ? event?.acf?.stage_contacts?.contact.sort((a, b) =>
+        a.name > b.name ? 1 : -1
+      )[parseInt(page)]
+    : null;
 
   if (contact) {
     return (
@@ -45,7 +47,10 @@ const Stage = (props) => {
     <Page
       title="On Stage"
       background="light"
-      data={event?.acf?.stage_contacts.contact.length > 0}
+      data={
+        event?.acf?.stage_contacts.contact &&
+        event?.acf?.stage_contacts.contact.length > 0
+      }
     >
       <NormalList>
         {event?.acf?.stage_contacts.contact.length > 0 &&
