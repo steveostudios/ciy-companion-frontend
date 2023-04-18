@@ -191,6 +191,122 @@ const BeyondTheEvent = (props) => {
     );
   }
 
+  if (page === "decision") {
+    return (
+      <Page
+        title="I Made a Decision at Move"
+        background="light"
+        data={
+          event?.acf?.bte.decision.first_time_decision.show ||
+          event?.acf?.bte.decision.rededication.show ||
+          event?.acf?.bte.decision.vocational_ministry.show ||
+          event?.acf?.bte.decision.kingdom_worker.show
+        }
+      >
+        <div>
+          <BorderButtonGroup>
+            {event?.acf?.bte.decision.first_time_decision.show && (
+              <BorderButton
+                background="light"
+                href={`/${program}/${slug}/beyond-the-event/decision-first-time/`}
+                title="First Time Decision"
+              />
+            )}
+            {event?.acf?.bte.decision.rededication.show && (
+              <BorderButton
+                background="light"
+                href={`/${program}/${slug}/beyond-the-event/decision-rededication/`}
+                title="Rededication"
+              />
+            )}
+            {event?.acf?.bte.decision.vocational_ministry.show && (
+              <BorderButton
+                background="light"
+                href={`/${program}/${slug}/beyond-the-event/decision-vocational-ministry/`}
+                title="Vocational Ministry"
+              />
+            )}
+            {event?.acf?.bte.decision.kingdom_worker.show && (
+              <BorderButton
+                background="light"
+                href={`/${program}/${slug}/beyond-the-event/decision-kingdom-worker/`}
+                title="Kingdom Worker"
+              />
+            )}
+          </BorderButtonGroup>
+        </div>
+      </Page>
+    );
+  }
+
+  if (page === "decision-first-time") {
+    return (
+      <Page
+        title="First Time Decision"
+        background="light"
+        data={event?.acf?.bte.decision.first_time_decision.content}
+      >
+        <div>
+          <StyledDivContent
+            pad
+            content={event?.acf?.bte.decision.first_time_decision.content}
+          />
+        </div>
+      </Page>
+    );
+  }
+
+  if (page === "decision-rededication") {
+    return (
+      <Page
+        title="Rededication"
+        background="light"
+        data={event?.acf?.bte.decision.rededication.content}
+      >
+        <div>
+          <StyledDivContent
+            pad
+            content={event?.acf?.bte.decision.rededication.content}
+          />
+        </div>
+      </Page>
+    );
+  }
+
+  if (page === "decision-vocational-ministry") {
+    return (
+      <Page
+        title="Vocational Ministry"
+        background="light"
+        data={event?.acf?.bte.decision.vocational_ministry.content}
+      >
+        <div>
+          <StyledDivContent
+            pad
+            content={event?.acf?.bte.decision.vocational_ministry.content}
+          />
+        </div>
+      </Page>
+    );
+  }
+
+  if (page === "decision-kingdom-worker") {
+    return (
+      <Page
+        title="Kingdom Worker"
+        background="light"
+        data={event?.acf?.bte.decision.kingdom_worker.content}
+      >
+        <div>
+          <StyledDivContent
+            pad
+            content={event?.acf?.bte.decision.kingdom_worker.content}
+          />
+        </div>
+      </Page>
+    );
+  }
+
   if (page === "connect") {
     const icons = {
       facebook: FacebookIcon,
@@ -248,6 +364,7 @@ const BeyondTheEvent = (props) => {
         event?.acf?.bte.convos_beta.show ||
         event?.acf?.bte.session_4.show ||
         event?.acf?.bte.preteen_ministry_resources.show ||
+        event?.acf?.bte.decision.show ||
         event?.acf?.bte.connect.show
       }
     >
@@ -347,6 +464,16 @@ const BeyondTheEvent = (props) => {
               background="light"
               href={event?.acf?.bte.preteen_ministry_resources.url}
               title="Preteen Ministry Resources
+"
+            />
+          </li>
+        )}
+        {event?.acf?.bte.decision.show && (
+          <li>
+            <BorderButton
+              background="light"
+              href={`/${program}/${slug}/beyond-the-event/decision/`}
+              title="I Made a decision at MOVE
 "
             />
           </li>

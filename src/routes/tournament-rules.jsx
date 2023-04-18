@@ -33,7 +33,8 @@ const TournamentRules = (props) => {
         event?.acf?.tournament_rules.dodgeball.show ||
         event?.acf?.tournament_rules.volleyball.show ||
         event?.acf?.tournament_rules.ultimate_frisbee.show ||
-        event?.acf?.tournament_rules.soccer.show
+        event?.acf?.tournament_rules.soccer.show ||
+        event?.acf?.tournament_rules.super_smash_bros.show
       }
     >
       <ExposedList>
@@ -79,6 +80,15 @@ const TournamentRules = (props) => {
               background="light"
               href={`/${program}/${slug}/tournament-rules/soccer`}
               title="Soccer"
+            />
+          </li>
+        )}
+        {event?.acf?.tournament_rules.super_smash_bros.show && (
+          <li>
+            <BorderButton
+              background="light"
+              href={`/${program}/${slug}/tournament-rules/super_smash_bros`}
+              title="Super Smash Bros"
             />
           </li>
         )}

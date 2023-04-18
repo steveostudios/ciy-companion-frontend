@@ -119,6 +119,20 @@ const Event = (props) => {
               name="Tournament Rules"
             />
           )}
+          {event?.acf?.where_the_river_divides.show && (
+            <Button
+              link={`/${program}/${slug}/where-the-river-divides`}
+              icon={IconWhistle}
+              name="Where the River Divides"
+            />
+          )}
+          {event?.acf?.electives.show && (
+            <Button
+              link={`/${program}/${slug}/electives`}
+              icon={IconWhistle}
+              name="Electives"
+            />
+          )}
           {event?.acf?.bte.show && (
             <Button
               link={`/${program}/${slug}/beyond-the-event`}

@@ -1,12 +1,13 @@
 import Page from "../components/Page";
 import { useContext } from "react";
 import { EventContext } from "../App";
-import { ExposedList } from "../components/List";
+import { ExposedList, NormalList } from "../components/List";
 import { useParams } from "react-router-dom";
 import { StyledDivContent } from "../components/StyledDivContent";
 import BorderButton, { BorderButtonGroup } from "../components/BorderButton";
 import Vimeo from "../components/Vimeo";
 import IFrame from "../components/IFrame";
+import Contact from "../components/Contact";
 
 const LeaderResources = (props) => {
   const { program, slug, page, resourceId } = useParams();
@@ -210,6 +211,26 @@ const LeaderResources = (props) => {
     );
   }
 
+  if (page === "event-contacts") {
+    return (
+      <Page
+        title="Event Contacts"
+        background="light"
+        data={
+          event?.acf?.leader_resources.event_contacts.contact &&
+          event?.acf?.leader_resources.event_contacts.contact.length > 0
+        }
+      >
+        <NormalList>
+          {event?.acf?.leader_resources.event_contacts.contact.length > 0 &&
+            event.acf.leader_resources.event_contacts.contact.map(
+              (contact, i) => <Contact key={i} {...contact} />
+            )}
+        </NormalList>
+      </Page>
+    );
+  }
+
   return (
     <Page
       title="Leader Resources"
@@ -312,6 +333,16 @@ const LeaderResources = (props) => {
               background="light"
               href={`/${program}/${slug}/leader-resources/worship-playlist/`}
               title="Worship Playlist
+"
+            />
+          </li>
+        )}
+        {event?.acf?.leader_resources.event_contacts.show && (
+          <li>
+            <BorderButton
+              background="light"
+              href={`/${program}/${slug}/leader-resources/event-contacts/`}
+              title="Event Contacts
 "
             />
           </li>

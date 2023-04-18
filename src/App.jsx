@@ -22,6 +22,8 @@ import AttendeeContacts from "./routes/attendee-contacts";
 import LeaderResources from "./routes/leader-resources";
 import Stage from "./routes/stage";
 import OnCampusActivities from "./routes/on-campus-activities";
+import Electives from "./routes/electives";
+import WhereTheRiverDivides from "./routes/where-the-river-divides";
 
 export const EventContext = createContext();
 export const ColorsContext = createContext();
@@ -147,6 +149,11 @@ export default function BasicExample() {
               <Route exact path="/:program/:slug/selah" element={<Selah />} />
               <Route
                 exact
+                path="/:program/:slug/where-the-river-divides"
+                element={<WhereTheRiverDivides />}
+              />
+              <Route
+                exact
                 path="/:program/:slug/tournament-rules"
                 element={<TournamentRules />}
               />
@@ -154,6 +161,16 @@ export default function BasicExample() {
                 exact
                 path="/:program/:slug/tournament-rules/:rules"
                 element={<TournamentRules />}
+              />
+              <Route
+                exact
+                path="/:program/:slug/electives"
+                element={<Electives />}
+              />
+              <Route
+                exact
+                path="/:program/:slug/electives/:elective"
+                element={<Electives />}
               />
               <Route
                 exact
