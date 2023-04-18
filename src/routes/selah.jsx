@@ -1,41 +1,59 @@
-import SelahAppIcon from "./../img/SelahAppIcon.png";
-import ButtonAppleStore from "./../img/ButtonAppleStore.svg";
-import ButtonGooglePlay from "./../img/ButtonGooglePlay.svg";
 import Page from "../components/Page";
 import { useContext } from "react";
 import { EventContext } from "../App";
-import { AppButtons, AppHeader } from "../components/AppComponents";
 import { StyledDivContent } from "../components/StyledDivContent";
+import BorderButton, { BorderButtonGroup } from "../components/BorderButton";
+import { useParams } from "react-router-dom";
 
 const Selah = (props) => {
+  const { program, slug, question } = useParams();
+
   const [event] = useContext(EventContext);
+
+  if (question) {
+    console.log(question);
+    return (
+      <Page
+        title="SELAH"
+        background="light"
+        data={
+          event?.acf?.selah.questions && event?.acf?.selah.questions.length > 0
+        }
+      >
+        <div>
+          <h2>{event?.acf?.selah.questions[question].title}</h2>
+          <StyledDivContent
+            pad
+            content={event?.acf?.selah.questions[question].content}
+          />
+        </div>
+      </Page>
+    );
+  }
 
   return (
     <Page
       title="SELAH"
       background="light"
       data={
-        event?.acf?.selah.apple_store_url && event?.acf?.selah.google_play_url
+        event?.acf?.selah.questions && event?.acf?.selah.questions.length > 0
       }
     >
       <div>
-        <AppHeader>
-          <img src={SelahAppIcon} alt="SELAH" />
-          <AppButtons>
-            {event?.acf?.selah.apple_store_url && (
-              <a href={event.acf.selah.apple_store_url}>
-                <img src={ButtonAppleStore} alt="SELAH" />
-              </a>
-            )}
-            {event?.acf?.selah.google_play_url && (
-              <a href={event.acf.selah.google_play_url}>
-                <img src={ButtonGooglePlay} alt="SELAH" />
-              </a>
-            )}
-          </AppButtons>
-        </AppHeader>
-        <h1>SELAH</h1>
-        <StyledDivContent content={event?.acf?.selah.description} />
+        {event?.acf?.selah.questions && (
+          <BorderButtonGroup>
+            {event?.acf?.selah.questions.map((obj, i) => {
+              return (
+                <BorderButton
+                  background="light"
+                  key={i}
+                  title={obj.title}
+                  href={`/${program}/${slug}/selah/${i}`}
+                />
+              );
+            })}
+          </BorderButtonGroup>
+        )}
       </div>
     </Page>
   );

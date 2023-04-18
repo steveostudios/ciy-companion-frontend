@@ -149,6 +149,11 @@ export default function BasicExample() {
               <Route exact path="/:program/:slug/selah" element={<Selah />} />
               <Route
                 exact
+                path="/:program/:slug/selah/:question"
+                element={<Selah />}
+              />
+              <Route
+                exact
                 path="/:program/:slug/where-the-river-divides"
                 element={<WhereTheRiverDivides />}
               />

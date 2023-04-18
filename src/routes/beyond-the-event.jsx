@@ -11,6 +11,7 @@ import InstagramIcon from "./../img/icons/instagram.svg";
 import SpotifyIcon from "./../img/icons/spotify.svg";
 import PodcastIcon from "./../img/icons/microphone.svg";
 import TiktokIcon from "./../img/icons/tiktok.svg";
+import AvatarIcon from "./../img/icons/avatar.svg";
 import styled from "@emotion/styled";
 
 const BeyondTheEvent = (props) => {
@@ -161,8 +162,38 @@ const BeyondTheEvent = (props) => {
 
   if (page === "college-partners") {
     return (
-      <Page title="Beyond the Event" background="light" data={false}>
-        <div></div>
+      <Page
+        title="College Partners"
+        background="light"
+        data={
+          event?.acf?.bte.college_partners.college &&
+          event?.acf?.bte.college_partners.college.length > 0
+        }
+      >
+        <div>
+          {event?.acf.bte.college_partners.description && (
+            <StyledDivContent
+              pad
+              content={event?.acf?.bte.college_partners.description}
+            />
+          )}
+          <CollegeGrid>
+            {event?.acf?.bte.college_partners.college.length > 0 &&
+              event?.acf?.bte.college_partners.college.map((college, i) => (
+                <a href={college.url}>
+                  {!college.hideImage &&
+                    (college?.image?.sizes?.thumbnail ? (
+                      <CollegeImage
+                        src={college.image.sizes.thumbnail}
+                        alt={college.name}
+                      />
+                    ) : (
+                      <CollegeImage src={AvatarIcon} alt={college.name} />
+                    ))}
+                </a>
+              ))}
+          </CollegeGrid>
+        </div>
       </Page>
     );
   }
@@ -316,7 +347,6 @@ const BeyondTheEvent = (props) => {
       tiktok: TiktokIcon,
     };
 
-    console.log(event?.acf?.bte.connection_urls);
     const connections =
       event?.acf?.bte.connect.service &&
       Object.entries(event?.acf?.bte.connect.service).map((contact, i) => {
@@ -516,6 +546,17 @@ const ConnectionHandle = styled("span")({
   display: "flex",
   textTransform: "uppercase",
   textDecoration: "none",
+});
+
+const CollegeGrid = styled("div")({
+  display: "flex",
+  flexWrap: "wrap",
+  gap: "1rem",
+});
+
+const CollegeImage = styled("img")({
+  width: "25rem",
+  height: "25rem",
 });
 
 export default BeyondTheEvent;

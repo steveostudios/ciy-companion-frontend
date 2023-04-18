@@ -13,6 +13,8 @@ import IconCrown from "./../img/icons/crown.svg";
 import IconSignOut from "./../img/icons/sign-out.svg";
 import IconShare from "./../img/icons/share.svg";
 import IconShirt from "./../img/icons/shirt.svg";
+import IconTicket from "./../img/icons/ticket.svg";
+import IconSplit from "./../img/icons/arrows-split-up-and-left.svg";
 import IconUsersFriends from "./../img/icons/user-friends.svg";
 import IconMicrophoneStand from "./../img/icons/microphone-stand.svg";
 import { EventContext } from "../App";
@@ -122,14 +124,14 @@ const Event = (props) => {
           {event?.acf?.where_the_river_divides.show && (
             <Button
               link={`/${program}/${slug}/where-the-river-divides`}
-              icon={IconWhistle}
+              icon={IconSplit}
               name="Where the River Divides"
             />
           )}
           {event?.acf?.electives.show && (
             <Button
               link={`/${program}/${slug}/electives`}
-              icon={IconWhistle}
+              icon={IconTicket}
               name="Electives"
             />
           )}
