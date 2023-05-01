@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Root from "./routes/root";
 import Program from "./routes/program";
 import styled from "@emotion/styled";
-// import BackgroundImage from "./img/bg.png";
 import Event from "./routes/event";
 import Convos from "./routes/convos";
 import Selah from "./routes/selah";
@@ -24,6 +23,11 @@ import Stage from "./routes/stage";
 import OnCampusActivities from "./routes/on-campus-activities";
 import Electives from "./routes/electives";
 import WhereTheRiverDivides from "./routes/where-the-river-divides";
+
+import ReactGA from "react-ga4";
+
+ReactGA.initialize("G-G7MLPL3V6N");
+ReactGA.send("pageview");
 
 export const EventContext = createContext();
 export const ColorsContext = createContext();

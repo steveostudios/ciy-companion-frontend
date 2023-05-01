@@ -4,10 +4,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import Header from "./Header";
 import NoData from "./NoData";
 import { Spinner } from "./Spinner";
+import usePageTracking from "../helpers/usePageTracking";
 
 const Page = (props) => {
   const navigate = useNavigate();
   const { program } = useParams();
+
+  usePageTracking();
 
   return (
     <PageWrapper background={props.background}>

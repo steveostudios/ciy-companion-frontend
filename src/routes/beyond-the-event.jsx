@@ -201,7 +201,7 @@ const BeyondTheEvent = (props) => {
   if (page === "convos-beta") {
     return (
       <Page
-        title="Convos Creator Beta"
+        title="Interested in using Convos for your youth group?"
         background="light"
         data={
           event?.acf?.bte.convos_beta.content &&
@@ -473,7 +473,7 @@ const BeyondTheEvent = (props) => {
             <BorderButton
               background="light"
               href={`/${program}/${slug}/beyond-the-event/convos-beta/`}
-              title="Convos Creator Beta
+              title="Interested in using Convos for your youth group?
 "
             />
           </li>

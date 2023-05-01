@@ -8,7 +8,7 @@ html {
   font-size: 8px;
   touch-action: none;
   background-color: var(--dark-grey);
-  background-image: url("./img/bg.png");
+  background-image: url("./img/MOVE.jpg");
   background-position: center;
   background-size: cover;
 }
@@ -23,6 +23,7 @@ body {
   color: var(--white);
   max-height: 100vh;
   overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 code {
