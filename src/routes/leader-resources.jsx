@@ -301,7 +301,7 @@ const LeaderResources = (props) => {
             <BorderButton
               background="light"
               href={`/${program}/${slug}/leader-resources/four-the-win-rules/`}
-              title="For the Win Rules
+              title="Four the Win Rules
 "
             />
           </li>

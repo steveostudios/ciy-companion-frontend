@@ -64,8 +64,7 @@ const BeyondTheEvent = (props) => {
         background="light"
         data={
           event?.acf?.bte.engage_trip_interest.content &&
-          event?.acf?.bte.engage_trip_interest.groups_url &&
-          event?.acf?.bte.engage_trip_interest.individual_url
+          event?.acf?.bte.engage_trip_interest.sections.length > 0
         }
       >
         <div>
@@ -74,31 +73,18 @@ const BeyondTheEvent = (props) => {
             content={event?.acf?.bte.engage_trip_interest.content}
           />
 
-          {event?.acf?.bte.engage_trip_interest.sections.length &&
-            event?.acf?.bte.engage_trip_interest.sections.map((section, i) => (
-              <div>
-                <BorderButtonGroup>
-                  <StyledDivContent pad content={section.description} />
+          <BorderButtonGroup>
+            {event?.acf?.bte.engage_trip_interest.sections.length &&
+              event?.acf?.bte.engage_trip_interest.sections.map(
+                (section, i) => (
                   <BorderButton
+                    key={i}
                     background="light"
                     href={`/${program}/${slug}/beyond-the-event/engage-interest/${i}`}
                     title={section.name}
                   />
-                </BorderButtonGroup>
-              </div>
-            ))}
-
-          <BorderButtonGroup>
-            <BorderButton
-              background="light"
-              href={event?.acf?.bte.engage_trip_interest.groups_url}
-              title="Groups"
-            />
-            <BorderButton
-              background="light"
-              href={event?.acf?.bte.engage_trip_interest.individual_url}
-              title="Individuals"
-            />
+                )
+              )}
           </BorderButtonGroup>
         </div>
       </Page>
