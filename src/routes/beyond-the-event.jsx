@@ -15,7 +15,7 @@ import AvatarIcon from "./../img/icons/avatar.svg";
 import styled from "@emotion/styled";
 
 const BeyondTheEvent = (props) => {
-  const { program, slug, page } = useParams();
+  const { program, slug, page, resourceId } = useParams();
   const [event] = useContext(EventContext);
   console.log(page);
 
@@ -30,6 +30,29 @@ const BeyondTheEvent = (props) => {
           url={event?.acf?.bte.ministry_interest.url}
           title="Want to go into ministry?"
         />
+      </Page>
+    );
+  }
+
+  if (page === "engage-interest" && resourceId) {
+    return (
+      <Page
+        title="Beyond the Event"
+        background="light"
+        data={
+          event?.acf?.bte.engage_trip_interest.content &&
+          event?.acf?.bte.engage_trip_interest.sections.length > 0 &&
+          event?.acf?.bte.engage_trip_interest.sections[resourceId].content
+        }
+      >
+        <div>
+          <StyledDivContent
+            pad
+            content={
+              event?.acf?.bte.engage_trip_interest.sections[resourceId].content
+            }
+          />
+        </div>
       </Page>
     );
   }
@@ -50,6 +73,21 @@ const BeyondTheEvent = (props) => {
             pad
             content={event?.acf?.bte.engage_trip_interest.content}
           />
+
+          {event?.acf?.bte.engage_trip_interest.sections.length &&
+            event?.acf?.bte.engage_trip_interest.sections.map((section, i) => (
+              <div>
+                <BorderButtonGroup>
+                  <StyledDivContent pad content={section.description} />
+                  <BorderButton
+                    background="light"
+                    href={`/${program}/${slug}/beyond-the-event/engage-interest/${i}`}
+                    title={section.name}
+                  />
+                </BorderButtonGroup>
+              </div>
+            ))}
+
           <BorderButtonGroup>
             <BorderButton
               background="light"

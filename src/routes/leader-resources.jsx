@@ -95,6 +95,24 @@ const LeaderResources = (props) => {
     );
   }
 
+  if (page === "four-the-win-rules") {
+    const urlParts =
+      (event?.acf?.leader_resources.four_the_win_rules.url &&
+        event?.acf?.leader_resources.four_the_win_rules.url.split("/")) ||
+      "";
+    const id = urlParts[urlParts.length - 1];
+    return (
+      <Page
+        padding={0}
+        title="Leader Resources"
+        background="light"
+        data={event?.acf?.leader_resources.four_the_win_rules.url}
+      >
+        <Vimeo id={id} />
+      </Page>
+    );
+  }
+
   if (page === "youth-group-questions" && resourceId) {
     console.log(resourceId);
     return (
@@ -243,7 +261,8 @@ const LeaderResources = (props) => {
         event?.acf?.leader_resources.damage_report.show ||
         event?.acf?.leader_resources.small_group_locations.show ||
         event?.acf?.leader_resources.worship_playlist.show ||
-        event?.acf?.leader_resources.event_eval.show
+        event?.acf?.leader_resources.event_eval.show ||
+        event?.acf?.leader_resources.four_the_win_rules.show
       }
     >
       <ExposedList>
@@ -272,6 +291,17 @@ const LeaderResources = (props) => {
               background="light"
               href={`/${program}/${slug}/leader-resources/amp-up-dance/`}
               title="Amp-Up Dance
+"
+            />
+          </li>
+        )}
+
+        {event?.acf?.leader_resources.four_the_win_rules.show && (
+          <li>
+            <BorderButton
+              background="light"
+              href={`/${program}/${slug}/leader-resources/four-the-win-rules/`}
+              title="For the Win Rules
 "
             />
           </li>

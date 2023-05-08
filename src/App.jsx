@@ -191,6 +191,11 @@ export default function BasicExample() {
                 path="/:program/:slug/beyond-the-event/:page"
                 element={<BeyondTheEvent />}
               />
+              <Route
+                exact
+                path="/:program/:slug/beyond-the-event/:page/:resourceId"
+                element={<BeyondTheEvent />}
+              />
               <Route exact path="/:program/:slug/stage" element={<Stage />} />
               <Route
                 exact
