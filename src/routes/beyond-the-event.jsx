@@ -206,9 +206,9 @@ const BeyondTheEvent = (props) => {
               event?.acf?.bte.college_partners.college.map((college, i) => (
                 <a href={college.url}>
                   {!college.hideImage &&
-                    (college?.image?.sizes?.thumbnail ? (
+                    (college?.image?.sizes?.medium ? (
                       <CollegeImage
-                        src={college.image.sizes.thumbnail}
+                        src={college.image.sizes.medium}
                         alt={college.name}
                       />
                     ) : (
@@ -225,7 +225,7 @@ const BeyondTheEvent = (props) => {
   if (page === "convos-beta") {
     return (
       <Page
-        title="Interested in using Convos for your youth group?"
+        title="Convos for your youth group?"
         background="light"
         data={
           event?.acf?.bte.convos_beta.content &&
@@ -575,12 +575,14 @@ const ConnectionHandle = styled("span")({
 const CollegeGrid = styled("div")({
   display: "flex",
   flexWrap: "wrap",
-  gap: "1rem",
+  gap: "4rem",
+  justifyContent: "center",
+  paddingBottom: "4rem",
 });
 
 const CollegeImage = styled("img")({
-  width: "25rem",
-  height: "25rem",
+  maxWidth: "100%",
+  height: "auto",
 });
 
 export default BeyondTheEvent;

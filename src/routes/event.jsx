@@ -161,7 +161,7 @@ const Event = (props) => {
             />
           )}
           {/* Engage Info */}
-          {event?.acf?.engage.about.show && (
+          {event?.acf?.engage?.about.show && (
             <Button
               link={`/${program}/${slug}/engage/about`}
               icon={IconGlobeStand}
@@ -169,7 +169,7 @@ const Event = (props) => {
             />
           )}
 
-          {event?.acf?.engage.dates_locations.show && (
+          {event?.acf?.engage?.dates_locations.show && (
             <Button
               link={`/${program}/${slug}/engage/dates-locations`}
               icon={IconMapMarker}
@@ -177,21 +177,21 @@ const Event = (props) => {
             />
           )}
 
-          {event?.acf?.engage.join.show && (
+          {event?.acf?.engage?.join.show && (
             <Button
               link={`/${program}/${slug}/engage/join`}
               icon={IconUserPlus}
               name="Join an Engage Team"
             />
           )}
-          {event?.acf?.engage.youth_leaders.show && (
+          {event?.acf?.engage?.youth_leaders.show && (
             <Button
               link={`/${program}/${slug}/engage/youth-leaders`}
               icon={IconUsersFriends}
               name="Youth Leaders"
             />
           )}
-          {event?.acf?.engage.resources.show && (
+          {event?.acf?.engage?.resources.show && (
             <Button
               link={`/${program}/${slug}/engage/resources`}
               icon={IconBookOpen}
