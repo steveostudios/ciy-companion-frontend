@@ -39,7 +39,10 @@ export default function Root() {
             />
           </li>
           <li>
-            <BorderListButton href="/engage" title={<Logo slug="engage" />} />
+            <BorderListButton
+              href="/engage/engage-info"
+              title={<Logo slug="engage" />}
+            />
           </li>
         </BorderList>
       </div>

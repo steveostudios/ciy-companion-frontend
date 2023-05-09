@@ -17,6 +17,10 @@ import IconTicket from "./../img/icons/ticket.svg";
 import IconUsersFriends from "./../img/icons/user-friends.svg";
 import IconMicrophoneStand from "./../img/icons/microphone-stand.svg";
 import IconFilm from "./../img/icons/film.svg";
+import IconBookOpen from "./../img/icons/book-open.svg";
+import IconGlobeStand from "./../img/icons/globe-stand.svg";
+import IconMapMarker from "./../img/icons/map-marker.svg";
+import IconUserPlus from "./../img/icons/user-plus.svg";
 import { EventContext } from "../App";
 import { api } from "./../helpers/data";
 import Page from "../components/Page";
@@ -156,6 +160,45 @@ const Event = (props) => {
               name="On Stage"
             />
           )}
+          {/* Engage Info */}
+          {event?.acf?.engage.about.show && (
+            <Button
+              link={`/${program}/${slug}/engage/about`}
+              icon={IconGlobeStand}
+              name="What is Engage?"
+            />
+          )}
+
+          {event?.acf?.engage.dates_locations.show && (
+            <Button
+              link={`/${program}/${slug}/engage/dates-locations`}
+              icon={IconMapMarker}
+              name="Dates & Locations"
+            />
+          )}
+
+          {event?.acf?.engage.join.show && (
+            <Button
+              link={`/${program}/${slug}/engage/join`}
+              icon={IconUserPlus}
+              name="Join an Engage Team"
+            />
+          )}
+          {event?.acf?.engage.youth_leaders.show && (
+            <Button
+              link={`/${program}/${slug}/engage/youth-leaders`}
+              icon={IconUsersFriends}
+              name="Youth Leaders"
+            />
+          )}
+          {event?.acf?.engage.resources.show && (
+            <Button
+              link={`/${program}/${slug}/engage/resources`}
+              icon={IconBookOpen}
+              name="Resources"
+            />
+          )}
+
           {event?.acf?.connect.show && (
             <Button
               link={`/${program}/${slug}/connect`}

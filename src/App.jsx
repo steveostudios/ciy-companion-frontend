@@ -25,6 +25,7 @@ import Electives from "./routes/electives";
 import WhereTheRiverDivides from "./routes/where-the-river-divides";
 
 import ReactGA from "react-ga4";
+import Engage from "./routes/engage";
 
 ReactGA.initialize("G-G7MLPL3V6N");
 ReactGA.send("pageview");
@@ -216,6 +217,16 @@ export default function BasicExample() {
                 exact
                 path="/:program/:slug/leader-resources/:page/:resourceId"
                 element={<LeaderResources />}
+              />
+              <Route
+                exact
+                path="/:program/:slug/engage/:page"
+                element={<Engage />}
+              />
+              <Route
+                exact
+                path="/:program/:slug/engage/:page/:resourceId"
+                element={<Engage />}
               />
               <Route
                 exact

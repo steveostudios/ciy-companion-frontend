@@ -13,14 +13,18 @@ const Header = () => {
   return (
     <Nav>
       {program && <Logo slug={program} />}
-      <p>{event && `${event?.title?.rendered} | ${event?.acf?.location}`}</p>
-      <p>
-        {event &&
-          getHumanReadableDateRange(
-            event?.acf?.start_date,
-            event?.acf?.end_date
-          )}
-      </p>
+      {program !== "engage" && (
+        <p>{event && `${event?.title?.rendered} | ${event?.acf?.location}`}</p>
+      )}
+      {program !== "engage" && (
+        <p>
+          {event &&
+            getHumanReadableDateRange(
+              event?.acf?.start_date,
+              event?.acf?.end_date
+            )}
+        </p>
+      )}
     </Nav>
   );
 };

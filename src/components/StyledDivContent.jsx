@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 export const StyledDivContent = (props) => {
   return (
     <StyledContent
+      style={props.style}
       pad={props.pad}
       dangerouslySetInnerHTML={{
         __html: props.content || "",
