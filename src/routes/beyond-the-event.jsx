@@ -60,7 +60,7 @@ const BeyondTheEvent = (props) => {
   if (page === "engage-interest") {
     return (
       <Page
-        title="Beyond the Event"
+        title="Want to go on an Engage mission trip?"
         background="light"
         data={
           event?.acf?.bte.engage_trip_interest.content &&
@@ -437,7 +437,7 @@ const BeyondTheEvent = (props) => {
             <BorderButton
               background="light"
               href={`/${program}/${slug}/beyond-the-event/engage-interest/`}
-              title="Want to go on an Engage Trip?
+              title="Want to go on an Engage mission trip?
 "
             />
           </li>

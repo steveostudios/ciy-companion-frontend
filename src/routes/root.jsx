@@ -26,9 +26,9 @@ export default function Root() {
               title={<Logo slug="move" height={32} />}
             />
           </li>
-          <li>
+          {/* <li>
             <BorderListButton href="/yms" title={<Logo slug="yms" />} />
-          </li>
+          </li> */}
           <li>
             <BorderListButton href="/mix" title={<Logo slug="mix" />} />
           </li>

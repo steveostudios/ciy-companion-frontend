@@ -195,6 +195,22 @@ const LeaderResources = (props) => {
     );
   }
 
+  if (page === "event-eval") {
+    return (
+      <Page
+        title="Leader Resources"
+        background="light"
+        padding={0}
+        data={event?.acf?.leader_resources.event_eval.url}
+      >
+        <IFrame
+          url={event?.acf?.leader_resources.event_eval.url}
+          title="Event Eval"
+        />
+      </Page>
+    );
+  }
+
   if (page === "small-group-locations") {
     return (
       <Page
@@ -341,7 +357,7 @@ const LeaderResources = (props) => {
           <li>
             <BorderButton
               background="light"
-              href={event?.acf?.leader_resources.event_eval.url}
+              href={`/${program}/${slug}/leader-resources/event-eval/`}
               title="Event Eval
 "
             />
