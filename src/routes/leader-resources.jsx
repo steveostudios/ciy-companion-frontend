@@ -77,6 +77,50 @@ const LeaderResources = (props) => {
     );
   }
 
+  if (page === "outer-realm-videos" && resourceId) {
+    return (
+      <Page
+        title="Leader Resources"
+        background="light"
+        padding={0}
+        data={event?.acf?.leader_resources.outer_realm_videos.videos.length > 0}
+      >
+        <Vimeo id={resourceId} />
+      </Page>
+    );
+  }
+
+  if (page === "outer-realm-videos") {
+    return (
+      <Page
+        title="Leader Resources"
+        background="light"
+        data={event?.acf?.leader_resources.outer_realm_videos.videos}
+      >
+        <div>
+          {event?.acf?.leader_resources.outer_realm_videos.videos && (
+            <BorderButtonGroup>
+              {event?.acf?.leader_resources.outer_realm_videos.videos.map(
+                (obj, i) => {
+                  const urlParts = obj.url.split("/");
+                  const id = urlParts[urlParts.length - 1];
+                  return (
+                    <BorderButton
+                      background="light"
+                      key={i}
+                      title={obj.name}
+                      href={`/${program}/${slug}/leader-resources/outer-realm-videos/${id}`}
+                    />
+                  );
+                }
+              )}
+            </BorderButtonGroup>
+          )}
+        </div>
+      </Page>
+    );
+  }
+
   if (page === "amp-up-dance") {
     const urlParts =
       (event?.acf?.leader_resources.amp_up_dance.url &&
@@ -272,6 +316,7 @@ const LeaderResources = (props) => {
       data={
         event?.acf?.leader_resources.program_write_up.show ||
         event?.acf?.leader_resources.adult_leader_videos.show ||
+        event?.acf?.leader_resources.outer_realm_videos.show ||
         event?.acf?.leader_resources.amp_up_dance.show ||
         event?.acf?.leader_resources.youth_group_questions.show ||
         event?.acf?.leader_resources.damage_report.show ||
@@ -297,6 +342,16 @@ const LeaderResources = (props) => {
               background="light"
               href={`/${program}/${slug}/leader-resources/adult-leader-videos/`}
               title="Adult Leader Videos
+"
+            />
+          </li>
+        )}
+        {event?.acf?.leader_resources.outer_realm_videos.show && (
+          <li>
+            <BorderButton
+              background="light"
+              href={`/${program}/${slug}/leader-resources/outer-realm-videos/`}
+              title="Outer Realm Videos
 "
             />
           </li>

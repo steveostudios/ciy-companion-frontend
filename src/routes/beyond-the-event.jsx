@@ -52,7 +52,40 @@ const BeyondTheEvent = (props) => {
               event?.acf?.bte.engage_trip_interest.sections[resourceId].content
             }
           />
+          {event?.acf?.bte.engage_trip_interest.sections[resourceId]
+            .interest_url && (
+            <BorderButtonGroup>
+              <BorderButton
+                background="light"
+                href={`/${program}/${slug}/beyond-the-event/engage-interest-form/${resourceId}`}
+                title={
+                  event?.acf?.bte.engage_trip_interest.sections[resourceId]
+                    .interest_url_name
+                }
+              />
+            </BorderButtonGroup>
+          )}
         </div>
+      </Page>
+    );
+  }
+
+  if (page === "engage-interest-form" && resourceId) {
+    return (
+      <Page
+        title="Beyond the Event"
+        background="light"
+        data={
+          event?.acf?.bte.engage_trip_interest.sections[resourceId].interest_url
+        }
+      >
+        <IFrame
+          url={
+            event?.acf?.bte.engage_trip_interest.sections[resourceId]
+              .interest_url
+          }
+          title={event?.acf?.bte.engage_trip_interest.sections[resourceId].name}
+        />
       </Page>
     );
   }
