@@ -244,7 +244,7 @@ export default function BasicExample() {
 }
 
 const Body = styled("div")({
-  height: "100vh",
+  height: "100svh",
   display: "flex",
   flexDirection: "column",
   width: "100vw",

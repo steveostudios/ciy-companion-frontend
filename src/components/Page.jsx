@@ -128,7 +128,7 @@ const Main = styled("main")(
     "> div": {
       alignSelf: "flex-start",
       padding: "2rem",
-      maxHeight: "calc(100% - 14rem)",
+      maxHeight: "calc(100% - 2rem)",
     },
     "> ul": {
       height: "calc(100% - 4rem)",
