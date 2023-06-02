@@ -29,21 +29,33 @@ const Program = (props) => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    const url = `${
-      api[process.env.REACT_APP_ENV]
-    }/wp-json/wp/v2/events?program=${
-      categoryMap[program]
-    }&per_page=100&_fields[]=title.rendered&_fields[]=acf.location&_fields[]=acf.start_date&_fields[]=acf.end_date&_fields[]=slug&acf_format=standard&status=publish`;
-    console.log(url);
+    const fetchEvents = async (page) => {
+      const url = `${
+        api[process.env.REACT_APP_ENV]
+      }/wp-json/wp/v2/events?program=${
+        categoryMap[program]
+      }&per_page=10&_fields[]=title.rendered&_fields[]=acf.location&_fields[]=acf.start_date&_fields[]=acf.end_date&_fields[]=slug&acf_format=standard&status=publish&page=${page}`;
 
-    setLoading(true);
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        setEvents(data);
+      // console.log(url);
+
+      const response = await fetch(url);
+      const data = await response.json();
+      const pages = await response.headers.get("X-WP-TotalPages");
+
+      // console.log(data);
+      setEvents((events) => [...events, ...data]);
+
+      if (page < pages) {
+        fetchEvents(page + 1);
+      } else {
         setLoading(false);
-      });
-  }, [program, setEvents]);
+      }
+    };
+
+    setEvents([]);
+    setLoading(true);
+    fetchEvents(1);
+  }, [program]);
 
   return (
     <Page
