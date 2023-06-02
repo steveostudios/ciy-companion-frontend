@@ -164,6 +164,16 @@ export default function BasicExample() {
               />
               <Route
                 exact
+                path="/:program/:slug/where-the-river-divides/:page/:resourceId"
+                element={<WhereTheRiverDivides />}
+              />
+              <Route
+                exact
+                path="/:program/:slug/where-the-river-divides/:page"
+                element={<WhereTheRiverDivides />}
+              />
+              <Route
+                exact
                 path="/:program/:slug/tournament-rules"
                 element={<TournamentRules />}
               />
