@@ -77,7 +77,7 @@ const WhereTheRiverDivides = (props) => {
         <BorderButton
           background="light"
           href={`/${program}/${slug}/where-the-river-divides/host`}
-          title="Host a Viewing Party"
+          title="Recreate the WTRD Experience"
         />
         <BorderButton
           background="light"
