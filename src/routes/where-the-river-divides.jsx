@@ -64,13 +64,33 @@ const WhereTheRiverDivides = (props) => {
     );
   }
 
+  if (page === "small-group-discussion") {
+    return (
+      <Page
+        title="Where the River Divides"
+        background="light"
+        data={
+          event?.acf?.where_the_river_divides.small_group_discussion_content
+        }
+      >
+        <StyledDivContent
+          pad
+          content={
+            event?.acf?.where_the_river_divides.small_group_discussion_content
+          }
+        />
+      </Page>
+    );
+  }
+
   return (
     <Page
       title="Where the River Divides"
       background="light"
       data={
         event?.acf?.where_the_river_divides.url ||
-        event?.acf?.where_the_river_divides.prayers.length > 0
+        event?.acf?.where_the_river_divides.prayers.length > 0 ||
+        event?.acf?.where_the_river_divides.small_group_discussion_content
       }
     >
       <BorderButtonGroup>
@@ -84,6 +104,13 @@ const WhereTheRiverDivides = (props) => {
           href={`/${program}/${slug}/where-the-river-divides/prayers`}
           title="Prayers"
         />
+        {event?.acf?.where_the_river_divides.small_group_discussion_content && (
+          <BorderButton
+            background="light"
+            href={`/${program}/${slug}/where-the-river-divides/small-group-discussion`}
+            title="Small Group Discussion"
+          />
+        )}
       </BorderButtonGroup>
     </Page>
   );

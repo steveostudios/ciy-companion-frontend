@@ -93,7 +93,7 @@ const BeyondTheEvent = (props) => {
   if (page === "engage-interest") {
     return (
       <Page
-        title="Want to go on an Engage mission trip?"
+        title="Want to go on an Engage trip?"
         background="light"
         data={
           event?.acf?.bte.engage_trip_interest.content &&
@@ -109,14 +109,27 @@ const BeyondTheEvent = (props) => {
           <BorderButtonGroup>
             {event?.acf?.bte.engage_trip_interest.sections.length &&
               event?.acf?.bte.engage_trip_interest.sections.map(
-                (section, i) => (
-                  <BorderButton
-                    key={i}
-                    background="light"
-                    href={`/${program}/${slug}/beyond-the-event/engage-interest/${i}`}
-                    title={section.name}
-                  />
-                )
+                (section, i) => {
+                  if (!section.content) {
+                    return (
+                      <BorderButton
+                        key={i}
+                        background="light"
+                        href={section.interest_url}
+                        title={section.name}
+                      />
+                    );
+                  } else {
+                    return (
+                      <BorderButton
+                        key={i}
+                        background="light"
+                        href={`/${program}/${slug}/beyond-the-event/engage-interest/${i}`}
+                        title={section.name}
+                      />
+                    );
+                  }
+                }
               )}
           </BorderButtonGroup>
         </div>
