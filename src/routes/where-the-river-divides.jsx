@@ -83,6 +83,36 @@ const WhereTheRiverDivides = (props) => {
     );
   }
 
+  if (page === "share-your-story") {
+    return (
+      <Page
+        title="Where the River Divides"
+        background="light"
+        data={event?.acf?.where_the_river_divides.share_your_story_url}
+      >
+        <IFrame
+          url={event?.acf?.where_the_river_divides.share_your_story_url}
+          title="Where the River Divides"
+        />
+      </Page>
+    );
+  }
+
+  if (page === "rate-and-review") {
+    return (
+      <Page
+        title="Where the River Divides"
+        background="light"
+        data={event?.acf?.where_the_river_divides.rate_and_review_url}
+      >
+        <IFrame
+          url={event?.acf?.where_the_river_divides.rate_and_review_url}
+          title="Where the River Divides"
+        />
+      </Page>
+    );
+  }
+
   return (
     <Page
       title="Where the River Divides"
@@ -90,7 +120,10 @@ const WhereTheRiverDivides = (props) => {
       data={
         event?.acf?.where_the_river_divides.url ||
         event?.acf?.where_the_river_divides.prayers.length > 0 ||
-        event?.acf?.where_the_river_divides.small_group_discussion_content
+        event?.acf?.where_the_river_divides.small_group_discussion_content ||
+        event?.acf?.where_the_river_divides.share_your_story_url ||
+        event?.acf?.where_the_river_divides.soundtrack_url ||
+        event?.acf?.where_the_river_divides.rate_and_review_url
       }
     >
       <BorderButtonGroup>
@@ -102,13 +135,35 @@ const WhereTheRiverDivides = (props) => {
         <BorderButton
           background="light"
           href={`/${program}/${slug}/where-the-river-divides/prayers`}
-          title="Prayers"
+          title="Prayer Prompts"
         />
         {event?.acf?.where_the_river_divides.small_group_discussion_content && (
           <BorderButton
             background="light"
             href={`/${program}/${slug}/where-the-river-divides/small-group-discussion`}
-            title="Small Group Discussion"
+            title="Group Discussion Questions"
+          />
+        )}
+
+        {event?.acf?.where_the_river_divides.share_your_story_url && (
+          <BorderButton
+            background="light"
+            href={`/${program}/${slug}/where-the-river-divides/share-your-story`}
+            title="Share your WTRD Story"
+          />
+        )}
+        {event?.acf?.where_the_river_divides.soundtrack_url && (
+          <BorderButton
+            background="light"
+            href={event?.acf?.where_the_river_divides.soundtrack_url}
+            title="WTRD Soundtrack"
+          />
+        )}
+        {event?.acf?.where_the_river_divides.rate_and_review_url && (
+          <BorderButton
+            background="light"
+            href={`/${program}/${slug}/where-the-river-divides/rate-and-review`}
+            title="Rate and Review"
           />
         )}
       </BorderButtonGroup>
