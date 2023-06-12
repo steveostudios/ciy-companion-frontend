@@ -162,7 +162,7 @@ const WhereTheRiverDivides = (props) => {
         {event?.acf?.where_the_river_divides.rate_and_review_url && (
           <BorderButton
             background="light"
-            href={`/${program}/${slug}/where-the-river-divides/rate-and-review`}
+            href={event?.acf?.where_the_river_divides.rate_and_review_url}
             title="Rate and Review"
           />
         )}
