@@ -62,7 +62,7 @@ const Schedule: React.FC = () => {
                           ? item.colors.map((colorId: any, i: number) => {
                               const thisColor = colors.find(
                                 (item: IColor) => item.id === colorId
-                              );
+                              ) || { name: "", color: "" };
 
                               return (
                                 <EventColor key={i} color={thisColor.color}>

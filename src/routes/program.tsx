@@ -40,7 +40,7 @@ const Title: React.FC<TitleProps> = (props) => {
 const Program: React.FC = () => {
   const { program } = useParams<string>();
   const [loading, setLoading] = useState(false);
-  const [events, setEvents] = useState<APISimpleEvent[]>([]);
+  const [events, setEvents] = useState<APISimpleEvent[] | undefined>([]);
 
   useEffect(() => {
     if (program !== undefined) {
@@ -56,7 +56,7 @@ const Program: React.FC = () => {
 
   return (
     <Page
-      data={!loading && events.length > 0}
+      data={!loading && events && events.length > 0}
       loading={loading}
       noDataContent={
         <div>
@@ -67,11 +67,11 @@ const Program: React.FC = () => {
         </div>
       }
     >
-      {events.length > 0 && (
+      {events && events.length > 0 && (
         <Main>
           <BorderList>
             {events
-              .sort((a: Event, b: Event) =>
+              .sort((a: APISimpleEvent, b: APISimpleEvent) =>
                 a.acf.start_date > b.acf.start_date ? 1 : -1
               )
               .map((event) => {

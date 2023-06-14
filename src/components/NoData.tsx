@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
-import BorderButton from "./BorderButton";
+import BorderButton, { ButtonBackground } from "./BorderButton";
 
 interface Props {
   noDataContent?: JSX.Element;
   title: string;
-  background?: string;
+  background?: ButtonBackground;
 }
 
 export const NoData: React.FC<Props> = (props) => {
