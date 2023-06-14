@@ -47,12 +47,14 @@ export const fetchEvents = async (program: string, page: number) => {
   const response = await fetch(url);
   const data = await response.json();
   const pages = await response.headers.get("X-WP-TotalPages");
+  const pagesInt: number = pages ? parseInt(pages) : 1;
 
   events.push(...data);
 
-  if (page < 3) {
+  if (page < pagesInt) {
     await fetchEvents(program, page + 1);
   }
+
   return { events, pages };
 };
 
