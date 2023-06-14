@@ -1,14 +1,12 @@
 import styled from "@emotion/styled";
-import { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { EventContext } from "../App";
 import { getHumanReadableDateRange } from "../helpers/data";
 import { Logo } from "./Logo";
+import { getEvent } from "../helpers/event";
 
 const Header = () => {
-  const eventContext = useContext(EventContext);
   const { program } = useParams();
-  const event = eventContext ? eventContext[0] : null;
+  const event = getEvent();
 
   return (
     <Nav>

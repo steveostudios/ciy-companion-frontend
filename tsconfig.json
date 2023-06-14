@@ -1,0 +1,57 @@
+// {
+//   "compilerOptions": {
+//     "module": "commonjs",
+//     "jsx": "react",
+//     "outDir": "./dist",
+//     "strict": true,
+//     "esModuleInterop": true
+//   },
+//   "include": ["./src/**/*"]
+// }
+
+{
+  "compilerOptions": {
+    "target": "es5",
+    "allowJs": true,
+    "module": "commonjs",
+    "jsx": "react-jsx",
+    "strict": true,
+    "outDir": "../../dist/out-tsc",
+    "types": ["node"],
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "exclude": [
+    "jest.config.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts",
+    "src/**/*.spec.tsx",
+    "src/**/*.test.tsx",
+    "src/**/*.spec.js",
+    "src/**/*.test.js",
+    "src/**/*.spec.jsx",
+    "src/**/*.test.jsx"
+  ],
+  "include": ["./src/**/*.ts", "./src/**/*.tsx", "src/types/custom.d.ts"]
+}
+
+// {
+//   "compilerOptions": {
+//     "target": "es5",
+//     "lib": ["dom", "dom.iterable", "esnext"],
+//     "allowJs": true,
+//     "skipLibCheck": true,
+//     "esModuleInterop": true,
+//     "allowSyntheticDefaultImports": true,
+//     "strict": true,
+//     "module": "esnext",
+//     "moduleResolution": "node",
+//     "resolveJsonModule": true,
+//     "isolatedModules": true,
+//     "noEmit": true,
+//     "jsx": "react-jsx"
+//   },
+//   "include": ["src", "src/types/custom.d.ts"],
+//   "exclude": ["node_modules"]
+// }
