@@ -1,10 +1,4 @@
-import Page from "../components/Page";
-import { ExposedList } from "../components/List";
 import { useParams } from "react-router-dom";
-import { StyledDivContent } from "../components/StyledDivContent";
-import BorderButton from "../components/BorderButton";
-import AvatarIcon from "./../img/icons/avatar.svg";
-import styled from "@emotion/styled";
 import { getEvent } from "../helpers/event";
 import { IFramePage } from "../pages/IFramePage";
 import { Button, ContentWithMenu } from "../pages/ContentWithMenuPage";
