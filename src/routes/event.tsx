@@ -53,10 +53,10 @@ const Event: React.FC = () => {
         <div>
           <StyledDivContent
             style={{ color: "var(--white)" }}
-            content={data_prefix?.visibility.message}
+            content={data_prefix?.visibility.message || "Coming Soon!"}
           />
           <BorderButton
-            title="Interested"
+            title={data_prefix.visibility.button_label || "Interested?"}
             href={data_prefix.visibility.url || "https://ciy.com"}
           />
           <BorderButton title="Back" href="/" />
