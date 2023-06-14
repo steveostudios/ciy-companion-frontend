@@ -23,12 +23,15 @@ import IconMapMarker from "./../img/icons/map-marker.svg";
 import IconUserPlus from "./../img/icons/user-plus.svg";
 import Page from "../components/Page";
 import { fetchEvent, getEvent } from "../helpers/event";
+import { StyledDivContent } from "../components/StyledDivContent";
+import BorderButton from "../components/BorderButton";
 
 const Event: React.FC = () => {
   const { slug, program } = useParams();
   const [loading, setLoading] = useState(false);
 
   const event = getEvent();
+  const data_prefix = event?.acf;
 
   useEffect(() => {
     if ((event && event.slug === slug) || slug === undefined) return;
@@ -44,116 +47,134 @@ const Event: React.FC = () => {
     })();
   }, [slug, setLoading, event]);
 
+  if (data_prefix?.visibility.coming_soon) {
+    return (
+      <Page data={!!(!loading && event)} loading={loading}>
+        <div>
+          <StyledDivContent
+            style={{ color: "var(--white)" }}
+            content={data_prefix?.visibility.message}
+          />
+          <BorderButton
+            title="Interested"
+            href={data_prefix.visibility.url || "https://ciy.com"}
+          />
+          <BorderButton title="Back" href="/" />
+        </div>
+      </Page>
+    );
+  }
+
   return (
     <Page data={!!(!loading && event)} loading={loading}>
       <div>
         <Menu>
-          {event?.acf?.schedule.show && (
+          {data_prefix?.schedule.show && (
             <Button
               link={`/${program}/${slug}/schedule`}
               icon={IconCalendar}
               name="Schedule"
             />
           )}
-          {event?.acf?.seating_chart.show && (
+          {data_prefix?.seating_chart.show && (
             <Button
               link={`/${program}/${slug}/seating-chart`}
               icon={IconCouch}
               name="Seating Chart"
             />
           )}
-          {event?.acf?.campus_map.show && (
+          {data_prefix?.campus_map.show && (
             <Button
               link={`/${program}/${slug}/campus-map`}
               icon={IconMap}
               name="Campus Map"
             />
           )}
-          {event?.acf?.event_contact.show && (
+          {data_prefix?.event_contact.show && (
             <Button
               link={`/${program}/${slug}/event-contacts`}
               icon={IconAddressBook}
               name="Event Contacts"
             />
           )}
-          {event?.acf?.staff_contact.show && (
+          {data_prefix?.staff_contact.show && (
             <Button
               link={`/${program}/${slug}/staff-contacts`}
               icon={IconAddressBook}
               name="Staff Contacts"
             />
           )}
-          {event?.acf?.attendee_contact.show && (
+          {data_prefix?.attendee_contact.show && (
             <Button
               link={`/${program}/${slug}/attendee-contacts`}
               icon={IconAddressBook}
               name="Attendee Contacts"
             />
           )}
-          {event?.acf?.on_campus_activities.show && (
+          {data_prefix?.on_campus_activities.show && (
             <Button
               link={`/${program}/${slug}/on-campus-activities`}
               icon={IconTableTennis}
               name="On-Campus Activities"
             />
           )}
-          {event?.acf?.store.show && (
+          {data_prefix?.store.show && (
             <Button
               link={`/${program}/${slug}/store`}
               icon={IconShirt}
               name="Store"
             />
           )}
-          {event?.acf?.convos.show && (
+          {data_prefix?.convos.show && (
             <Button
               link={`/${program}/${slug}/convos`}
               icon={IconComments}
               name="Convos"
             />
           )}
-          {event?.acf?.selah.show && (
+          {data_prefix?.selah.show && (
             <Button
               link={`/${program}/${slug}/selah`}
               icon={IconCloud}
               name="SELAH"
             />
           )}
-          {event?.acf?.tournament_rules.show && (
+          {data_prefix?.tournament_rules.show && (
             <Button
               link={`/${program}/${slug}/tournament-rules`}
               icon={IconWhistle}
               name="Tournament Rules"
             />
           )}
-          {event?.acf?.where_the_river_divides.show && (
+          {data_prefix?.where_the_river_divides.show && (
             <Button
               link={`/${program}/${slug}/where-the-river-divides`}
               icon={IconFilm}
               name="Where the River Divides"
             />
           )}
-          {event?.acf?.electives.show && (
+          {data_prefix?.electives.show && (
             <Button
               link={`/${program}/${slug}/electives`}
               icon={IconTicket}
               name="Electives"
             />
           )}
-          {event?.acf?.bte.show && (
+          {data_prefix?.bte.show && (
             <Button
               link={`/${program}/${slug}/beyond-the-event`}
               icon={IconCrown}
               name="Beyond the Event"
             />
           )}
-          {event?.acf?.leader_resources.show && (
+          {data_prefix?.leader_resources.show && (
             <Button
               link={`/${program}/${slug}/leader-resources`}
               icon={IconUsersFriends}
               name="Leader Resources"
             />
           )}
-          {event?.acf?.stage_contacts.show && (
+          {data_prefix?.stage_contacts.show && (
             <Button
               link={`/${program}/${slug}/stage`}
               icon={IconMicrophoneStand}
@@ -161,7 +182,7 @@ const Event: React.FC = () => {
             />
           )}
           {/* Engage Info */}
-          {event?.acf?.engage?.about.show && (
+          {data_prefix?.engage?.about.show && (
             <Button
               link={`/${program}/${slug}/engage/about`}
               icon={IconGlobeStand}
@@ -169,7 +190,7 @@ const Event: React.FC = () => {
             />
           )}
 
-          {event?.acf?.engage?.dates_locations.show && (
+          {data_prefix?.engage?.dates_locations.show && (
             <Button
               link={`/${program}/${slug}/engage/dates-locations`}
               icon={IconMapMarker}
@@ -177,21 +198,21 @@ const Event: React.FC = () => {
             />
           )}
 
-          {event?.acf?.engage?.join.show && (
+          {data_prefix?.engage?.join.show && (
             <Button
               link={`/${program}/${slug}/engage/join`}
               icon={IconUserPlus}
               name="Join an Engage Team"
             />
           )}
-          {event?.acf?.engage?.youth_leaders.show && (
+          {data_prefix?.engage?.youth_leaders.show && (
             <Button
               link={`/${program}/${slug}/engage/youth-leaders`}
               icon={IconUsersFriends}
               name="Youth Leaders"
             />
           )}
-          {event?.acf?.engage?.resources.show && (
+          {data_prefix?.engage?.resources.show && (
             <Button
               link={`/${program}/${slug}/engage/resources`}
               icon={IconBookOpen}
@@ -199,7 +220,7 @@ const Event: React.FC = () => {
             />
           )}
 
-          {event?.acf?.connect.show && (
+          {data_prefix?.connect.show && (
             <Button
               link={`/${program}/${slug}/connect`}
               icon={IconShare}
