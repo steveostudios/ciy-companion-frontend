@@ -3,17 +3,21 @@ import styled from "@emotion/styled";
 import { Logo } from "../components/Logo";
 import { BorderList } from "../components/List";
 import BorderListButton from "../components/BorderListButton";
-import { clearEvent, getEvent } from "../helpers/event";
+import { clearColors, clearEvent, getColors, getEvent } from "../helpers/event";
 import { useEffect } from "react";
 
 export default function Root() {
   const event = getEvent();
+  const colors = getColors();
 
   useEffect(() => {
     if (event !== null) {
       clearEvent();
     }
-  }, [event]);
+    if (colors !== null) {
+      clearColors();
+    }
+  }, [event, colors]);
 
   return (
     <Page hideHeader data>

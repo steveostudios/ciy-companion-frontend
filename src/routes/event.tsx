@@ -36,10 +36,8 @@ const Event: React.FC = () => {
   useEffect(() => {
     if ((event && event.slug === slug) || slug === undefined) return;
     (async () => {
-      console.log("need to fetch");
       setLoading(true);
       const event = await fetchEvent(slug);
-      // setEvent(event);
 
       localStorage.setItem("event", JSON.stringify(event));
 

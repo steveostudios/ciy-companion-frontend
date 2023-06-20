@@ -6,11 +6,23 @@ export const getEvent = () => {
   return localEvent ? JSON.parse(localEvent) : null;
 };
 
+const eventUrlParams: string = [
+  "id",
+  "slug",
+  "type",
+  "acf",
+  "status",
+  "title.rendered",
+  "program",
+  "acf.start_date",
+  "acf.end_date",
+].join(",");
+
 export const fetchEvent = async (slug: string) => {
   console.log("FETCHING EVENT");
   const url = `${
     api[process.env.REACT_APP_ENV || "dev"]
-  }/wp-json/wp/v2/events?slug=${slug}&acf_format=standard`;
+  }/wp-json/wp/v2/events?slug=${slug}&acf_format=standard&_fields=${eventUrlParams}`;
   const response = await fetch(url);
   const data = await response.json();
   if (data[0]) return data[0];
@@ -35,6 +47,19 @@ export interface APISimpleEvent {
 
 const events: APISimpleEvent[] = [];
 
+const eventsUrlParams: string = [
+  "id",
+  "slug",
+  "type",
+  "acf",
+  "status",
+  "title.rendered",
+  "program",
+  "acf.start_date",
+  "acf.end_date",
+  "acf.location",
+].join(",");
+
 export const fetchEvents = async (program: string, page: number) => {
   if (!program) return;
   console.log("FETCHING EVENTS");
@@ -42,7 +67,7 @@ export const fetchEvents = async (program: string, page: number) => {
     api[process.env.REACT_APP_ENV || "dev"]
   }/wp-json/wp/v2/events?program=${
     categoryMap[program]
-  }&per_page=10&_fields[]=title.rendered&_fields[]=acf.location&_fields[]=acf.start_date&_fields[]=acf.end_date&_fields[]=slug&acf_format=standard&status=publish&page=${page}`;
+  }&per_page=10&acf_format=standard&status=publish&page=${page}&_fields=${eventsUrlParams}`;
 
   const response = await fetch(url);
   const data = await response.json();
@@ -64,11 +89,18 @@ export const getColors = () => {
   return localColors ? JSON.parse(localColors) : null;
 };
 
+const colorsUrlParams: string = [
+  "id",
+  "type",
+  "acf.color",
+  "title.rendered",
+].join(",");
+
 export const fetchColors = async () => {
   console.log("FETCHING COLORS");
   const url = `${
     api[process.env.REACT_APP_ENV || "dev"]
-  }/wp-json/wp/v2/colors?_fields[]=id&_fields[]=acf.color&_fields[]=title.rendered`;
+  }/wp-json/wp/v2/colors?_fields=${colorsUrlParams}`;
 
   const response = await fetch(url);
   const data = await response.json();
@@ -79,6 +111,10 @@ export const fetchColors = async () => {
     name: item.title.rendered,
   }));
   localStorage.setItem("colors", JSON.stringify(colors));
+};
+
+export const clearColors = () => {
+  localStorage.removeItem("colors");
 };
 
 interface APIColor {

@@ -6,25 +6,18 @@ import Page from "../components/Page";
 import BorderListButton from "../components/BorderListButton";
 import BorderButton from "../components/BorderButton";
 import styled from "@emotion/styled";
-import { fetchEvents, APISimpleEvent } from "../helpers/event";
+import {
+  fetchEvents,
+  APISimpleEvent,
+  fetchColors,
+  getColors,
+} from "../helpers/event";
 
 interface TitleProps {
   title: string;
   dates: string;
   location: string;
 }
-
-// interface Event {
-//   slug: string;
-//   title: {
-//     rendered: string;
-//   };
-//   acf: {
-//     start_date: string;
-//     end_date: string;
-//     location: string;
-//   };
-// }
 
 const Title: React.FC<TitleProps> = (props) => {
   return (
@@ -42,6 +35,8 @@ const Program: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [events, setEvents] = useState<APISimpleEvent[] | undefined>([]);
 
+  const colors = getColors();
+
   useEffect(() => {
     if (program !== undefined) {
       (async () => {
@@ -53,6 +48,14 @@ const Program: React.FC = () => {
       })();
     }
   }, [program]);
+
+  useEffect(() => {
+    if (!colors) {
+      (async () => {
+        await fetchColors();
+      })();
+    }
+  }, [colors]);
 
   return (
     <Page

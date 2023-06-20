@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Root from "./routes/root";
 import Program from "./routes/program";
@@ -25,18 +24,11 @@ import WhereTheRiverDivides from "./routes/where-the-river-divides";
 
 import ReactGA from "react-ga4";
 import Engage from "./routes/engage";
-import { fetchColors } from "./helpers/event";
 
 ReactGA.initialize("G-G7MLPL3V6N");
 ReactGA.send("pageview");
 
 export default function BasicExample() {
-  useEffect(() => {
-    (async () => {
-      await fetchColors();
-    })();
-  });
-
   return (
     <Router>
       <Body>
