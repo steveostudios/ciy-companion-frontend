@@ -4,7 +4,8 @@ import { useParams } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { NormalList } from "../components/List";
 import Page from "../components/Page";
-import { IColor, getColors, getEvent } from "../helpers/event";
+import { getEvent } from "../helpers/event";
+import { IColor, getColors } from "../helpers/colors";
 
 const Schedule: React.FC = () => {
   const [currentDay, setCurrentDay] = useState(0);

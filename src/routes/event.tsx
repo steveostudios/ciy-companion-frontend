@@ -37,9 +37,7 @@ const Event: React.FC = () => {
     if ((event && event.slug === slug) || slug === undefined) return;
     (async () => {
       setLoading(true);
-      const event = await fetchEvent(slug);
-
-      localStorage.setItem("event", JSON.stringify(event));
+      await fetchEvent(slug);
 
       setLoading(false);
     })();

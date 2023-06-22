@@ -6,7 +6,7 @@ import { getEvent } from "../helpers/event";
 
 const Header = () => {
   const { program } = useParams();
-  const event = getEvent();
+  const event = getEvent(true);
 
   return (
     <Nav>

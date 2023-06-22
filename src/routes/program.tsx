@@ -6,12 +6,8 @@ import Page from "../components/Page";
 import BorderListButton from "../components/BorderListButton";
 import BorderButton from "../components/BorderButton";
 import styled from "@emotion/styled";
-import {
-  fetchEvents,
-  APISimpleEvent,
-  fetchColors,
-  getColors,
-} from "../helpers/event";
+import { fetchEvents, APISimpleEvent } from "../helpers/events";
+import { fetchColors, getColors } from "../helpers/colors";
 
 interface TitleProps {
   title: string;

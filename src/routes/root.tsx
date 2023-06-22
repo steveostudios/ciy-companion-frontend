@@ -3,8 +3,9 @@ import styled from "@emotion/styled";
 import { Logo } from "../components/Logo";
 import { BorderList } from "../components/List";
 import BorderListButton from "../components/BorderListButton";
-import { clearColors, clearEvent, getColors, getEvent } from "../helpers/event";
+import { clearEvent, getEvent } from "../helpers/event";
 import { useEffect } from "react";
+import { clearColors, getColors } from "../helpers/colors";
 
 export default function Root() {
   const event = getEvent();
