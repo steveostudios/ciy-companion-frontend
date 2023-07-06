@@ -148,6 +148,22 @@ const LeaderResources: React.FC = () => {
     );
   }
 
+  // WRKR Network
+  if (page === "wrkr-network") {
+    return (
+      <ContentWithMenu
+        title="WRKR Network"
+        content={data_prefix?.wrkr_network.content}
+        buttons={[
+          {
+            title: data_prefix?.wrkr_network.button_label,
+            url: data_prefix?.wrkr_network.url,
+          },
+        ]}
+      />
+    );
+  }
+
   interface MainMenuItem {
     [key: string]: {
       title: string;
@@ -203,6 +219,10 @@ const LeaderResources: React.FC = () => {
     event_contacts: {
       title: "Event Contacts",
       url: `${url_prefix}/event-contacts/`,
+    },
+    wrkr_network: {
+      title: "WRKR Network",
+      url: `${url_prefix}/wrkr-network/`,
     },
   };
 

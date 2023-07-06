@@ -240,6 +240,7 @@ const BeyondTheEvent: React.FC = () => {
     );
   }
 
+  // Connect
   if (page === "connect") {
     const connections =
       data_prefix.connect.service &&
@@ -248,6 +249,20 @@ const BeyondTheEvent: React.FC = () => {
       });
 
     return <ConnectPage title="Connect" connections={connections} />;
+  }
+
+  // Offering
+  if (page === "offering") {
+    return (
+      <ContentWithMenu
+        title="Offering"
+        content={data_prefix.offering.content}
+        buttons={data_prefix.offering.buttons.map((item: any, i: number) => ({
+          title: item.label,
+          url: item.url,
+        }))}
+      />
+    );
   }
 
   const mainMenu: MainMenuItem = {
@@ -298,6 +313,10 @@ const BeyondTheEvent: React.FC = () => {
     connect: {
       title: "Connect",
       url: `${url_prefix}/connect/`,
+    },
+    offering: {
+      title: "Offering",
+      url: `${url_prefix}/offering/`,
     },
   };
 
