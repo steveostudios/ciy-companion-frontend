@@ -1,11 +1,10 @@
 import styled from "@emotion/styled";
 import { useNavigate } from "react-router-dom";
-import BorderButton, { ButtonBackground } from "./BorderButton";
+import BorderButton from "./BorderButton";
 
 interface Props {
   noDataContent?: JSX.Element;
   title: string;
-  background?: ButtonBackground;
 }
 
 export const NoData: React.FC<Props> = (props) => {
@@ -17,11 +16,7 @@ export const NoData: React.FC<Props> = (props) => {
           <p>{`Missing ${props.title} data. Please check back later.`}</p>
         )}
       </Message>
-      <BorderButton
-        title="Back"
-        onClick={() => navigate(-1)}
-        background={props.background}
-      />
+      <BorderButton title="Back" onClick={() => navigate(-1)} />
     </div>
   );
 };

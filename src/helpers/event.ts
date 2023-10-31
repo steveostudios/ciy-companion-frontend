@@ -1,12 +1,16 @@
 import { api } from "./data";
 
-export const getEvent = (skipFetch?: boolean) => {
+export const getEvent = async (eventSlug: string, skipFetch?: boolean) => {
   const localEvent = localStorage.getItem("event");
   const localEventCacheTime = localStorage.getItem("eventCacheTime");
   const eventCacheTime = 1000 * 60 * 60; // 1 hour
   // const eventCacheTime = 1000 * 10; // 10 seconds
 
   if (localEvent === "undefined" || !localEvent) {
+    if (eventSlug) {
+      const result = await fetchEvent(eventSlug);
+      return result;
+    }
     return null;
   } else {
     if (
@@ -17,7 +21,7 @@ export const getEvent = (skipFetch?: boolean) => {
       !localEventCacheTime
     ) {
       (async () => {
-        fetchEvent(JSON.parse(localEvent).slug);
+        await fetchEvent(JSON.parse(localEvent).slug);
       })();
     }
     return JSON.parse(localEvent);
@@ -46,6 +50,7 @@ export const fetchEvent = async (slug: string) => {
   if (data[0]) {
     localStorage.setItem("event", JSON.stringify(data[0]));
     localStorage.setItem("eventCacheTime", Date.now().toString());
+    return data[0];
   }
 };
 

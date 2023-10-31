@@ -1,25 +1,40 @@
-import Contact, { ContactProps } from "../components/Contact";
 import { NormalList } from "../components/List";
-import Page from "../components/Page";
+import { useState } from "react";
+import { StyledDivContent } from "../components/StyledDivContent";
+import { Contact, ContactProps } from "../components/Contact";
+import { Bio } from "../components/Bio";
 
 interface Props {
-  title: string;
   contacts: ContactProps[];
+  description: string;
 }
 
 export const ContactsPage: React.FC<Props> = (props) => {
+  const [currentContact, setCurrentContact] = useState<ContactProps | null>(
+    null
+  );
+
   return (
-    <Page
-      padding={0}
-      title={props.title}
-      background="light"
-      data={props.contacts && props.contacts.length > 0}
-    >
-      <NormalList>
-        {props.contacts.map((contact, i) => (
-          <Contact key={i} {...contact} />
-        ))}
-      </NormalList>
-    </Page>
+    <>
+      {!currentContact && (
+        <>
+          {props.description && (
+            <StyledDivContent content={props.description} />
+          )}
+          <NormalList>
+            {props.contacts.map((contact, i) => (
+              <Contact
+                key={i}
+                {...contact}
+                onCurrentContact={setCurrentContact}
+              />
+            ))}
+          </NormalList>
+        </>
+      )}
+      {currentContact && (
+        <Bio contact={currentContact} onClose={() => setCurrentContact(null)} />
+      )}
+    </>
   );
 };
