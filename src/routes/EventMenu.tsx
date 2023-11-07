@@ -1,45 +1,28 @@
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
-import { Page } from "../components/Page";
-import { RootPage } from "../helpers/types";
+import { RootPage as PageProps } from "../helpers/types";
 
-interface Props extends RootPage {
-  onSetData: (data: any) => void;
-  meta: any;
-}
-
-export interface MainSquare {
-  slug: string;
-  label: string;
-  icon: string;
-  url?: string;
-}
-
-export const EventMenu: React.FC<Props> = (props) => {
+export const RootPage: React.FC<PageProps> = (props) => {
   return (
-    <Page meta={props.meta} onSetData={props.onSetData}>
-      <Menu>
-        {props?.data?.buttons.map((item, index) => (
-          <Button
-            key={index}
-            url={item.url}
-            slug={item.slug}
-            icon={
-              item.icon || '<i class="fa-solid fa-star" aria-hidden="true">'
-            }
-            name={item.label}
-            external={item.type === "external"}
-          />
-        ))}
+    <Menu>
+      {props?.data?.buttons.map((item, index) => (
         <Button
-          slug={`/`}
-          icon='<i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>'
-          name="Change Event"
-          external={false}
+          key={index}
+          url={item.url}
+          slug={item.slug}
+          icon={item.icon || '<i class="fa-solid fa-star" aria-hidden="true">'}
+          name={item.label}
+          external={item.type === "external"}
         />
-      </Menu>
-    </Page>
+      ))}
+      <Button
+        slug={`/`}
+        icon='<i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>'
+        name="Change Event"
+        external={false}
+      />
+    </Menu>
   );
 };
 

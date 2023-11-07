@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Icon } from "./Icon";
 
 interface Props {
@@ -8,12 +8,12 @@ interface Props {
 }
 
 export const SubNav: React.FC<Props> = (props) => {
-  const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <Container program={props.program}>
       <Content>
-        <BackButton onClick={() => navigate(-1)}>
+        <BackButton to={location.pathname.split("/").slice(0, -1).join("/")}>
           <Icon
             icon='<i class="fa-solid fa-chevron-left" aria-hidden="true"></i>'
             size={3}
@@ -49,13 +49,15 @@ const Content = styled("div")({
   margin: "0 auto",
 });
 
-const BackButton = styled("div")({
+const BackButton = styled(Link)({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   height: "10rem",
   width: "3rem",
   padding: 0,
+  color: "var(--black)",
+  textDecoration: "none",
 });
 
 const H2 = styled("h2")({

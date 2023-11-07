@@ -291,8 +291,8 @@ const getSubPageData = (page: any, path: string) => {
 };
 
 export const cleanData = (data: any) => {
-  console.log(data);
-  console.log("cleanData");
+  // console.log(data);
+  // console.log("cleanData");
 
   const pages: any[] = [];
 
@@ -300,7 +300,7 @@ export const cleanData = (data: any) => {
   pages.push({
     slug: "root",
     type: "root",
-    path: "",
+    path: `/${programSlug[data.program]}/${data.slug}`,
     data: {
       buttons: [
         ...data.acf.content.map((button: any) => ({

@@ -1,15 +1,13 @@
 import { useLocation, useParams } from "react-router-dom";
 import { Page } from "../components/Page";
 
-interface Props {
-  onSetData: (data: any) => void;
-}
+interface Props {}
 const NoMatch: React.FC<Props> = (props) => {
   const params = useParams();
   const location = useLocation();
 
   return (
-    <Page onSetData={props.onSetData}>
+    <Page>
       <h1>404</h1>
       <p>{JSON.stringify(params)}</p>
       <p>{location.pathname}</p>
