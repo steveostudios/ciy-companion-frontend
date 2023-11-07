@@ -1,23 +1,13 @@
 import styled from "@emotion/styled";
 import { NormalList } from "../components/List";
 import { Icon } from "../components/Icon";
+import { ConnectPage as PageProps } from "../helpers/types";
 
-export interface ConnectionProps {
-  url: string;
-  icon: string;
-  title: string;
-}
-
-interface Props {
-  connections: ConnectionProps[];
-}
-
-export const ConnectPage: React.FC<Props> = (props) => {
-  const { connections } = props;
+export const ConnectPage: React.FC<PageProps> = (props) => {
   return (
     <NormalList>
-      {connections.length &&
-        connections
+      {props.data.connections.length &&
+        props.data.connections
           .filter((connection) => connection.url)
           .map((connection, i) => (
             <Connection key={i}>

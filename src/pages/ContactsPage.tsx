@@ -3,26 +3,23 @@ import { useState } from "react";
 import { StyledDivContent } from "../components/StyledDivContent";
 import { Contact, ContactProps } from "../components/Contact";
 import { Bio } from "../components/Bio";
+import { ContactsPage as PageProps } from "../helpers/types";
 
-interface Props {
-  contacts: ContactProps[];
-  description: string;
-}
-
-export const ContactsPage: React.FC<Props> = (props) => {
+export const ContactsPage: React.FC<PageProps> = (props) => {
   const [currentContact, setCurrentContact] = useState<ContactProps | null>(
     null
   );
+  console.log(props);
 
   return (
     <>
       {!currentContact && (
         <>
-          {props.description && (
-            <StyledDivContent content={props.description} />
+          {props.data.description && (
+            <StyledDivContent content={props.data.description} />
           )}
           <NormalList>
-            {props.contacts.map((contact, i) => (
+            {props.data.contacts.map((contact, i) => (
               <Contact
                 key={i}
                 {...contact}

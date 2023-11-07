@@ -3,32 +3,11 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { NormalList } from "../components/List";
+import { Day, Days, SchedulePage as PageProps } from "../helpers/types";
 
-interface Props {
-  days: any[];
-}
-
-interface Day {
-  icon: string;
-  name: string;
-  location: string;
-  time: string;
-}
-
-export const SchedulePage: React.FC<Props> = (props) => {
+export const SchedulePage: React.FC<PageProps> = (props) => {
   const [currentDay, setCurrentDay] = useState(0);
   const { program } = useParams();
-
-  // const event = getEvent();
-
-  // useEffect(() => {
-  //   (async () => {
-  //     await getColors();
-  //   })();
-  // });
-  // const colors: IColor[] = getColors();
-
-  // const data_prefix = event?.acf?.schedule;
 
   return (
     <>
@@ -36,7 +15,7 @@ export const SchedulePage: React.FC<Props> = (props) => {
         <DaySelector>
           <span>DAY</span>
           <ul>
-            {props.days.map((day: Day, i: number) => (
+            {props.data.days.map((day: Days, i: number) => (
               <DaySelectorButton
                 program={program || ""}
                 key={i}
@@ -52,21 +31,21 @@ export const SchedulePage: React.FC<Props> = (props) => {
 
       {
         <EventList>
-          {props.days[currentDay].day.map((item: any, i: number) => (
+          {props.data.days[currentDay].day.map((item: any, i: number) => (
             <Event key={i}>
-              <EventIcon>
+              {/* <EventIcon>
                 <Icon icon={item.icon} />
-              </EventIcon>
+              </EventIcon> */}
               <EventMain>
                 <EventName>{item.name}</EventName>
-                <EventColors>
+                {/* <EventColors>
                   {item.color.length &&
                     item.color.map((color: any, i: number) => (
                       <EventColor key={i} color={color.post_excerpt}>
                         {color.post_title}
                       </EventColor>
                     ))}
-                </EventColors>
+                </EventColors> */}
                 <EventLocation>{item.location}</EventLocation>
               </EventMain>
               <EventTime>{item.time}</EventTime>

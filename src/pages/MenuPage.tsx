@@ -2,32 +2,23 @@ import { StyledDivContent } from "../components/StyledDivContent";
 import BorderButton from "../components/BorderButton";
 import { useLocation } from "react-router-dom";
 import { NormalList } from "../components/List";
+import { MenuPage as PageProps } from "../helpers/types";
 
-interface Props {
-  buttons?: Button[];
-  content?: string;
-}
-
-interface Button {
-  label: string;
-  url: string;
-  slug: string;
-}
-
-export const MenuPage: React.FC<Props> = (props) => {
-  const { content, buttons } = props;
+export const MenuPage: React.FC<PageProps> = (props) => {
   const location = useLocation();
 
   return (
     <>
-      {content && <StyledDivContent pad content={content} />}
-      {buttons?.length && (
+      {props.data.description && (
+        <StyledDivContent pad content={props.data.description} />
+      )}
+      {props.data.buttons?.length && (
         <NormalList>
-          {buttons.map((item: any, i: number) => (
+          {props.data.buttons.map((item: any, i: number) => (
             <BorderButton
               key={i}
-              title={item.content.label}
-              href={item.content.url}
+              title={item.label}
+              href={item.url}
               url={`${location.pathname}/${item.slug}`}
             />
           ))}

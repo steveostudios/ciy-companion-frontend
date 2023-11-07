@@ -1,25 +1,15 @@
 import styled from "@emotion/styled";
-import { Link, useParams } from "react-router-dom";
-import { Header } from "../components/Header";
+import { Link } from "react-router-dom";
 import { Icon } from "../components/Icon";
-import { useEffect, useState } from "react";
-import { fetchEvent, getEvent } from "../helpers/event";
 import { Page } from "../components/Page";
+import { RootPage } from "../helpers/types";
 
-interface Props {
-  items: Items[];
-  event: {
-    title: string;
-    location: string;
-    startDate: string;
-    endDate: string;
-  };
+interface Props extends RootPage {
   onSetData: (data: any) => void;
-  data: any;
-  // onSetRoutes: (data: any) => void;
+  meta: any;
 }
 
-interface Items {
+export interface MainSquare {
   slug: string;
   label: string;
   icon: string;
@@ -27,33 +17,26 @@ interface Items {
 }
 
 export const EventMenu: React.FC<Props> = (props) => {
-  const { program, event } = useParams();
-
-  useEffect(() => {
-    if (event !== undefined) {
-      (async () => {
-        const fetchedData = await getEvent(event);
-        await props.onSetData(fetchedData);
-      })();
-    }
-  }, []);
-
   return (
-    <Page event={props.event}>
+    <Page meta={props.meta} onSetData={props.onSetData}>
       <Menu>
-        {props.items.map((item, index) => (
+        {props?.data?.buttons.map((item, index) => (
           <Button
             key={index}
-            link={!item.url ? `/${program}/${event}/${item.slug}` : undefined}
-            icon={item.icon}
+            url={item.url}
+            slug={item.slug}
+            icon={
+              item.icon || '<i class="fa-solid fa-star" aria-hidden="true">'
+            }
             name={item.label}
-            externalUrl={item?.url}
+            external={item.type === "external"}
           />
         ))}
         <Button
-          link={`/`}
+          slug={`/`}
           icon='<i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>'
           name="Change Event"
+          external={false}
         />
       </Menu>
     </Page>
@@ -70,32 +53,30 @@ const Menu = styled("ul")({
   gridAutoRows: "13rem",
   gap: "2px",
   overflowY: "scroll",
-  // maxHeight: "calc(100% - 18rem)",
-  // width: "100%",
-  // maxWidth: "40rem",
 });
 
 interface ButtonProps {
-  link?: string;
+  url?: string;
+  slug?: string;
   icon: string;
   name: string;
-  externalUrl?: string;
+  external: boolean;
 }
 
 const Button: React.FC<ButtonProps> = (props) => {
   return (
     <ButtonWrapper>
-      {props.link && (
-        <Link to={props.link}>
-          <Icon icon={props.icon} size={3} />
-          <div>{props.name}</div>
-        </Link>
-      )}
-      {!!props.externalUrl && (
-        <a href={props.externalUrl}>
+      {props.external && (
+        <a href={props.url}>
           <Icon icon={props.icon} size={3} />
           <div>{props.name}</div>
         </a>
+      )}
+      {!props.external && props.slug && (
+        <Link to={props.slug}>
+          <Icon icon={props.icon} size={3} />
+          <div>{props.name}</div>
+        </Link>
       )}
     </ButtonWrapper>
   );

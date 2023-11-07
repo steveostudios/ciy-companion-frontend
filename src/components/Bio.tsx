@@ -15,7 +15,7 @@ export const Bio: React.FC<Props> = (props) => {
       <Header>
         <Avatar
           size={16}
-          image={props.contact.image?.sizes?.thumbnail}
+          image={props.contact.image}
           alt={props.contact.name}
         />
         <HeaderRight>

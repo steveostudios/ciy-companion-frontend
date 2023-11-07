@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
 
 enum ButtonTarget {
   BLANK = "_blank",
@@ -17,33 +18,53 @@ interface ButtonProps {
 
 const BorderButton: React.FC<ButtonProps> = (props) => {
   return (
-    <A
-      href={props.url || props.href}
-      onClick={props.onClick}
-      target={props.target || "_self"}
+    <Container
       color={props.color || "black"}
       hideBorder={props.hideBorder || false}
     >
-      {props.title}
-    </A>
+      {props.url && !props.href && (
+        <Link to={props.url}>
+          <Content>{props.title}</Content>
+        </Link>
+      )}
+      {props.onClick && (
+        <div onClick={props.onClick}>
+          <Content>{props.title}</Content>
+        </div>
+      )}
+      {props.href && (
+        <a href={props.href} target={props.target || "_self"}>
+          <Content>{props.title}</Content>
+        </a>
+      )}
+    </Container>
   );
 };
 
 export default BorderButton;
 
-const A = styled("a")((props: { color: string; hideBorder: boolean }) => ({
+const Container = styled("div")(
+  (props: { color: string; hideBorder: boolean }) => ({
+    display: "flex",
+    marginBottom: "2rem",
+    flex: 1,
+    minHeight: "3rem",
+    padding: "1rem",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    borderStyle: "solid",
+    borderWidth: "1px",
+    borderColor: props.hideBorder ? "transparent" : `var(--${props.color})`,
+    "*": {
+      fontFamily: "PragmaticaExtended-ExtraBold",
+      textTransform: "uppercase",
+      color: `var(--${props.color})`,
+      textDecoration: "none",
+    },
+  })
+);
+
+const Content = styled("div")({
   display: "flex",
-  marginBottom: "2rem",
-  textDecoration: "none",
   flex: 1,
-  minHeight: "3rem",
-  padding: "1rem",
-  alignItems: "center",
-  justifyContent: "flex-start",
-  fontFamily: "PragmaticaExtended-ExtraBold",
-  textTransform: "uppercase",
-  borderStyle: "solid",
-  borderWidth: "1px",
-  borderColor: props.hideBorder ? "transparent" : `var(--${props.color})`,
-  color: `var(--${props.color})`,
-}));
+});

@@ -1,18 +1,14 @@
-interface Props {
-  title: string;
-  url: string;
-}
+import { EmbeddedPage as PageProps } from "../helpers/types";
 
-export const EmbeddedPage: React.FC<Props> = (props) => {
-  const { url, title } = props;
+export const EmbeddedPage: React.FC<PageProps> = (props) => {
   return (
     <>
-      {url && (
+      {props.data.url && (
         <iframe
           className="form"
           frameBorder="0"
-          title={title}
-          src={url}
+          title={props.data.title}
+          src={props.data.url}
           style={{ height: "100%" }}
         />
       )}

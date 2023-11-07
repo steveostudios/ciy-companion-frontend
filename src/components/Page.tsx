@@ -1,37 +1,49 @@
 import styled from "@emotion/styled";
 import { Header } from "./Header";
 import { SubNav } from "./SubNav";
+import { Event } from "../helpers/types";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { getEvent } from "../helpers/event";
 // import { SubNav } from "./SubNav";
 
 interface PageProps {
   children: React.ReactNode;
-  event?: {
-    title: string;
-    location: string;
-    startDate: string;
-    endDate: string;
-  };
+  meta?: Event;
   page?: {
     title: string;
-    program: string;
   };
+  onSetData?: (data: any) => void;
 }
 
 export const Page: React.FC<PageProps> = (props) => {
+  const { program, event } = useParams();
+
+  useEffect(() => {
+    console.log(event);
+    if (event !== undefined) {
+      (async () => {
+        if (props.onSetData === undefined) return;
+        const fetchedData = await getEvent(event);
+        await props.onSetData(fetchedData);
+      })();
+    }
+  }, []);
+
   return (
     <Container whiteBackground={!!props.page}>
-      {props.event && (
+      {props.meta && (
         <Header
-          title={props.event.title}
-          location={props.event.location}
-          startDate={props.event.startDate}
-          endDate={props.event.endDate}
+          title={props.meta.title}
+          location={props.meta.location}
+          startDate={props.meta.startDate}
+          endDate={props.meta.endDate}
         />
       )}
       {props.page && (
-        <SubNav program={props.page.program} title={props.page.title} />
+        <SubNav program={program || ""} title={props.page.title} />
       )}
-      <Content header={!!props.event} subnav={!!props.page}>
+      <Content header={!!props.meta} subnav={!!props.page}>
         {props.children}
       </Content>
     </Container>

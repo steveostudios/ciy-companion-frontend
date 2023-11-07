@@ -4,15 +4,12 @@ import {
   TransformWrapper,
 } from "@pronestor/react-zoom-pan-pinch";
 
-interface Props {
-  title: string;
-  image: string;
-}
+import { ImagePage as PageProps } from "../helpers/types";
 
-export const ImagePage: React.FC<Props> = (props) => {
+export const ImagePage: React.FC<PageProps> = (props) => {
   return (
     <Container>
-      {props.image && (
+      {props.data.image && (
         <TransformWrapper
           maxScale={15}
           minScale={0.15}
@@ -21,11 +18,11 @@ export const ImagePage: React.FC<Props> = (props) => {
           initialScale={0.15}
         >
           <TransformComponent>
-            <img src={props.image} alt={props.title} />
+            <img src={props.data.image} alt={props.data.title} />
           </TransformComponent>
         </TransformWrapper>
       )}
-      {!props.image && (
+      {!props.data.image && (
         <p>"The image will be uploaded soon. Please check back later."</p>
       )}
     </Container>

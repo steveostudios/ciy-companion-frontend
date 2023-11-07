@@ -1,17 +1,13 @@
 import styled from "@emotion/styled";
+import { VideoPage as PageProps } from "../helpers/types";
 
-interface Props {
-  title: string;
-  id: string;
-}
-
-export const VideoPage: React.FC<Props> = (props) => {
+export const VideoPage: React.FC<PageProps> = (props) => {
   return (
     <Container>
-      {props.id && (
+      {props.data.video && (
         <Video
           title="vimeo-player"
-          src={`https://player.vimeo.com/video/${props.id}`}
+          src={`https://player.vimeo.com/video/${props.data.video}`}
           width="640"
           height="360"
           frameBorder="0"

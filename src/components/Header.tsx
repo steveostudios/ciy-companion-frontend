@@ -11,6 +11,7 @@ interface Props {
 }
 export const Header: React.FC<Props> = (props) => {
   const { program } = useParams();
+  console.log(program);
 
   return (
     <Container>

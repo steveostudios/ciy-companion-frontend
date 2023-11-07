@@ -11,11 +11,7 @@ export interface ContactProps {
   email?: string;
   description?: string;
   url?: string;
-  image?: {
-    sizes: {
-      thumbnail: string;
-    };
-  };
+  image: string;
   hideImage?: boolean;
   onCurrentContact?: any;
 }
@@ -23,7 +19,7 @@ export interface ContactProps {
 export const Contact: React.FC<ContactProps> = (props) => {
   return (
     <Container>
-      <Avatar image={props.image?.sizes?.thumbnail} alt={props.name} />
+      <Avatar image={props.image} alt={props.name} />
       <Main>
         <Name>{props.name}</Name>
         <Role>{props.role}</Role>

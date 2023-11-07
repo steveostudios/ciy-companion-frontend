@@ -11,6 +11,14 @@ export const categoryMap: Record<string, number> = {
   engage: 12,
 };
 
+export const programSlug: Record<string, string> = {
+  4: "move",
+  3: "mix",
+  5: "superstart",
+  11: "yms",
+  12: "engage",
+};
+
 export const learnMoreURLs: Record<string, any> = {
   move: "https://ciy.com/move",
   mix: "https://ciy.com/mix",
