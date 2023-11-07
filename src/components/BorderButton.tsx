@@ -48,18 +48,24 @@ const Container = styled("div")(
     display: "flex",
     marginBottom: "2rem",
     flex: 1,
-    minHeight: "3rem",
-    padding: "1rem",
+    minHeight: "5rem",
+    padding: 0,
     alignItems: "center",
     justifyContent: "flex-start",
     borderStyle: "solid",
     borderWidth: "1px",
     borderColor: props.hideBorder ? "transparent" : `var(--${props.color})`,
-    "*": {
+    "> *": {
+      padding: "1rem",
       fontFamily: "PragmaticaExtended-ExtraBold",
       textTransform: "uppercase",
       color: `var(--${props.color})`,
       textDecoration: "none",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "flex-start",
+      width: "100%",
+      height: "100%",
     },
   })
 );

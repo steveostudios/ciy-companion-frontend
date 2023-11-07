@@ -13,14 +13,6 @@ export default function BasicExample() {
     <Router>
       <Body>
         <Routes>
-          {/* <Route
-            path="/:program/:event/:slug/:subSlug/:subSubSlug/:subSubSubSlug"
-            element={<DynamicRoute />}
-          />
-          <Route
-            path="/:program/:event/:slug/:subSlug/:subSubSlug"
-            element={<DynamicRoute />}
-          /> */}
           <Route
             path="/:program/:event/:slug/:subSlug/*"
             element={<DynamicRoute />}

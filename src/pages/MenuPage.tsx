@@ -18,7 +18,7 @@ export const MenuPage: React.FC<PageProps> = (props) => {
             <BorderButton
               key={i}
               title={item.label}
-              href={item.url}
+              href={item.href}
               url={`${location.pathname}/${item.slug}`}
             />
           ))}

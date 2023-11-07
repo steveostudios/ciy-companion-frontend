@@ -4,7 +4,6 @@ import styled from "@emotion/styled";
 import { GridPage as PageProps } from "../helpers/types";
 
 export const GridPage: React.FC<PageProps> = (props) => {
-  console.log(props);
   return (
     <>
       {props.data.description && (

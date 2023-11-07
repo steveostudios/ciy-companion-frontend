@@ -1,6 +1,5 @@
 import { api, programSlug } from "./data";
-import { AppPage } from "./types";
-// import { Event, RootPage, Route, RouteType } from "./types";
+import { RouteType } from "./types";
 
 export const getEvent = async (eventSlug: string, skipFetch?: boolean) => {
   const localEvent = localStorage.getItem("event");
@@ -66,7 +65,7 @@ export const clearEvent = () => {
 
 const getPageData = (page: any, path: string) => {
   switch (page.meta.type) {
-    case "app":
+    case RouteType.APP:
       return {
         slug: page.slug,
         type: page.meta.type,
@@ -80,13 +79,13 @@ const getPageData = (page: any, path: string) => {
           description: page[page.meta.type].description,
         },
       };
-    case "contacts":
+    case RouteType.CONTACTS:
       return {
         slug: page.slug,
         type: page.meta.type,
         path: `${path}/${page.slug}`,
         data: {
-          title: page[page.meta.type].label,
+          title: page[page.meta.type].title,
           description: page[page.meta.type].description,
           contacts: page[page.meta.type].contacts.map((contact: any) => ({
             ...contact,
@@ -94,7 +93,7 @@ const getPageData = (page: any, path: string) => {
           })),
         },
       };
-    case "connect":
+    case RouteType.CONNECT:
       return {
         slug: page.slug,
         type: page.meta.type,
@@ -104,7 +103,7 @@ const getPageData = (page: any, path: string) => {
           connections: page[page.meta.type].connections,
         },
       };
-    case "embedded":
+    case RouteType.EMBEDDED:
       return {
         slug: page.slug,
         type: page.meta.type,
@@ -114,13 +113,13 @@ const getPageData = (page: any, path: string) => {
           url: page[page.meta.type].url,
         },
       };
-    case "grid":
+    case RouteType.GRID:
       return {
         slug: page.slug,
         type: page.meta.type,
         path: `${path}/${page.slug}`,
         data: {
-          title: page[page.meta.type].label,
+          title: page[page.meta.type].title,
           description: page[page.meta.type].description,
           images: page[page.meta.type].images.map((image: any) => ({
             ...image,
@@ -128,7 +127,7 @@ const getPageData = (page: any, path: string) => {
           })),
         },
       };
-    case "image":
+    case RouteType.IMAGE:
       return {
         slug: page.slug,
         type: page.meta.type,
@@ -138,7 +137,7 @@ const getPageData = (page: any, path: string) => {
           image: page[page.meta.type].image,
         },
       };
-    case "menu":
+    case RouteType.MENU:
       return {
         slug: page.slug,
         type: page.meta.type,
@@ -146,10 +145,24 @@ const getPageData = (page: any, path: string) => {
         data: {
           title: page[page.meta.type].title,
           description: page[page.meta.type].description,
-          buttons: page[page.meta.type].buttons,
+          buttons: page[page.meta.type].buttons.map((button: any) =>
+            button.type === RouteType.EXTERNAL
+              ? {
+                  label: button.label,
+                  slug: button.slug,
+                  href: button.content.external.url,
+                  enabled: button.enabled,
+                }
+              : {
+                  label: button.label,
+                  slug: button.slug,
+                  enabled: button.enabled,
+                  type: button.type,
+                }
+          ),
         },
       };
-    case "schedule":
+    case RouteType.SCHEDULE:
       return {
         slug: page.slug,
         type: page.meta.type,
@@ -164,7 +177,7 @@ const getPageData = (page: any, path: string) => {
           })),
         },
       };
-    case "video":
+    case RouteType.VIDEO:
       return {
         slug: page.slug,
         type: page.meta.type,
@@ -179,7 +192,7 @@ const getPageData = (page: any, path: string) => {
 
 const getSubPageData = (page: any, path: string) => {
   switch (page.type) {
-    case "app":
+    case RouteType.APP:
       return {
         slug: page.slug,
         type: page.type,
@@ -193,13 +206,13 @@ const getSubPageData = (page: any, path: string) => {
           description: page.content[page.type].description,
         },
       };
-    case "contacts":
+    case RouteType.CONTACTS:
       return {
         slug: page.slug,
         type: page.type,
         path: `${path}/${page.slug}`,
         data: {
-          title: page.content[page.type].label,
+          title: page.content[page.type].title,
           description: page.content[page.type].description,
           contacts: page.content[page.type].contacts.map((contact: any) => ({
             ...contact,
@@ -207,7 +220,7 @@ const getSubPageData = (page: any, path: string) => {
           })),
         },
       };
-    case "connect":
+    case RouteType.CONNECT:
       return {
         slug: page.slug,
         type: page.type,
@@ -217,7 +230,7 @@ const getSubPageData = (page: any, path: string) => {
           connections: page.content[page.type].connections,
         },
       };
-    case "embedded":
+    case RouteType.EMBEDDED:
       return {
         slug: page.slug,
         type: page.type,
@@ -227,13 +240,23 @@ const getSubPageData = (page: any, path: string) => {
           url: page.content[page.type].url,
         },
       };
-    case "grid":
+    case RouteType.EXTERNAL:
       return {
         slug: page.slug,
         type: page.type,
         path: `${path}/${page.slug}`,
         data: {
-          title: page.content[page.type].label,
+          title: page.content[page.type].title,
+          url: page.content[page.type].url,
+        },
+      };
+    case RouteType.GRID:
+      return {
+        slug: page.slug,
+        type: page.type,
+        path: `${path}/${page.slug}`,
+        data: {
+          title: page.content[page.type].title,
           description: page.content[page.type].description,
           images: page.content[page.type].images.map((image: any) => ({
             ...image,
@@ -241,7 +264,7 @@ const getSubPageData = (page: any, path: string) => {
           })),
         },
       };
-    case "image":
+    case RouteType.IMAGE:
       return {
         slug: page.slug,
         type: page.type,
@@ -251,7 +274,7 @@ const getSubPageData = (page: any, path: string) => {
           image: page.content[page.type].image,
         },
       };
-    case "menu":
+    case RouteType.MENU:
       return {
         slug: page.slug,
         type: page.type,
@@ -259,10 +282,24 @@ const getSubPageData = (page: any, path: string) => {
         data: {
           title: page.content[page.type].title,
           description: page.content[page.type].description,
-          buttons: page.content[page.type].buttons,
+          buttons: page.content[page.type].buttons.map((button: any) =>
+            button.type === RouteType.EXTERNAL
+              ? {
+                  label: button.label,
+                  slug: button.slug,
+                  href: button.content.external.url,
+                  enabled: button.enabled,
+                }
+              : {
+                  label: button.label,
+                  slug: button.slug,
+                  enabled: button.enabled,
+                  type: button.type,
+                }
+          ),
         },
       };
-    case "schedule":
+    case RouteType.SCHEDULE:
       return {
         slug: page.slug,
         type: page.type,
@@ -277,7 +314,7 @@ const getSubPageData = (page: any, path: string) => {
           })),
         },
       };
-    case "video":
+    case RouteType.VIDEO:
       return {
         slug: page.slug,
         type: page.type,
@@ -291,7 +328,12 @@ const getSubPageData = (page: any, path: string) => {
 };
 
 export const cleanData = (data: any) => {
-  // console.log(data);
+  console.table(
+    data.acf.content.map((page: any) => ({
+      type: page.meta.type,
+      data: page[page.meta.type],
+    }))
+  );
   // console.log("cleanData");
 
   const pages: any[] = [];
@@ -308,7 +350,9 @@ export const cleanData = (data: any) => {
           icon: button.meta.icon,
           slug: button.slug,
           url:
-            button.meta.type === "external" ? button[button.meta.type].url : "",
+            button.meta.type === RouteType.EXTERNAL
+              ? button[button.meta.type].url
+              : "",
           enabled: button.meta.enabled,
           type: button.meta.type,
         })),
@@ -318,7 +362,7 @@ export const cleanData = (data: any) => {
 
   // main pages
   data.acf.content
-    .filter((page: any) => page.meta.type !== "external")
+    .filter((page: any) => page.meta.type !== RouteType.EXTERNAL)
     .forEach((page: any) => {
       pages.push(
         getPageData(page, `/${programSlug[data.program]}/${data.slug}`)
@@ -327,57 +371,46 @@ export const cleanData = (data: any) => {
 
   // sub pages
   data.acf.content
-    .filter((page: any) => page.meta.type === "menu")
+    .filter((page: any) => page.meta.type === RouteType.MENU)
     .forEach((page: any) => {
-      page.menu.buttons
-        .filter(
-          (newPage: any) =>
-            newPage.type === "app" ||
-            newPage.type === "contacts" ||
-            newPage.type === "connect" ||
-            newPage.type === "embedded" ||
-            newPage.type === "grid" ||
-            newPage.type === "image" ||
-            newPage.type === "menu" ||
-            newPage.type === "schedule" ||
-            newPage.type === "video"
-        )
-        .forEach((newPage: any) => {
-          console.log(newPage);
-          pages.push(
-            getSubPageData(
-              newPage,
-              `/${programSlug[data.program]}/${data.slug}/${page.slug}`
-            )
-          );
-          // add sub sub pages
-          if (newPage.type === "menu") {
-            console.log(newPage.content.menu.buttons);
-            newPage.content.menu.buttons.forEach((subPage: any) => {
-              pages.push(
-                getSubPageData(
-                  subPage,
-                  `/${programSlug[data.program]}/${data.slug}/${page.slug}/${
-                    newPage.slug
-                  }`
-                )
-              );
-              if (subPage.type === "menu") {
-                subPage.content.menu.buttons.forEach((subSubPage: any) => {
-                  pages.push(
-                    getSubPageData(
-                      subSubPage,
-                      `/${programSlug[data.program]}/${data.slug}/${
-                        page.slug
-                      }/${newPage.slug}/${subPage.slug}`
-                    )
-                  );
-                });
-              }
-            });
-          }
-        });
+      page.menu.buttons.forEach((newPage: any) => {
+        console.log(newPage);
+        pages.push(
+          getSubPageData(
+            newPage,
+            `/${programSlug[data.program]}/${data.slug}/${page.slug}`
+          )
+        );
+        // add sub sub pages
+        if (newPage.type === RouteType.MENU) {
+          console.log(newPage.content.menu.buttons);
+          newPage.content.menu.buttons.forEach((subPage: any) => {
+            pages.push(
+              getSubPageData(
+                subPage,
+                `/${programSlug[data.program]}/${data.slug}/${page.slug}/${
+                  newPage.slug
+                }`
+              )
+            );
+            if (subPage.type === RouteType.MENU) {
+              subPage.content.menu.buttons.forEach((subSubPage: any) => {
+                pages.push(
+                  getSubPageData(
+                    subSubPage,
+                    `/${programSlug[data.program]}/${data.slug}/${page.slug}/${
+                      newPage.slug
+                    }/${subPage.slug}`
+                  )
+                );
+              });
+            }
+          });
+        }
+      });
     });
+
+  console.table(pages);
 
   return {
     meta: {
@@ -389,6 +422,6 @@ export const cleanData = (data: any) => {
       startDate: data.acf.start_date,
       endDate: data.acf.end_date,
     },
-    pages: pages,
+    pages: pages.filter((item: any) => item !== undefined),
   };
 };

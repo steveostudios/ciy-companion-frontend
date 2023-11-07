@@ -1,14 +1,4 @@
-// import { ConnectPage } from "../pages/ConnectPage";
-// import { EmbeddedPage } from "../pages/EmbeddedPage";
-// import { ContactsPage } from "../pages/ContactsPage";
-// import { MenuPage } from "../pages/MenuPage";
-// import { SchedulePage } from "../pages/SchedulePage";
-// import { VideoPage } from "../pages/VideoPage";
-// import { ImagePage } from "../pages/ImagePage";
-// import { GridPage } from "../pages/GridPage";
 import { AppPage } from "../pages/AppPage";
-// import { Page } from "../components/Page";
-// import { Event } from "../helpers/types";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getEvent } from "../helpers/event";
@@ -26,14 +16,10 @@ import { SchedulePage } from "../pages/SchedulePage";
 import { MenuPage } from "../pages/MenuPage";
 import { VideoPage } from "../pages/VideoPage";
 
-interface Props {
-  //   onSetData: (data: any) => void;
-  //   data: any;
-}
+interface Props {}
 
 export const DynamicRoute: React.FC<Props> = (props) => {
   const { program, event, slug } = useParams();
-  // const { data, onSetData } = props;
   const location = useLocation();
   const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
@@ -44,7 +30,6 @@ export const DynamicRoute: React.FC<Props> = (props) => {
     if (!data && event !== undefined) {
       setLoading(true);
       (async () => {
-        // if (props.onSetData === undefined) return;
         const fetchedData = await getEvent(event);
         await setData(fetchedData);
         setLoading(false);
@@ -57,9 +42,11 @@ export const DynamicRoute: React.FC<Props> = (props) => {
       return;
       // return navigate(`/`);
     }
-    const match = data.pages.find(
-      (item: any) => location.pathname === item.path
-    );
+    console.log(data.pages);
+
+    const match = data.pages
+      .filter((item: any) => item.path)
+      .find((item: any) => location.pathname === item.path);
     setPage(match);
 
     if (!match) {
@@ -87,13 +74,13 @@ export const DynamicRoute: React.FC<Props> = (props) => {
         {page && page.type === RouteType.ROOT && <RootPage {...page} />}
         {page && page.type === RouteType.APP && <AppPage {...page} />}
         {page && page.type === RouteType.CONNECT && <ConnectPage {...page} />}
-        {page && page.type === "contacts" && <ContactsPage {...page} />}
-        {page && page.type === "embedded" && <EmbeddedPage {...page} />}
-        {page && page.type === "grid" && <GridPage {...page} />}
-        {page && page.type === "image" && <ImagePage {...page} />}
-        {page && page.type === "schedule" && <SchedulePage {...page} />}
-        {page && page.type === "menu" && <MenuPage {...page} />}
-        {page && page.type === "video" && <VideoPage {...page} />}
+        {page && page.type === RouteType.CONTACTS && <ContactsPage {...page} />}
+        {page && page.type === RouteType.EMBEDDED && <EmbeddedPage {...page} />}
+        {page && page.type === RouteType.GRID && <GridPage {...page} />}
+        {page && page.type === RouteType.IMAGE && <ImagePage {...page} />}
+        {page && page.type === RouteType.SCHEDULE && <SchedulePage {...page} />}
+        {page && page.type === RouteType.MENU && <MenuPage {...page} />}
+        {page && page.type === RouteType.VIDEO && <VideoPage {...page} />}
       </Content>
     </Container>
   );
