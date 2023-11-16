@@ -1,12 +1,13 @@
 import { useLocation, useParams } from "react-router-dom";
-import Page from "../components/Page";
+import { Page } from "../components/Page";
 
-const NoMatch: React.FC = () => {
+interface Props {}
+const NoMatch: React.FC<Props> = (props) => {
   const params = useParams();
   const location = useLocation();
 
   return (
-    <Page title="Oh no!" background="light">
+    <Page>
       <h1>404</h1>
       <p>{JSON.stringify(params)}</p>
       <p>{location.pathname}</p>

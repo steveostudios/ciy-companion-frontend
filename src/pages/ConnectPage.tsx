@@ -1,55 +1,24 @@
 import styled from "@emotion/styled";
 import { NormalList } from "../components/List";
-import Page from "../components/Page";
-import FacebookIcon from "./../img/icons/facebook.svg";
-import InstagramIcon from "./../img/icons/instagram.svg";
-import SpotifyIcon from "./../img/icons/spotify.svg";
-import PodcastIcon from "./../img/icons/microphone.svg";
-import TiktokIcon from "./../img/icons/tiktok.svg";
+import { Icon } from "../components/Icon";
+import { ConnectPage as PageProps } from "../helpers/types";
 
-export interface ConnectionProps {
-  url: string;
-  service: string;
-}
-
-interface Props {
-  title: string;
-  connections: ConnectionProps[];
-}
-
-export const ConnectPage: React.FC<Props> = (props) => {
-  const icons: any = {
-    facebook: FacebookIcon,
-    instagram: InstagramIcon,
-    spotify: SpotifyIcon,
-    podcast: PodcastIcon,
-    tiktok: TiktokIcon,
-  };
-
+export const ConnectPage: React.FC<PageProps> = (props) => {
   return (
-    <Page
-      padding={0}
-      title={props.title}
-      background="light"
-      data={props.connections && props.connections.length > 0}
-    >
-      <NormalList>
-        {props.connections.length &&
-          props.connections
-            .filter((connection) => connection.url)
-            .map((connection, i) => (
-              <Connection key={i}>
-                <ConnectionLink href={connection.url}>
-                  <ConnectionIcon
-                    src={icons[connection.service]}
-                    alt={connection.service}
-                  />
-                  <ConnectionHandle>{connection.service}</ConnectionHandle>
-                </ConnectionLink>
-              </Connection>
-            ))}
-      </NormalList>
-    </Page>
+    <NormalList>
+      {props.data.connections.length &&
+        props.data.connections
+          .filter((connection) => connection.url)
+          .map((connection, i) => (
+            <Connection key={i}>
+              <ConnectionLink href={connection.url}>
+                <Icon icon={connection.icon} size={4} />
+
+                <ConnectionHandle>{connection.title}</ConnectionHandle>
+              </ConnectionLink>
+            </Connection>
+          ))}
+    </NormalList>
   );
 };
 
@@ -62,11 +31,10 @@ const ConnectionLink = styled("a")({
   display: "flex",
   gap: "2rem",
   textDecoration: "none",
+  color: "var(--black)",
+  alignItems: "center",
 });
 
-const ConnectionIcon = styled("img")({
-  width: "3rem",
-});
 const ConnectionHandle = styled("div")({
   color: "var(--black)",
   fontSize: "18px",

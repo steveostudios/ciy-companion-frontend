@@ -1,0 +1,25 @@
+.fak.fa-logo-ciy::before, .fa-kit.fa-logo-ciy::before { content: "\e005"; }
+.fak.fa-logo-engage::before, .fa-kit.fa-logo-engage::before { content: "\e003"; }
+.fak.fa-logo-mix::before, .fa-kit.fa-logo-mix::before { content: "\e002"; }
+.fak.fa-logo-move::before, .fa-kit.fa-logo-move::before { content: "\e000"; }
+.fak.fa-logo-superstart::before, .fa-kit.fa-logo-superstart::before { content: "\e001"; }
+.fak.fa-logo-wilderness::before, .fa-kit.fa-logo-wilderness::before { content: "\e004"; }
+.fak.fa-logo-yms::before, .fa-kit.fa-logo-yms::before { content: "\e006"; }
+
+.fak, .fa-kit {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: var(--fa-display, inline-block);
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+  font-family: "Font Awesome Kit";
+}
+
+@font-face {
+  font-family: "Font Awesome Kit";
+  font-style: normal;
+  font-display: block;
+  src: url("../webfonts/custom-icons.woff2") format("woff2"), url("../webfonts/custom-icons.ttf") format("truetype");
+}

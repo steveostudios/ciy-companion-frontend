@@ -1,13 +1,9 @@
 import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
 
 enum ButtonTarget {
   BLANK = "_blank",
   SELF = "_self",
-}
-
-export enum ButtonBackground {
-  LIGHT = "light",
-  DARK = "dark",
 }
 
 interface ButtonProps {
@@ -15,64 +11,66 @@ interface ButtonProps {
   href?: string;
   url?: string;
   onClick?: () => void;
-  background?: ButtonBackground;
   target?: ButtonTarget;
+  color?: string;
+  hideBorder?: boolean;
 }
 
 const BorderButton: React.FC<ButtonProps> = (props) => {
   return (
-    <A
-      href={props.url || props.href}
-      onClick={props.onClick}
-      background={props.background}
-      target={props.target || "_self"}
+    <Container
+      color={props.color || "black"}
+      hideBorder={props.hideBorder || false}
     >
-      {props.title}
-    </A>
+      {props.href && (
+        <a href={props.href} target={props.target || "_self"}>
+          <Content>{props.title}</Content>
+        </a>
+      )}
+      {props.url && !props.href && (
+        <Link to={props.url}>
+          <Content>{props.title}</Content>
+        </Link>
+      )}
+      {props.onClick && (
+        <div onClick={props.onClick}>
+          <Content>{props.title}</Content>
+        </div>
+      )}
+    </Container>
   );
 };
 
 export default BorderButton;
 
-const A = styled("a")(
-  {
+const Container = styled("div")(
+  (props: { color: string; hideBorder: boolean }) => ({
     display: "flex",
     marginBottom: "2rem",
-    textDecoration: "none",
     flex: 1,
-    minHeight: "3rem",
-    padding: "1rem",
+    minHeight: "5rem",
+    padding: 0,
     alignItems: "center",
     justifyContent: "flex-start",
-    fontFamily: "PragmaticaExtended-ExtraBold",
-    textTransform: "uppercase",
-  },
-  (props: { background?: ButtonBackground }) => ({
-    border:
-      props.background === "light"
-        ? "1px solid var(--black)"
-        : "1px solid var(--white)",
-    color: props.background === "light" ? "var(--black)" : "var(--white)",
-    "&:hover": {
-      backgroundColor:
-        props.background === "light" ? "var(--black)" : "var(--white)",
-      color: props.background === "light" ? "var(--white)" : "var(--black)",
+    borderStyle: "solid",
+    borderWidth: "1px",
+    borderColor: props.hideBorder ? "transparent" : `var(--${props.color})`,
+    "> *": {
+      padding: "1rem",
+      fontFamily: "PragmaticaExtended-ExtraBold",
+      textTransform: "uppercase",
+      color: `var(--${props.color})`,
+      textDecoration: "none",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "flex-start",
+      width: "100%",
+      height: "100%",
     },
   })
 );
 
-interface ButtonGroupProps {
-  children: React.ReactNode;
-}
-
-export const BorderButtonGroup: React.FC<ButtonGroupProps> = (props) => {
-  return (
-    <BorderButtonGroupContainer>{props.children}</BorderButtonGroupContainer>
-  );
-};
-
-const BorderButtonGroupContainer = styled("div")({
+const Content = styled("div")({
   display: "flex",
-  flexDirection: "column",
-  margin: "0 2rem",
+  flex: 1,
 });

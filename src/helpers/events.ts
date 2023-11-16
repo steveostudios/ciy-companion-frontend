@@ -28,6 +28,7 @@ const eventsUrlParams: string = [
 ].join(",");
 
 export const fetchEvents = async (program: string, page: number) => {
+  events.length = 0;
   if (!program) return;
   console.log("FETCHING EVENTS");
   const url = `${
@@ -42,6 +43,7 @@ export const fetchEvents = async (program: string, page: number) => {
   const pagesInt: number = pages ? parseInt(pages) : 1;
 
   events.push(...data);
+  console.log(events);
 
   if (page < pagesInt) {
     await fetchEvents(program, page + 1);

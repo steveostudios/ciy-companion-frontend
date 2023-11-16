@@ -1,44 +1,55 @@
-import Page from "../components/Page";
-import { AppButtons, AppHeader } from "../components/AppComponents";
+import styled from "@emotion/styled";
 import { StyledDivContent } from "../components/StyledDivContent";
 import ButtonAppleStore from "./../img/ButtonAppleStore.svg";
 import ButtonGooglePlay from "./../img/ButtonGooglePlay.svg";
+import { AppPage as PageProps } from "../helpers/types";
 
-interface Props {
-  title: string;
-  icon: string;
-  appStoreUrl?: string;
-  googlePlayUrl?: string;
-  description: string;
-}
-
-export const AppPage: React.FC<Props> = (props) => {
+export const AppPage: React.FC<PageProps> = (props) => {
   return (
-    <Page
-      padding={0}
-      title={props.title}
-      background="light"
-      data={props.title && props.description && props.icon}
-    >
-      <div>
-        <AppHeader>
-          <img src={props.icon} alt={props.title} />
-          <AppButtons>
-            {props.appStoreUrl && (
-              <a href={props.appStoreUrl}>
-                <img src={ButtonAppleStore} alt={props.title} />
-              </a>
-            )}
-            {props.googlePlayUrl && (
-              <a href={props.googlePlayUrl}>
-                <img src={ButtonGooglePlay} alt={props.title} />
-              </a>
-            )}
-          </AppButtons>
-        </AppHeader>
-        <h1>{props.title}</h1>
-        <StyledDivContent content={props.description} />
-      </div>{" "}
-    </Page>
+    <>
+      <AppHeader>
+        <img src={props.data.icon} alt={props.data.name} />
+        <AppButtons>
+          {props.data.appleStoreUrl && (
+            <a href={props.data.appleStoreUrl}>
+              <img src={ButtonAppleStore} alt={props.data.name} />
+            </a>
+          )}
+          {props.data.googlePlayStoreUrl && (
+            <a href={props.data.googlePlayStoreUrl}>
+              <img src={ButtonGooglePlay} alt={props.data.name} />
+            </a>
+          )}
+        </AppButtons>
+      </AppHeader>
+      <H1>{props.data.name}</H1>
+      <StyledDivContent content={props.data.description} />
+    </>
   );
 };
+
+const AppHeader = styled("div")({
+  display: "flex",
+  marginBottom: "2rem",
+  img: {
+    width: "120px",
+  },
+});
+
+const AppButtons = styled("div")({
+  flex: 1,
+  gap: "1rem",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "flex-end",
+  a: {
+    img: {
+      width: "180px",
+    },
+  },
+});
+
+const H1 = styled("h1")({
+  padding: 0,
+  margin: 0,
+});
