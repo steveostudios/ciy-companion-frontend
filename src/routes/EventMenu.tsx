@@ -6,16 +6,20 @@ import { RootPage as PageProps } from "../helpers/types";
 export const RootPage: React.FC<PageProps> = (props) => {
   return (
     <Menu>
-      {props?.data?.buttons.map((item, index) => (
-        <Button
-          key={index}
-          url={item.url}
-          slug={item.slug}
-          icon={item.icon || '<i class="fa-solid fa-star" aria-hidden="true">'}
-          name={item.label}
-          external={item.type === "external"}
-        />
-      ))}
+      {props?.data?.buttons
+        .filter((item: any) => item.enabled)
+        .map((item, index) => (
+          <Button
+            key={index}
+            url={item.url}
+            slug={item.slug}
+            icon={
+              item.icon || '<i class="fa-solid fa-star" aria-hidden="true">'
+            }
+            name={item.label}
+            external={item.type === "external"}
+          />
+        ))}
       <Button
         slug={`/`}
         icon='<i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>'

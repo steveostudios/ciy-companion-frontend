@@ -1,10 +1,19 @@
 import styled from "@emotion/styled";
+import React from "react";
 
-export const StyledDivContent = (props) => {
+interface Props {
+  content?: string;
+  pad?: boolean;
+  style?: any;
+  color?: string;
+}
+
+export const StyledDivContent: React.FC<Props> = (props) => {
   return (
     <StyledContent
       style={props.style}
-      pad={props.pad}
+      pad={props.pad || false}
+      color={props.color || "black"}
       dangerouslySetInnerHTML={{
         __html: props.content || "",
       }}
@@ -13,8 +22,10 @@ export const StyledDivContent = (props) => {
 };
 
 const StyledContent = styled("div")(
-  {
-    color: "var(--black)",
+  (props: { pad: boolean; color: string }) => ({
+    paddingLeft: props.pad ? "2rem" : 0,
+    paddingRight: props.pad ? "2rem" : 0,
+    color: `var(--${props.color})`,
     h2: {
       fontSize: "16px",
       textTransform: "uppercase",
@@ -29,9 +40,5 @@ const StyledContent = styled("div")(
       padding: "1rem 3rem",
     },
     paddingBottom: "3rem",
-  },
-  (props) => ({
-    paddingLeft: props.pad ? "2rem" : 0,
-    paddingRight: props.pad ? "2rem" : 0,
   })
 );

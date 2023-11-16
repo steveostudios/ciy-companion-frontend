@@ -115,6 +115,14 @@ export interface VideoPage extends Route {
   };
 }
 
+export interface ComingSoonPage extends Route {
+  data: {
+    message: string;
+    label: string;
+    url: string;
+  };
+}
+
 // elements
 export interface Contact {
   name: string;

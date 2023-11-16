@@ -10,14 +10,26 @@ interface Props {
   endDate: string;
 }
 export const Header: React.FC<Props> = (props) => {
-  const { program } = useParams();
+  const { program, event } = useParams();
   console.log(program);
 
   return (
     <Container>
-      <Logo slug={program} size={6} />
-      <p>{props.title}</p>
-      <p>{getHumanReadableDateRange(props.startDate, props.endDate)}</p>
+      <a href={`/${program}/${event}`}>
+        <Logo slug={program} size={6} />
+      </a>
+      <p>
+        <a href={`/${program}/${event}`}>
+          {props.title} {props.location && `| ${props.location}`}
+        </a>
+      </p>
+      {props.startDate && props.endDate && (
+        <p>
+          <a href={`/${program}/${event}`}>
+            {getHumanReadableDateRange(props.startDate, props.endDate)}
+          </a>
+        </p>
+      )}
     </Container>
   );
 };
@@ -38,5 +50,9 @@ const Container = styled("nav")({
   p: {
     margin: 0,
     fontSize: "14px",
+    a: {
+      color: "var(--white)",
+      textDecoration: "none",
+    },
   },
 });

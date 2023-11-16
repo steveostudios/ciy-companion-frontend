@@ -10,18 +10,20 @@ export const MenuPage: React.FC<PageProps> = (props) => {
   return (
     <>
       {props.data.description && (
-        <StyledDivContent pad content={props.data.description} />
+        <StyledDivContent content={props.data.description} />
       )}
       {props.data.buttons?.length && (
         <NormalList>
-          {props.data.buttons.map((item: any, i: number) => (
-            <BorderButton
-              key={i}
-              title={item.label}
-              href={item.href}
-              url={`${location.pathname}/${item.slug}`}
-            />
-          ))}
+          {props.data.buttons
+            .filter((item: any) => item.enabled)
+            .map((item: any, i: number) => (
+              <BorderButton
+                key={i}
+                title={item.label}
+                href={item.href}
+                url={`${location.pathname}/${item.slug}`}
+              />
+            ))}
         </NormalList>
       )}
     </>

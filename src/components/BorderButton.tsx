@@ -22,6 +22,11 @@ const BorderButton: React.FC<ButtonProps> = (props) => {
       color={props.color || "black"}
       hideBorder={props.hideBorder || false}
     >
+      {props.href && (
+        <a href={props.href} target={props.target || "_self"}>
+          <Content>{props.title}</Content>
+        </a>
+      )}
       {props.url && !props.href && (
         <Link to={props.url}>
           <Content>{props.title}</Content>
@@ -31,11 +36,6 @@ const BorderButton: React.FC<ButtonProps> = (props) => {
         <div onClick={props.onClick}>
           <Content>{props.title}</Content>
         </div>
-      )}
-      {props.href && (
-        <a href={props.href} target={props.target || "_self"}>
-          <Content>{props.title}</Content>
-        </a>
       )}
     </Container>
   );

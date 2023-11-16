@@ -5,9 +5,32 @@ import { Icon } from "../components/Icon";
 import { NormalList } from "../components/List";
 import { Day, Days, SchedulePage as PageProps } from "../helpers/types";
 
+interface Color {
+  slug: string;
+  label: string;
+  value: string;
+  text: "black" | "white";
+}
+
 export const SchedulePage: React.FC<PageProps> = (props) => {
   const [currentDay, setCurrentDay] = useState(0);
   const { program } = useParams();
+
+  const colors: Color[] = [
+    { slug: "blue", label: "Blue", value: "#007fff", text: "white" },
+    { slug: "pink", label: "Pink", value: "#db32b9", text: "white" },
+    { slug: "purple", label: "Purple", value: "#9056a9", text: "white" },
+    { slug: "green", label: "Green", value: "#00b44d", text: "white" },
+    { slug: "yellow", label: "Yellow", value: "#ffdc00", text: "black" },
+    { slug: "orange", label: "Orange", value: "#ff8600", text: "black" },
+    { slug: "red", label: "Red", value: "#ff4136", text: "white" },
+    { slug: "black", label: "Black", value: "#3f2f2f", text: "white" },
+    { slug: "white", label: "White", value: "#ffe0e0", text: "black" },
+    { slug: "gray", label: "Gray", value: "#999999", text: "black" },
+    { slug: "brown", label: "Brown", value: "#87541b", text: "white" },
+    { slug: "gold", label: "Gold", value: "#f7d331", text: "black" },
+    { slug: "silver", label: "Silver", value: "#c9c9c9", text: "black" },
+  ];
 
   return (
     <>
@@ -33,19 +56,29 @@ export const SchedulePage: React.FC<PageProps> = (props) => {
         <EventList>
           {props.data.days[currentDay].day.map((item: any, i: number) => (
             <Event key={i}>
-              {/* <EventIcon>
+              <EventIcon>
                 <Icon icon={item.icon} />
-              </EventIcon> */}
+              </EventIcon>
               <EventMain>
                 <EventName>{item.name}</EventName>
-                {/* <EventColors>
-                  {item.color.length &&
-                    item.color.map((color: any, i: number) => (
-                      <EventColor key={i} color={color.post_excerpt}>
-                        {color.post_title}
-                      </EventColor>
-                    ))}
-                </EventColors> */}
+                <EventColors>
+                  {item.color.length > 0 &&
+                    item.color.map((color: any, i: number) => {
+                      const colorObj = colors.find(
+                        (item) => item.slug === color
+                      );
+                      if (colorObj)
+                        return (
+                          <EventColor
+                            key={i}
+                            color={colorObj.value}
+                            text={colorObj.text}
+                          >
+                            {colorObj.label}
+                          </EventColor>
+                        );
+                    })}
+                </EventColors>
                 <EventLocation>{item.location}</EventLocation>
               </EventMain>
               <EventTime>{item.time}</EventTime>
@@ -136,19 +169,14 @@ const EventColors = styled("div")({
 });
 
 const EventColor = styled("div")(
-  {
+  (props: { color: string; text: "black" | "white" }) => ({
     padding: "0.5rem 1rem",
     textTransform: "uppercase",
     fontSize: "9px",
     fontWeight: "normal",
     display: "flex",
-  },
-  (props: { color: string }) => ({
     backgroundColor: props.color,
-    color:
-      props.color === "yellow" || props.color === "orange"
-        ? "var(--black)"
-        : "var(--white)",
+    color: `var(--${props.text})`,
   })
 );
 

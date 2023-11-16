@@ -15,6 +15,7 @@ import { ImagePage } from "../pages/ImagePage";
 import { SchedulePage } from "../pages/SchedulePage";
 import { MenuPage } from "../pages/MenuPage";
 import { VideoPage } from "../pages/VideoPage";
+import { ComingSoon } from "./ComingSoon";
 
 interface Props {}
 
@@ -59,6 +60,7 @@ export const DynamicRoute: React.FC<Props> = (props) => {
   if (!page) return null;
   // if (!page && data) navigate(`/${program}/${event}/`);
   if (loading) return <div>Loading...</div>;
+
   return (
     <Container whiteBackground={!!slug}>
       {data.meta && (
@@ -71,16 +73,39 @@ export const DynamicRoute: React.FC<Props> = (props) => {
       )}
       {slug && <SubNav program={program || ""} title={page.data.title || ""} />}
       <Content header={!!data.meta} subnav={!!page}>
-        {page && page.type === RouteType.ROOT && <RootPage {...page} />}
-        {page && page.type === RouteType.APP && <AppPage {...page} />}
-        {page && page.type === RouteType.CONNECT && <ConnectPage {...page} />}
-        {page && page.type === RouteType.CONTACTS && <ContactsPage {...page} />}
-        {page && page.type === RouteType.EMBEDDED && <EmbeddedPage {...page} />}
-        {page && page.type === RouteType.GRID && <GridPage {...page} />}
-        {page && page.type === RouteType.IMAGE && <ImagePage {...page} />}
-        {page && page.type === RouteType.SCHEDULE && <SchedulePage {...page} />}
-        {page && page.type === RouteType.MENU && <MenuPage {...page} />}
-        {page && page.type === RouteType.VIDEO && <VideoPage {...page} />}
+        {data.comingSoon && (
+          <ComingSoon {...{ ...page, data: data.comingSoon }} />
+        )}
+        {!data.comingSoon && page && page.type === RouteType.ROOT && (
+          <RootPage {...page} />
+        )}
+        {!data.comingSoon && page && page.type === RouteType.APP && (
+          <AppPage {...page} />
+        )}
+        {!data.comingSoon && page && page.type === RouteType.CONNECT && (
+          <ConnectPage {...page} />
+        )}
+        {!data.comingSoon && page && page.type === RouteType.CONTACTS && (
+          <ContactsPage {...page} />
+        )}
+        {!data.comingSoon && page && page.type === RouteType.EMBEDDED && (
+          <EmbeddedPage {...page} />
+        )}
+        {!data.comingSoon && page && page.type === RouteType.GRID && (
+          <GridPage {...page} />
+        )}
+        {!data.comingSoon && page && page.type === RouteType.IMAGE && (
+          <ImagePage {...page} />
+        )}
+        {!data.comingSoon && page && page.type === RouteType.SCHEDULE && (
+          <SchedulePage {...page} />
+        )}
+        {!data.comingSoon && page && page.type === RouteType.MENU && (
+          <MenuPage {...page} />
+        )}
+        {!data.comingSoon && page && page.type === RouteType.VIDEO && (
+          <VideoPage {...page} />
+        )}
       </Content>
     </Container>
   );

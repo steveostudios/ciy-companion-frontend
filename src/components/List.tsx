@@ -7,7 +7,7 @@ export const NormalList = styled("ul")(
     listStyle: "none",
     alignSelf: "center",
     flex: 1,
-    height: "inherit",
+    height: "100%",
     overflowY: "auto",
     width: "100%",
     boxSizing: "border-box",

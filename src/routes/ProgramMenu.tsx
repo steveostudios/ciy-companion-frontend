@@ -7,14 +7,11 @@ import styled from "@emotion/styled";
 import { fetchEvents, APISimpleEvent } from "../helpers/events";
 import { Page } from "../components/Page";
 import { Logo } from "../components/Logo";
-// import { fetchColors, getColors } from "../helpers/colors";
 
 export const ProgramMenu: React.FC = () => {
   const { program } = useParams<string>();
   const [loading, setLoading] = useState(false);
   const [events, setEvents] = useState<APISimpleEvent[] | undefined>([]);
-
-  // const colors = getColors();
 
   useEffect(() => {
     setEvents([]);
@@ -27,14 +24,6 @@ export const ProgramMenu: React.FC = () => {
       })();
     }
   }, [program]);
-
-  // useEffect(() => {
-  //   if (!colors) {
-  //     (async () => {
-  //       await fetchColors();
-  //     })();
-  //   }
-  // }, [colors]);
 
   return (
     <Page>
@@ -66,15 +55,20 @@ export const ProgramMenu: React.FC = () => {
               a.acf.start_date > b.acf.start_date ? 1 : -1
             )
             .map((event) => {
+              let title = event.title.rendered;
+              if (event.acf.start_date && event.acf.end_date) {
+                title += ` | ${getHumanReadableDateRange(
+                  event.acf.start_date,
+                  event.acf.end_date
+                )}`;
+              }
+              if (event.acf.location) {
+                title += ` | ${event.acf.location}`;
+              }
               return (
                 <li key={event.slug}>
                   <BorderButton
-                    title={`${event.title.rendered} | ${
-                      getHumanReadableDateRange(
-                        event.acf.start_date,
-                        event.acf.end_date
-                      ) || ""
-                    } | ${event.acf.location}`}
+                    title={title}
                     href={`/${program}/${event.slug}`}
                     color="white"
                     hideBorder
