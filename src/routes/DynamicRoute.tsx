@@ -36,7 +36,7 @@ export const DynamicRoute: React.FC<Props> = (props) => {
         setLoading(false);
       })();
     }
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (!data) {
@@ -54,7 +54,7 @@ export const DynamicRoute: React.FC<Props> = (props) => {
       console.log("no matcxh");
       return navigate(`/${program}/${event}`);
     }
-  }, [data, location.pathname]);
+  }, [data, location.pathname]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!data) return null;
   if (!page) return null;

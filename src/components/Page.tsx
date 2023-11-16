@@ -28,7 +28,7 @@ export const Page: React.FC<PageProps> = (props) => {
         await props.onSetData(fetchedData);
       })();
     }
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Container whiteBackground={!!props.page}>

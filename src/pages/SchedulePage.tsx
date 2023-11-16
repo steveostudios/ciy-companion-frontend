@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Icon } from "../components/Icon";
 import { NormalList } from "../components/List";
-import { Day, Days, SchedulePage as PageProps } from "../helpers/types";
+import { Days, SchedulePage as PageProps } from "../helpers/types";
 
 interface Color {
   slug: string;
@@ -77,6 +77,7 @@ export const SchedulePage: React.FC<PageProps> = (props) => {
                             {colorObj.label}
                           </EventColor>
                         );
+                      return null;
                     })}
                 </EventColors>
                 <EventLocation>{item.location}</EventLocation>

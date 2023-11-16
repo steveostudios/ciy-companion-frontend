@@ -1,4 +1,3 @@
-import styled from "@emotion/styled";
 import { ComingSoonPage as PageProps } from "../helpers/types";
 import { StyledDivContent } from "../components/StyledDivContent";
 import BorderButton from "../components/BorderButton";
@@ -19,15 +18,3 @@ export const ComingSoon: React.FC<PageProps> = (props) => {
     </>
   );
 };
-
-// const Container = styled("div")({
-//   padding: 0,
-//   margin: 0,
-//   alignSelf: "center",
-//   listStyle: "none",
-//   display: "grid",
-//   gridTemplateColumns: "repeat(3, 13rem)",
-//   gridAutoRows: "13rem",
-//   gap: "2px",
-//   overflowY: "scroll",
-// });
