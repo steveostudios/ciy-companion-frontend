@@ -433,7 +433,7 @@ export const cleanData = (data: any) => {
     meta: {
       id: data.id,
       slug: data.slug,
-      title: data.title.rendered,
+      title: data.acf.title,
       program: programSlug[data.program],
       location: data.acf.location,
       startDate: data.acf.start_date,

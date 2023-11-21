@@ -55,7 +55,7 @@ export const ProgramMenu: React.FC = () => {
               a.acf.start_date > b.acf.start_date ? 1 : -1
             )
             .map((event) => {
-              let title = event.title.rendered;
+              let title = event.acf.title;
               if (event.acf.start_date && event.acf.end_date) {
                 title += ` | ${getHumanReadableDateRange(
                   event.acf.start_date,

@@ -2,13 +2,11 @@ import { api, categoryMap } from "./data";
 
 export interface APISimpleEvent {
   slug: string;
-  title: {
-    rendered: string;
-  };
   acf: {
     location: string;
     start_date: string;
     end_date: string;
+    title: string;
   };
 }
 
@@ -20,7 +18,6 @@ const eventsUrlParams: string = [
   "type",
   "acf",
   "status",
-  "title.rendered",
   "program",
   "acf.start_date",
   "acf.end_date",
