@@ -87,10 +87,12 @@ const getPageData = (page: any, path: string) => {
         data: {
           title: page[page.meta.type].title,
           description: page[page.meta.type].description,
-          contacts: page[page.meta.type].contacts.map((contact: any) => ({
-            ...contact,
-            image: contact?.image?.sizes?.thumbnail || null,
-          })),
+          contacts: page[page.meta.type].contacts.length
+            ? page[page.meta.type].contacts.map((contact: any) => ({
+                ...contact,
+                image: contact?.image?.sizes?.thumbnail || null,
+              }))
+            : [],
         },
       };
     case RouteType.CONNECT:
@@ -121,10 +123,12 @@ const getPageData = (page: any, path: string) => {
         data: {
           title: page[page.meta.type].title,
           description: page[page.meta.type].description,
-          images: page[page.meta.type].images.map((image: any) => ({
-            ...image,
-            image: image.image.sizes.thumbnail,
-          })),
+          images: page[page.meta.type].images.length
+            ? page[page.meta.type].images.map((image: any) => ({
+                ...image,
+                image: image.image.sizes.thumbnail,
+              }))
+            : [],
         },
       };
     case RouteType.IMAGE:
