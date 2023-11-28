@@ -18,15 +18,17 @@ export const ContactsPage: React.FC<PageProps> = (props) => {
           {props.data.description && (
             <StyledDivContent content={props.data.description} />
           )}
-          <NormalList>
-            {props.data.contacts.map((contact, i) => (
-              <Contact
-                key={i}
-                {...contact}
-                onCurrentContact={setCurrentContact}
-              />
-            ))}
-          </NormalList>
+          {props.data.contacts.length > 0 && (
+            <NormalList>
+              {props.data.contacts.map((contact, i) => (
+                <Contact
+                  key={i}
+                  {...contact}
+                  onCurrentContact={setCurrentContact}
+                />
+              ))}
+            </NormalList>
+          )}
         </>
       )}
       {currentContact && (
