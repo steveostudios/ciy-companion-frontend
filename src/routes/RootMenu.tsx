@@ -48,7 +48,7 @@ export default function RootMenu() {
         </ListItem>
         <ListItem>
           <Link to="/engage">
-            <Logo slug="engage" size={12} />
+            <Logo slug="engage" size={18} />
           </Link>
         </ListItem>
       </NormalList>

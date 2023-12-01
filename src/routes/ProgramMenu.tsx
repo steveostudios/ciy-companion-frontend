@@ -18,7 +18,7 @@ export const ProgramMenu: React.FC = () => {
     setLoading(true);
     if (program !== undefined) {
       (async () => {
-        const temp = await fetchEvents(program, 1);
+        const temp = await fetchEvents(program);
         setLoading(false);
         setEvents(temp?.events);
       })();
@@ -28,7 +28,10 @@ export const ProgramMenu: React.FC = () => {
   return (
     <Page>
       <Head>
-        <Logo slug={program} size={12} />
+        <Logo
+          slug={program}
+          size={program === "superstart" ? 20 : program === "engage" ? 18 : 12}
+        />
       </Head>
       {loading && (
         <NormalList showBorder>

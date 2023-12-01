@@ -1,4 +1,5 @@
 import { Icon } from "./Icon";
+import yms from "./../img/Logo_YMS.svg";
 
 interface Props {
   id?: number;
@@ -35,10 +36,13 @@ export const Logo: React.FC<Props> = (props) => {
     );
   if (id === 11 || slug === "yms")
     return (
-      <Icon
-        icon={`<i class="fa-kit fa-logo-yms"></i>`}
-        size={size || 3}
-        color={color || "var(--yms-primary)"}
+      <img
+        src={yms}
+        alt="yms"
+        style={{
+          width: size + "rem" || "3rem",
+          height: size + "rem" || "3rem",
+        }}
       />
     );
   if (id === 12 || slug === "engage")
