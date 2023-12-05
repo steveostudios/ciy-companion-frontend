@@ -32,11 +32,6 @@ export default function RootMenu() {
           </Link>
         </ListItem>
         <ListItem>
-          <Link to="/yms">
-            <Logo slug="yms" size={12} />
-          </Link>
-        </ListItem>
-        <ListItem>
           <Link to="/mix">
             <Logo slug="mix" size={12} />
           </Link>
@@ -47,8 +42,13 @@ export default function RootMenu() {
           </Link>
         </ListItem>
         <ListItem>
-          <Link to="/engage">
+          <Link to="/engage/engage-info">
             <Logo slug="engage" size={18} />
+          </Link>
+        </ListItem>
+        <ListItem>
+          <Link to="/yms/yms">
+            <Logo slug="yms" size={12} />
           </Link>
         </ListItem>
       </NormalList>
