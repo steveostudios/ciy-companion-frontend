@@ -41,7 +41,7 @@ export const Logo: React.FC<Props> = (props) => {
         alt="yms"
         style={{
           width: size + "rem" || "3rem",
-          height: size + "rem" || "3rem",
+          height: (size && size * 0.5 + "rem") || "3rem",
         }}
       />
     );
